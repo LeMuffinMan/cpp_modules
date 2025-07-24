@@ -10,12 +10,57 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := megaphone
-CPP := c++
-CPP_FLAGS := -Wall -Wextra -Werror 
-CPP_98_FLAG := -std=c++98
+# Compile and flags
+CXX 			:= c++
+CXX_FLAGS 		:= -Wall -Wextra -Werror -std=c++98 
 
+# Binary name
+NAME 			:= megaphone
 
+# Sources and objects
+SRCS 			:= megaphone.cpp
+OBJ_DIR 		:= .objs
+OBJS 			:= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
+DEPS 			:= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.d))
+
+# Valgrind 
+VG 				:= valgrind 
+VGFLAGS			:= --leak-check=full --show-leak-kinds=all \
+				   --track-origins=yes --trace-children=yes
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXX_FLAGS) $(OBJS) -o $(NAME)
+
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+	$(CXX) $(CXX_FLAGS) -MMD -MP -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+-include $(DEPS)
+
+clean: 
+	rm -rf $(OBJ_DIR)
+
+fclean: clean 
+	rm -f $(NAME)
+
+re: fclean all
+
+run: all 
+	./$(NAME) this_is_a_test_string
+
+test: all 
+	./$(NAME) "shhhhh... I think the students are asleep..."
+	./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
+	./$(NAME)
+
+vg: 
+	$(VG) $(VGFLAGS) ./$(NAME) this " " is " """ a " "test" " string
+
+.PHONY: all clean fclean re run test vg
 
 
 
