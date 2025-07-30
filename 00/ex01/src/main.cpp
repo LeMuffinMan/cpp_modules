@@ -17,23 +17,23 @@ bool isNumber(const std::string& s)
 int main ()
 {
   std::string input;
+  std::string sep(50, '=');
   PhoneBook myPhoneBook;
   int index;
-  std::string sep(50, '=');
 
   while (1)
   {
-    std::cout << std::endl;
-    std::cout << sep << std::endl;
     std::cout << "Usage :" << std::endl;
     std::cout << "ADD : save a new contact" << std::endl;
     std::cout << "SEARCH : display a specific contact" << std::endl;
     std::cout << "EXIT : quit program" << std::endl << std::endl;
+    std::cout << "Input : ";
     if (!std::getline(std::cin, input))
     {
         std::cout << "EOF : exiting ..." << std::endl;
         return (1);
     }
+    std::cout << std::endl;
     if (input == "ADD")
     {
         std::cout << "NEW CONTACT" << std::endl;
@@ -78,6 +78,7 @@ int main ()
     {
         std::cout << "Invalid input" << std::endl;
     }
+    std::cout << sep << std::endl;
   }
   return (0);
 }
