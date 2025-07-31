@@ -5,52 +5,52 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oelleaum <oelleaum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/24 16:07:27 by oelleaum          #+#    #+#              #
-#    Updated: 2025/07/24 16:16:37 by oelleaum         ###   ########lyon.fr    #
+#    Created: 2025/07/30 15:30:14 by oelleaum          #+#    #+#              #
+#    Updated: 2025/07/30 16:33:01 by oelleaum         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
-# Compile and flags
-CXX 			:= c++
-CXX_FLAGS 		:= -Wall -Wextra -Werror -std=c++98 
+CXX = c++
+CXXFLAGS 				= -Wall -Wextra -std=c++98 -Iinclude -MMD -MP
 
-# Binary name
-NAME 			:= phonebook
+SRC_DIR 				= src
+OBJS_DIR 				= .objs
 
-# Sources headers and objects
-SRCS := main.cpp PhoneBook.cpp Contact.cpp
-INC := PhoneBook.hpp Contact.hpp
-OBJ_DIR 		:= .objs
-OBJS 			:= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
-DEPS 			:= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.d))
+SRCS 						= src/Contact.cpp src/main.cpp src/PhoneBook.cpp
+OBJS 						= $(patsubst $(SRC_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
+DEPS 						= $(OBJS:.o=.d)
 
-# Valgrind 
-VG 				:= valgrind 
-VGFLAGS			:= --leak-check=full --show-leak-kinds=all \
-				   --track-origins=yes --trace-children=yes
+VG 							= valgrind 
+VGFLAGS					= --leak-check=full --show-leak-kinds=all \
+				   				--track-origins=yes --trace-children=yes
+
+NAME 						= phonebook
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXX_FLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
-	$(CXX) $(CXX_FLAGS) -MMD -MP -c $< -o $@
+$(OBJS_DIR)/%.o: $(SRC_DIR)/%.cpp Makefile | $(OBJS_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
 
 -include $(DEPS)
 
-clean: 
-	rm -rf $(OBJ_DIR)
+clean:
+	rm -rf $(OBJS_DIR)
 
-fclean: clean 
+fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: all 
+	./$(NAME)
 
+vg: 
+	$(VG) $(VGFLAGS) ./$(NAME) 
 
-
+.PHONY: all clean fclean re run vg

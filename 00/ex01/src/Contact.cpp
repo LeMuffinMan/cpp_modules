@@ -17,6 +17,11 @@ std::string Contact::getPhoneNumber() const {
     return _phoneNumber;
 }
 
+std::string Contact::getDarkestSecret() const
+{
+  return _darkestSecret;
+}
+
 void Contact::setField(std::string name, std::string &field)
 {
   std::cout << name;
@@ -33,13 +38,9 @@ void Contact::setField(std::string name, std::string &field)
       std::cout << "Empty input is incorrect, please try again: ";
       continue;
     }
-    if (field.length() >= 10)
-      field[9] = '.';
-
     break;
   }
 }
-
 
 void Contact::fillContact()
 {
