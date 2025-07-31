@@ -2,7 +2,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -std=c++98 -Iinclude -MMD -MP
 SRC_DIR = src
 OBJS_DIR = .objs
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+SRCS = src/Account.cpp src/tests.cpp
 OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 
