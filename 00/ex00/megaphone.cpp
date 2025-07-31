@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <cctype> // toupper
+#include <cctype>
 
 void lowercase_to_uppercase(std::string &str)
 {

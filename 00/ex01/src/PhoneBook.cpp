@@ -13,12 +13,14 @@ PhoneBook::~PhoneBook()
 
 }
 
-std::string formatString(const std::string& str)
+std::string formatString(const std::string str)
 {
-    if (str.length() > 10)
-        return str.substr(0, 9) + ".";
-    else
-        return str;
+  std::string res;
+  res = str;
+  if (res.length() > 10)
+      return res.substr(0, 9) + ".";
+  else
+      return res;
 }
 
 void PhoneBook::displayContact(int index) const
@@ -49,14 +51,11 @@ void PhoneBook::displayContact(int index) const
   else
   {
     std::cout << std::endl;
-    std::string first = _contacts[index - 1].getFirstName();
-    std::string last = _contacts[index - 1].getLastName();
-    std::string nick = _contacts[index - 1].getNickname();
-    std::string phone = _contacts[index - 1].getPhoneNumber();
-    std::cout << "First Name : " << first << std::endl;
-    std::cout << "Last Name : " << last << std::endl;
-    std::cout << "Nickname : " << nick << std::endl;
-    std::cout << "Phone Number : " << phone << std::endl;
+    std::cout << "First Name : " <<  _contacts[index - 1].getFirstName() << std::endl;
+    std::cout << "Last Name : " << _contacts[index - 1].getLastName() << std::endl;
+    std::cout << "Nickname : " << _contacts[index - 1].getNickname() << std::endl;
+    std::cout << "Phone Number : " << _contacts[index - 1].getPhoneNumber() << std::endl;
+    std::cout << "Darkest Secret : " << _contacts[index - 1].getDarkestSecret() << std::endl;
   }
 }
 

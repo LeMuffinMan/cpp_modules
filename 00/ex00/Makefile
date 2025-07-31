@@ -11,29 +11,29 @@
 # **************************************************************************** #
 
 # Compile and flags
-CXX 			:= c++
-CXX_FLAGS 		:= -Wall -Wextra -Werror -std=c++98 
+CXX 						= c++
+CXX_FLAGS 			= -Wall -Wextra -Werror -std=c++98 
 
 # Binary name
-NAME 			:= megaphone
+NAME 						= megaphone
 
 # Sources and objects
-SRCS 			:= megaphone.cpp
-OBJ_DIR 		:= .objs
-OBJS 			:= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
-DEPS 			:= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.d))
+SRCS 						= megaphone.cpp
+OBJ_DIR 				= .objs
+OBJS 						= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.o))
+DEPS 						= $(addprefix $(OBJ_DIR)/,$(SRCS:.cpp=.d))
 
 # Valgrind 
-VG 				:= valgrind 
-VGFLAGS			:= --leak-check=full --show-leak-kinds=all \
-				   --track-origins=yes --trace-children=yes
+VG 							= valgrind 
+VGFLAGS					= --leak-check=full --show-leak-kinds=all \
+				   				--track-origins=yes --trace-children=yes
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) Makefile 
 	$(CXX) $(CXX_FLAGS) $(OBJS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.cpp Makefile $(OBJ_DIR)
 	$(CXX) $(CXX_FLAGS) -MMD -MP -c $< -o $@
 
 $(OBJ_DIR):
