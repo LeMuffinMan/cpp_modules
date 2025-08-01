@@ -1,5 +1,7 @@
 #include "Setting.hpp"
 #include <iostream>
+#include <sstream>
+#include <cctype>
 
 Setting::Setting() : _key(""), _value("")
 {
@@ -35,3 +37,52 @@ Setting::~Setting()
     // std::cout << "Setting Destructor called" << std::endl;
 }
 
+std::string Setting::asString()
+{
+    return _value;
+}
+
+int Setting::asInt()
+{
+    std::istringstream iss(_value);
+    int val;
+    char c;
+
+    if (!(iss >> val))
+        throw std::runtime_error("Invalid int for key '" + _key + "': " + _value);
+
+    if (iss >> c)
+        throw std::runtime_error("Invalid int (extra characters) for key '" + _key + "': " + _value);
+
+    return val;
+}
+
+
+double Setting::asDouble()
+{
+    std::istringstream iss(_value);
+    double val;
+    char c;
+
+    if (!(iss >> val))
+        throw std::runtime_error("Invalid double for key '" + _key + "': " + _value);
+
+    if (iss >> c)
+        throw std::runtime_error("Invalid double (extra characters) for key '" + _key + "': " + _value);
+
+    return val;
+}
+
+
+bool Setting::asBool()
+{
+    std::string val = _value;
+
+    for (size_t i = 0; i < val.size(); ++i)
+    {
+        val[i] = std::tolower(static_cast<unsigned char>(val[i]));
+    }
+    if (val == "true" || val == "1") return true;
+    if (val == "false" || val == "0") return false;
+    throw std::runtime_error("Invalid bool for key '" + _key + "': " + _value);
+}
