@@ -1,6 +1,10 @@
 #ifndef CONFIGPARSER_HPP
 #define CONFIGPARSER_HPP
 
+#include <string>
+#include <map>
+#include "Setting.hpp"
+
 class ConfigParser
 {
 public:

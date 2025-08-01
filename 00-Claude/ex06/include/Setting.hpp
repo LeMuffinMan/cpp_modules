@@ -1,10 +1,13 @@
 #ifndef SETTING_HPP
 #define SETTING_HPP
 
+#include <string>
+
 class Setting
 {
 public:
-    Setting(std::string key, std::string value); // Default constructor
+    Setting(); //default constructor 
+    Setting(std::string key, std::string value);
     Setting(const Setting& other); // Copy constructor
     Setting& operator=(const Setting& other); // Copy assignment
     ~Setting(); // Destructor

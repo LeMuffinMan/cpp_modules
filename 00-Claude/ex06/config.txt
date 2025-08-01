@@ -1,0 +1,10 @@
+# Database Configuration
+
+db_host=localhost
+
+db_port=5432
+db_name=myapp
+max_connections=100
+
+debug_mode=true
+timeout=30.5
