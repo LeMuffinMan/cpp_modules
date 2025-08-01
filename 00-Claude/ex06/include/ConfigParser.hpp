@@ -12,7 +12,7 @@ public:
     ConfigParser(const ConfigParser& other); // Copy constructor
     ConfigParser& operator=(const ConfigParser& other); // Copy assignment
     ~ConfigParser(); // Destructor
-    int load();
+    bool load();
     std::string getString(std::string key);
     int getInt(std::string key);
     bool getBool(std::string key);

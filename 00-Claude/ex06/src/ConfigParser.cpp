@@ -1,4 +1,5 @@
 #include "ConfigParser.hpp"
+#include "Setting.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -32,14 +33,14 @@ ConfigParser::~ConfigParser()
     // std::cout << "ConfigParser Destructor called" << std::endl;
 }
 
-int ConfigParser::load()
+bool ConfigParser::load()
 {
     std::ifstream file(_file.c_str());  // Ouvre le fichier
 
     if (!file.is_open())
     {
         std::cerr << "Error : impossible to open " << _file << "." << std::endl;
-        return 1;
+        return false;
     }
 
     std::string line;
@@ -58,5 +59,33 @@ int ConfigParser::load()
         }
     }
     file.close(); 
-    return 0;
+    return true;
+}
+
+std::string ConfigParser::getString(std::string key)
+{
+    if (_settings.find(key) == _settings.end())
+        throw std::runtime_error("Key not found: " + key);
+    return _settings[key].asString();
+}
+
+int ConfigParser::getInt(std::string key)
+{
+    if (_settings.find(key) == _settings.end())
+        throw std::runtime_error("Key not found: " + key);
+    return _settings[key].asInt();
+}
+
+bool ConfigParser::getBool(std::string key)
+{
+    if (_settings.find(key) == _settings.end())
+        throw std::runtime_error("Key not found: " + key);
+    return _settings[key].asBool();
+}
+
+double ConfigParser::getDouble(std::string key)
+{
+    if (_settings.find(key) == _settings.end())
+        throw std::runtime_error("Key not found: " + key);
+    return _settings[key].asDouble();
 }
