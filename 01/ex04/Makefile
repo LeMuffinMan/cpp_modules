@@ -6,7 +6,7 @@
 #    By: oelleaum <oelleaum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/02 12:46:25 by oelleaum          #+#    #+#              #
-#    Updated: 2025/08/02 12:50:09 by oelleaum         ###   ########lyon.fr    #
+#    Updated: 2025/08/02 13:03:54 by oelleaum         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ $(OBJ_DIR):
 
 clean:
 	rm -rf $(OBJ_DIR)
+	rm -rf *.replace
 
 fclean: clean
 	rm -f $(NAME)
@@ -52,13 +53,24 @@ run: all
 	./$(NAME)
 
 test: all
-	./$(NAME)
+	@echo "Testing sed without argument :"
+	@- ./$(NAME)
+	@echo
 	echo "Hello World" > test
+	cat test
 	./$(NAME) test ll ch
+	cat test.replace
+	@echo
 	./$(NAME) test ch ll
+	cat test.replace
+	@echo
+	@echo "Testing with non existing file :"
 	rm test
-	./$(NAME) test ll ch
+	- ./$(NAME) test ll ch
+	- cat test.replace
 
+print-%:
+	@echo $($(patsubst print-%,%,$@))
 
 vg:
 	echo "Hello World" > test
