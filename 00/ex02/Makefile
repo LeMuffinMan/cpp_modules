@@ -1,10 +1,16 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=c++98 -Iinclude -MMD -MP
-SRC_DIR = src
-OBJS_DIR = .objs
+CXXFLAGS 				= -Wall -Wextra -std=c++98 -Iinclude -MMD -MP
+
+SRC_DIR 				= src
+OBJS_DIR 				= .objs
+
 SRCS = src/Account.cpp src/tests.cpp
-OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
-DEPS = $(OBJS:.o=.d)
+OBJS 						= $(patsubst $(SRC_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
+DEPS 						= $(OBJS:.o=.d)
+
+VG 							= valgrind 
+VGFLAGS					= --leak-check=full --show-leak-kinds=all \
+				   				--track-origins=yes --trace-children=yes
 
 NAME = MyDreamJob
 
