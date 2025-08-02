@@ -74,10 +74,6 @@ int main ()
     {
         break;
     }
-    else
-    {
-        std::cout << "Invalid input" << std::endl;
-    }
     std::cout << sep << std::endl;
   }
   return (0);
