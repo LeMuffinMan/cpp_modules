@@ -2,21 +2,21 @@
 #include <fstream>
 #include <iostream>
 
-int replace (char **av, std::string str)
+int replace (char **argv, std::string str)
 {
   std::ofstream outfile;
   int pos;
 
-  outfile.open((std::string(av[1]) + ".replace").c_str());
+  outfile.open((std::string(argv[1]) + ".replace").c_str());
   if (outfile.fail())
     return (1);
 	for (int i = 0; i < (int)str.size(); i++)
 	{
-		pos = str.find(av[2], i);
+		pos = str.find(argv[2], i);
 		if (pos != -1 && pos == i)
 		{
-			outfile << av[3];
-			i += std::string(av[2]).size() - 1;
+			outfile << argv[3];
+			i += std::string(argv[2]).size() - 1;
 		}
 		else
 			outfile << str[i];
@@ -25,7 +25,7 @@ int replace (char **av, std::string str)
 	return (0);
 }
 
-int main (int ac, char **av)
+int main (int ac, char **argv)
 {
   std::ifstream infile;
   char c;
@@ -35,14 +35,14 @@ int main (int ac, char **av)
     std::cout << "Usage : ./sed <filename> <s1> <s2>" << std::endl;
     return (1);
   }
-  infile.open(av[1]);
+  infile.open(argv[1]);
   if (infile.fail())
   {
-    std::cout << "Error opening \"" << av[1] << "\"" << std::endl;
+    std::cout << "Error opening \"" << argv[1] << "\"" << std::endl;
     return (1);
   }
-	while(!infile.eof() && infile >> std::noskipws >> c) //a revoir
+	while(!infile.eof() && infile >> std::noskipws >> c)
 		str += c;
 	infile.close();
-	return (replace(av, str));
+	return (replace(argv, str));
 }

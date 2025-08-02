@@ -7,9 +7,7 @@ class PhoneBook {
   public :
     PhoneBook();
     ~PhoneBook();
-    // void displayAllContacts();
     void displayContact(int index) const;
-    // void destroyContacts();
     void newContact();
   private:
     Contact _contacts[8]; 

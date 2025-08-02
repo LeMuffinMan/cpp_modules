@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oelleaum <oelleaum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/08/02 12:46:25 by oelleaum          #+#    #+#              #
-#    Updated: 2025/08/02 13:33:54 by oelleaum         ###   ########lyon.fr    #
+#    Created: 2025/08/02 17:31:22 by oelleaum          #+#    #+#              #
+#    Updated: 2025/08/02 18:56:12 by oelleaum         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ OBJ_DIR        := .objs
 CXX            := c++
 CXX_FLAGS      := -Wall -Wextra -Werror -std=c++98 -I$(INC_DIR)
 
-NAME    			 := sed
+NAME    			:= harlFilter
 
-SRCS    			 := src/main.cpp
+SRCS    			:= src/main.cpp src/harl.cpp
 OBJS           := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 DEPS           := $(OBJS:.o=.d)
 
@@ -53,56 +53,33 @@ run: all
 	./$(NAME)
 
 test: all
-	@echo "Testing sed without argument :"
-	@- ./$(NAME)
+	./$(NAME) "DEBUG"
 	@echo
-	@echo "==============================="
+	@echo "========================"
 	@echo
-	echo "Hello World" > test
-	cat test
-	./$(NAME) test ll ch
-	cat test.replace
+	./$(NAME) "INFO"
 	@echo
-	@echo "==============================="
+	@echo "========================"
 	@echo
-	cat test.replace
-	./$(NAME) test.replace ch ll
-	cat test.replace.replace
+	./$(NAME) "WARNING"
 	@echo
-	@echo "==============================="
+	@echo "========================"
 	@echo
-	@echo "Testing with non existing file :"
-	rm test
-	rm test.replace
-	rm test.replace.replace
-	- ./$(NAME) test ll ch
-	ls
+	./$(NAME) "ERROR"
 
 vg: all
-	@echo "Testing sed without argument :"
-	@- $(VG) $(VGFLAGS) ./$(NAME)
+	$(VG) $(VGFLAGS) ./$(NAME) "DEBUG"
 	@echo
-	@echo "==============================="
+	@echo "========================"
 	@echo
-	echo "Hello World" > test
-	cat test
-	$(VG) $(VGFLAGS) ./$(NAME) test ll ch
-	cat test.replace
+	$(VG) $(VGFLAGS) ./$(NAME) "INFO"
 	@echo
-	@echo "==============================="
+	@echo "========================"
 	@echo
-	cat test.replace
-	$(VG) $(VGFLAGS) ./$(NAME) test.replace ch ll
-	cat test.replace.replace
+	$(VG) $(VGFLAGS) ./$(NAME) "WARNING"
 	@echo
-	@echo "==============================="
+	@echo "========================"
 	@echo
-	@echo "Testing with non existing file :"
-	rm test
-	rm test.replace
-	rm test.replace.replace
-	- $(VG) $(VGFLAGS) ./$(NAME) test ll ch
-	ls
+	$(VG) $(VGFLAGS) ./$(NAME) "ERROR"
 
 .PHONY: all clean fclean re run test vg
-

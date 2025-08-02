@@ -29,19 +29,19 @@ void PhoneBook::displayContact(int index) const
   if (index <= 0)
   {
     std::cout << std::endl;
-    std::cout << "| Index | First Name | Last Name  | Nickname   |" << std::endl;
+    std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
     std::cout << sep << std::endl;
     for (int i = 0; i < _index && i < 8; i++)
     {
-        std::cout << "|   " << i + 1 << "   | ";
+        std::cout << "|         " << i + 1 << "|";
 
         std::string first = _contacts[i].getFirstName();
         std::string last = _contacts[i].getLastName();
         std::string nick = _contacts[i].getNickname();
 
-        std::cout << std::setw(10) << formatString(first) << " | ";
-        std::cout << std::setw(10) << formatString(last) << " | ";
-        std::cout << std::setw(10) << formatString(nick) << " |" << std::endl;
+        std::cout << std::setw(10) << formatString(first) << "|";
+        std::cout << std::setw(10) << formatString(last) << "|";
+        std::cout << std::setw(10) << formatString(nick) << "|" << std::endl;
     }
   }
   else if (index > PhoneBook::_index) 

@@ -1,10 +1,28 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: oelleaum <oelleaum@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/02 14:57:41 by oelleaum          #+#    #+#              #
+#    Updated: 2025/08/02 15:10:38 by oelleaum         ###   ########lyon.fr    #
+#                                                                              #
+# **************************************************************************** #
+
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=c++98 -Iinclude -MMD -MP
-SRC_DIR = src
-OBJS_DIR = .objs
+CXXFLAGS 				= -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
+
+SRC_DIR 				= src
+OBJS_DIR 				= .objs
+
 SRCS = src/Account.cpp src/tests.cpp
-OBJS = $(patsubst $(SRC_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
-DEPS = $(OBJS:.o=.d)
+OBJS 						= $(patsubst $(SRC_DIR)/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
+DEPS 						= $(OBJS:.o=.d)
+
+VG 							= valgrind 
+VGFLAGS					= --leak-check=full --show-leak-kinds=all \
+				   				--track-origins=yes --trace-children=yes
 
 NAME = MyDreamJob
 

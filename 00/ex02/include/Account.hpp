@@ -40,7 +40,6 @@ public:
 
 private:
 
-	//displayAccountsInfos
 	static int	_nbAccounts;
 	static int	_totalAmount;
 	static int	_totalNbDeposits;
@@ -48,7 +47,6 @@ private:
 
 	static void	_displayTimestamp( void );
 
-	//displayStatus
 	int				_accountIndex;
 	int				_amount;
 	int				_nbDeposits;
