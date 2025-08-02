@@ -59,6 +59,9 @@ test: all
 
 vg: 
 	$(VG) $(VGFLAGS) ./$(NAME) this " " is " """ a " "test" " string
+	$(VG) $(VGFLAGS) ./$(NAME) "shhhhh... I think the students are asleep..."
+	$(VG) $(VGFLAGS) ./$(NAME) Damnit " ! " "Sorry students, I thought this thing was off."
+	$(VG) $(VGFLAGS) ./$(NAME)
 
 .PHONY: all clean fclean re run test vg
 
