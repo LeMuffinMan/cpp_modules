@@ -52,7 +52,25 @@ run: all
 	./$(NAME)
 
 test: all
-	./$(NAME)
+	@echo "Regular tests: "
+	@echo
+	./$(NAME) 1
+	@echo
+	./$(NAME) 2
+	@echo
+	./$(NAME) 50
+	@echo
+	@echo "========================"
+	@echo
+	@echo "Error management tests: "
+	@echo
+	- ./$(NAME)
+	- ./$(NAME) -1
+	- ./$(NAME) 0
+	- ./$(NAME) 1abc
+	- ./$(NAME) abc1
+	- ./$(NAME) abc
+	- ./$(NAME) 2147483648
 
 vg:
 	$(VG) $(VGFLAGS) ./$(NAME)
