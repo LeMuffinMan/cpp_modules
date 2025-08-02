@@ -6,7 +6,7 @@
 #    By: oelleaum <oelleaum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/02 12:46:25 by oelleaum          #+#    #+#              #
-#    Updated: 2025/08/02 13:03:54 by oelleaum         ###   ########lyon.fr    #
+#    Updated: 2025/08/02 13:33:54 by oelleaum         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,30 +56,53 @@ test: all
 	@echo "Testing sed without argument :"
 	@- ./$(NAME)
 	@echo
+	@echo "==============================="
+	@echo
 	echo "Hello World" > test
 	cat test
 	./$(NAME) test ll ch
 	cat test.replace
 	@echo
-	./$(NAME) test ch ll
+	@echo "==============================="
+	@echo
 	cat test.replace
+	./$(NAME) test.replace ch ll
+	cat test.replace.replace
+	@echo
+	@echo "==============================="
 	@echo
 	@echo "Testing with non existing file :"
 	rm test
+	rm test.replace
+	rm test.replace.replace
 	- ./$(NAME) test ll ch
-	- cat test.replace
+	ls
 
-print-%:
-	@echo $($(patsubst print-%,%,$@))
-
-vg:
+vg: all
+	@echo "Testing sed without argument :"
+	@- $(VG) $(VGFLAGS) ./$(NAME)
+	@echo
+	@echo "==============================="
+	@echo
 	echo "Hello World" > test
+	cat test
 	$(VG) $(VGFLAGS) ./$(NAME) test ll ch
-	$(VG) $(VGFLAGS) ./$(NAME) test ch ll
+	cat test.replace
+	@echo
+	@echo "==============================="
+	@echo
+	cat test.replace
+	$(VG) $(VGFLAGS) ./$(NAME) test.replace ch ll
+	cat test.replace.replace
+	@echo
+	@echo "==============================="
+	@echo
+	@echo "Testing with non existing file :"
 	rm test
-	$(VG) $(VGFLAGS) ./$(NAME) test ll ch
-	$(VG) $(VGFLAGS) ./$(NAME)
+	rm test.replace
+	rm test.replace.replace
+	- $(VG) $(VGFLAGS) ./$(NAME) test ll ch
+	ls
 
 .PHONY: all clean fclean re run test vg
 
-re: fclean all
