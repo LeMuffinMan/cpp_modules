@@ -14,7 +14,7 @@ void Account::displayAccountsInfos(void)
   std::cout << "accounts:" << getNbAccounts() << ";"
             << "total:" << getTotalAmount() << ";"
             << "deposits:" << getNbDeposits() << ";"
-            << "withdrawals:" << getNbWithdrawals() << ";"
+            << "withdrawals:" << getNbWithdrawals()
             << std::endl;
 }
 
@@ -63,10 +63,8 @@ Account::Account(int initial_deposit)
   _totalAmount = _totalAmount + _amount;
   _nbDeposits = 0;
   _nbWithdrawals = 0;
-  std::cout << "accounts: " << _nbAccounts << ";"
-  				  << "total: " << _totalAmount << ";"
-  				  << "deposits: " << _totalNbDeposits << ";"
-  				  << "withdrawals: " << _totalNbWithdrawals << ";"
+  std::cout << "index:" << _accountIndex << ";"
+  				  << "amount:" << checkAmount() << ";"
   				  << "created" << std::endl;
 }
 
@@ -82,13 +80,15 @@ void Account::makeDeposit(int deposit)
 {
   _displayTimestamp();
   _nbDeposits++;
-  _amount = checkAmount() + deposit;
+  _totalNbDeposits++;
   std::cout << "index:" << _accountIndex << ";"
             << "p_amount:" << checkAmount() << ";"
             << "deposit:" << deposit << ";"
-            << "amount:" << checkAmount() << ";"
+            << "amount:" << checkAmount() + deposit << ";"
             << "nb_deposits:" << _nbDeposits
             << std::endl;
+  _amount = checkAmount() + deposit;
+  _totalAmount += deposit;
 }
 
 bool Account::makeWithdrawal(int withdrawal)
@@ -101,10 +101,12 @@ bool Account::makeWithdrawal(int withdrawal)
   {
     _amount = checkAmount() - withdrawal;
     _nbWithdrawals++;
+    _totalNbWithdrawals++;
     std::cout << withdrawal << ";"
     					<< "amount:" << checkAmount() << ";"
     					<< "nb_withdrawals:" << _nbWithdrawals
     					<< std::endl;
+    _totalAmount -= withdrawal;
     return true;
   }
   else
@@ -122,10 +124,10 @@ int Account::checkAmount(void) const
 void Account::displayStatus(void) const
 {
   _displayTimestamp();
-  std::cout << "index: " << _accountIndex << ";"
-  					<< "total: " << checkAmount() << ";"
-  					<< "deposits: " << _nbDeposits << ";"
-  					<< "withdrawals: " << _nbWithdrawals << ";"
+  std::cout << "index:" << _accountIndex << ";"
+  					<< "amount:" << checkAmount() << ";"
+  					<< "deposits:" << _nbDeposits << ";"
+  					<< "withdrawals:" << _nbWithdrawals
   					<< std::endl;
 }
 

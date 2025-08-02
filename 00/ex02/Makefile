@@ -6,12 +6,12 @@
 #    By: oelleaum <oelleaum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/02 14:57:41 by oelleaum          #+#    #+#              #
-#    Updated: 2025/08/02 14:57:51 by oelleaum         ###   ########lyon.fr    #
+#    Updated: 2025/08/02 15:10:38 by oelleaum         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
 CXX = c++
-CXXFLAGS 				= -Wall -Wextra Werror -std=c++98 -Iinclude -MMD -MP
+CXXFLAGS 				= -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
 
 SRC_DIR 				= src
 OBJS_DIR 				= .objs
