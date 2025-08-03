@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -std=c++98 -Iinclude -MMD -MP
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
 SRC_DIR = src
 OBJS_DIR = .objs
 SRCS = src/ClapTrap.cpp src/main.cpp src/ScavTrap.cpp
