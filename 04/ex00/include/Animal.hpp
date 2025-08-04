@@ -6,10 +6,10 @@
 class Animal
 {
 public:
-    Animal(); // Default constructor
-    Animal(const Animal& other); // Copy constructor
-    Animal& operator=(const Animal& other); // Copy assignment
-    virtual ~Animal(); // Destructor
+    Animal();
+    Animal(const Animal& other);
+    Animal& operator=(const Animal& other);
+    virtual ~Animal();
     
     std::string getType() const;
     virtual void makeSound() const;
