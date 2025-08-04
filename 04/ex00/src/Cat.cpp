@@ -4,6 +4,7 @@
 
 Cat::Cat() : Animal()
 {
+    type = "Cat";
     std::cout << "Cat Default constructor called" << std::endl;
 }
 
@@ -28,3 +29,7 @@ Cat::~Cat()
     std::cout << "Cat Destructor called" << std::endl;
 }
 
+void Cat::makeSound() const
+{
+    std::cout << "Meow" << std::endl;
+}

@@ -12,6 +12,7 @@ public:
     Cat& operator=(const Cat& other); // Copy assignment
     ~Cat(); // Destructor
 
+    void makeSound() const;
 private:
     std::string _type;
 };

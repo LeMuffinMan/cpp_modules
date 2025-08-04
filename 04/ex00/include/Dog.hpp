@@ -7,11 +7,12 @@
 class Dog : public Animal
 {
 public:
-    Dog(); // Default constructor
-    Dog(const Dog& other); // Copy constructor
-    Dog& operator=(const Dog& other); // Copy assignment
-    ~Dog(); // Destructor
-
+    Dog();
+    Dog(const Dog& other);
+    Dog& operator=(const Dog& other);
+    ~Dog();
+    
+    void makeSound() const;
 private:
     std::string _type;
 };
