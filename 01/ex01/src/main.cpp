@@ -22,7 +22,7 @@ int main (int ac, char **av)
   std::istringstream iss(arg);
   int N;
   iss >> N;
-  if (iss.fail() || !iss.eof() || N <= 0)
+  if (iss.fail() || !iss.eof() || N <= 0 || N > 10000000)
   {
     std::cout << "Error: invalid argument" << std::endl;
     return 1;
