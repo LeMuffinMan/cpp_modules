@@ -19,7 +19,7 @@ CXX_FLAGS      := -Wall -Wextra -Werror -std=c++98 -I$(INC_DIR)
 
 NAME           := zombie
 
-SRCS           := $(wildcard $(SRC_DIR)/*.cpp)
+SRCS 					 := src/main.cpp src/newZombie.cpp src/randomChump.cpp src/Zombie.cpp
 OBJS           := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 DEPS           := $(OBJS:.o=.d)
 
@@ -32,7 +32,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CXX) $(CXX_FLAGS) $(OBJS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp Makefile | $(OBJ_DIR)
 	$(CXX) $(CXX_FLAGS) -MMD -MP -c $< -o $@
 
 $(OBJ_DIR):
