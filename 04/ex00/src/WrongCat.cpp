@@ -10,6 +10,7 @@ WrongCat::WrongCat()
 WrongCat::WrongCat(const WrongCat& other)
 {
     std::cout << "WrongCat Copy constructor called" << std::endl;
+    this->type = other.type;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& other)

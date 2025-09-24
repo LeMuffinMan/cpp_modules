@@ -18,7 +18,8 @@ Dog& Dog::operator=(const Dog& other)
     std::cout << "Dog Copy assignment operator called" << std::endl;
     if (this != &other)
     {
-
+        other = *this;
+        return other;
     }
     return *this;
 }
