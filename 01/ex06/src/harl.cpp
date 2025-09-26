@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cstdlib>
 
-int _filter = 0;
+int filter = 0;
 
 void Harl::debug()
 {
