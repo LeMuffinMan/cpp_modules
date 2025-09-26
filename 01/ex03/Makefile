@@ -51,11 +51,7 @@ re: fclean all
 run: all
 	./$(NAME)
 
-test: all
-	./$(NAME)
-
 vg:
 	$(VG) $(VGFLAGS) ./$(NAME)
 
-.PHONY: all clean fclean re run test vg
-
+.PHONY: all clean fclean re run vg

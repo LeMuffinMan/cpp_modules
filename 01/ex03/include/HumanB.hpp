@@ -10,9 +10,9 @@ class HumanB
     HumanB(std::string name);
     void setWeapon(Weapon& weapon);
     void attack();
-  private : 
-    std::string _name;
-    Weapon* _weapon; 
+  private :
+    std::string name;
+    Weapon* weapon = nullptr;
 };
 
 #endif
