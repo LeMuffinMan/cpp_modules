@@ -10,7 +10,7 @@ private:
     void info();
     void warning();
     void error();
-    int _filter;
+    int filter;
 
 public:
     void complain(std::string level);

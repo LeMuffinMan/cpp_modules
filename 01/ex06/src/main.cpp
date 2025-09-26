@@ -9,7 +9,7 @@ int main (int argc, char **argv)
     std::cout << "Usage: ./harlFilter [DEBUG | INFO | WARNING | ERROR]" << std::endl;
     return 1;
   }
-  // Harl::filter(argv[1]);
+  Harl::filter(argv[1]);
   //plutot que harl.filter(...) -> pour appeler la fonction filter sans declarer de Harl
   //--> PARCE QUE LA FONCTION EST EN STATIC
 
