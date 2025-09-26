@@ -19,7 +19,7 @@ CXX_FLAGS      := -Wall -Wextra -Werror -std=c++98 -I$(INC_DIR)
 
 NAME           := zombie
 
-SRCS 					 := src/main.cpp src/newZombie.cpp src/randomChump.cpp src/Zombie.cpp
+SRCS   		   := src/main.cpp src/newZombie.cpp src/randomChump.cpp src/Zombie.cpp
 OBJS           := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 DEPS           := $(OBJS:.o=.d)
 
@@ -51,10 +51,7 @@ re: fclean all
 run: all
 	./$(NAME)
 
-# test: all
+vg: all
+	$(VG) $(VGFLAGS) ./$(NAME)
 
-# vg:
-# 	$(VG) $(VGFLAGS) ./$(NAME) this " " is " """ a " "test" " string
-
-.PHONY: all clean fclean re run test vg
-
+.PHONY: all clean fclean re run vg
