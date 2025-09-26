@@ -7,7 +7,10 @@ int replace (char **argv, std::string str)
   std::ofstream outfile;
   int pos;
 
+  //error si argc != 4
+  //error si s1 est null
   outfile.open((std::string(argv[1]) + ".replace").c_str());
+  //outfile.good() ?
   if (outfile.fail())
     return (1);
 	for (int i = 0; i < (int)str.size(); i++)
@@ -18,7 +21,7 @@ int replace (char **argv, std::string str)
 			outfile << argv[3];
 			i += std::string(argv[2]).size() - 1;
 		}
-		else
+		else // si pos == -1 error ?
 			outfile << str[i];
 	}
 	outfile.close();
