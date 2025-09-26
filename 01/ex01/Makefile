@@ -19,7 +19,7 @@ CXX_FLAGS      := -Wall -Wextra -Werror -std=c++98 -I$(INC_DIR)
 
 NAME           := zombies
 
-SRCS 					 := src/main.cpp src/Zombie.cpp src/zombieHorde.cpp
+SRCS 		   := src/main.cpp src/Zombie.cpp src/zombieHorde.cpp
 OBJS           := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 DEPS           := $(OBJS:.o=.d)
 
@@ -72,8 +72,8 @@ test: all
 	- ./$(NAME) abc
 	- ./$(NAME) 2147483648
 
-vg:
-	$(VG) $(VGFLAGS) ./$(NAME)
+vg: all
+	$(VG) $(VGFLAGS) ./$(NAME) 20
+
 
 .PHONY: all clean fclean re run test vg
-

@@ -3,7 +3,7 @@
 
 #include <string>
 
-class Zombie 
+class Zombie
 {
   public :
     Zombie();
@@ -11,7 +11,7 @@ class Zombie
     void announce(void) const;
     ~Zombie();
   private :
-    std::string _name;
+    std::string name;
 };
 
 #endif

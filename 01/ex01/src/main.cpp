@@ -7,7 +7,7 @@ int main (int ac, char **av)
 {
   if (ac != 2)
   {
-    std::cout << "Usage: ./program <positive_integer>" << std::endl;
+    std::cout << "Usage: ./zombies <1 - 10000000>" << std::endl;
     return 1;
   }
   std::string arg(av[1]);
