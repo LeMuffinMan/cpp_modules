@@ -6,10 +6,10 @@ void randomChump(std::string name);
 
 int main ()
 {
-  randomChump("Billy");
-  Zombie *myHeapZombie = newZombie("Mina");
-  myHeapZombie->_announce();
+  //randomChump("Billy");
+  //Zombie *myHeapZombie = newZombie("Marguerite");
+  //myHeapZombie->announce();
 
-  delete myHeapZombie;
+  //delete myHeapZombie;
   return (0);
 }
