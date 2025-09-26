@@ -7,12 +7,11 @@ int main()
     std::string brain = "HI THIS IS BRAIN";
     std::string* stringPTR = &brain;
     std::string& stringREF = brain;
-    std::cout << "Adresse de brain : " << &brain << std::endl;
-    std::cout << "Adresse tenue par stringPTR : " << stringPTR << std::endl;
-    std::cout << "Adresse tenue par stringREF : " << &stringREF << std::endl;
-    std::cout << "Valeur de brain : " << brain << std::endl;
-    std::cout << "Valeur pointée par stringPTR : " << *stringPTR << std::endl;
-    std::cout << "Valeur référencée par stringREF : " << stringREF << std::endl;
+    std::cout << "Memory adress of string variable: " << &brain << std::endl;
+    std::cout << "Memory adress of stringPTR : " << stringPTR << std::endl;
+    std::cout << "Memory adress of stringREF : " << &stringREF << std::endl;
+    std::cout << "String variable value : " << brain << std::endl;
+    std::cout << "Value pointed to by stringPTR : " << *stringPTR << std::endl;
+    std::cout << "Value pointed to by stringREF : " << stringREF << std::endl;
     return (0);
 }
-
