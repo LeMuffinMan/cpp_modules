@@ -77,6 +77,24 @@ test: all
 	rm test.replace.replace
 	- ./$(NAME) test ll ch
 	ls
+	@echo
+	@echo "==============================="
+	@echo
+	@echo "Testing with a null s2 :"
+	echo "Empty s2 test" > test
+	cat test
+	./$(NAME) test "Empty s2" ""
+	cat test.replace
+	@echo
+	@echo "==============================="
+	@echo
+	@echo "Testing with a null s1 :"
+	echo "Empty s1 test" > test
+	cat test
+	./$(NAME) test "" "s2"	
+	ls
+
+	
 
 vg: all
 	@echo "Testing sed without argument :"
@@ -102,6 +120,20 @@ vg: all
 	rm test.replace
 	rm test.replace.replace
 	- $(VG) $(VGFLAGS) ./$(NAME) test ll ch
+	ls
+	@echo
+	@echo "==============================="
+	@echo
+	@echo "Testing with a null s2 :"
+	echo "Empty s2 test" > test
+	$(VG) $(VGFLAGS) ./$(NAME) test "Empty s2" ""
+	cat test.replace
+	@echo
+	@echo "==============================="
+	@echo
+	@echo "Testing with a null s1 :"
+	echo "Empty s1 test" > test
+	$(VG) $(VGFLAGS) ./$(NAME) test "" "s2"	
 	ls
 
 .PHONY: all clean fclean re run test vg
