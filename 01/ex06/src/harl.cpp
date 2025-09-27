@@ -36,10 +36,10 @@ void Harl::complain(std::string level)
     &Harl::error
   };
 
-  _filter = std::atoi(level.c_str());
+  filter = std::atoi(level.c_str());
   for (i = 0; i < 4; ++i)
   {
-    if (levels[i] == level && i >= _filter)
+    if (levels[i] == level && i >= filter)
     {
       break;
     }
