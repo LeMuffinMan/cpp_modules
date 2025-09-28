@@ -16,8 +16,9 @@ int main() {
     bob.attack("Target2");
     bob.attack("Target2");
     bob.attack("Target2");
+    bob.beRepaired(5);  
+    bob.takeDamage(42);
+    bob.beRepaired(5);  
     bob.attack("Target2");
-    bob.takeDamage(42); // Bob est mort
-    bob.beRepaired(5);  // Impossible : Bob est mort
 }
 
