@@ -6,12 +6,12 @@
 class Fixed
 {
 public:
-    Fixed(); // Default constructor
-    Fixed(const int value); //new constructor
+    Fixed();
+    Fixed(const int value);
     Fixed(const float value);
-    Fixed(const Fixed& other); // Copy constructor
-    Fixed& operator=(const Fixed& other); // Copy assignment
-    ~Fixed(); // Destructor
+    Fixed(const Fixed& other); 
+    Fixed& operator=(const Fixed& other);
+    ~Fixed(); 
     int getRawBits() const;
     void setRawBits(int value);
     float toFloat(void) const;
