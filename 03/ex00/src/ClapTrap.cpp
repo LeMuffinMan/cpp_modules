@@ -39,40 +39,40 @@ void ClapTrap::attack(const std::string& target)
 {
     if (_energyPoints > 0 && _hitPoints > 0)
     {
-        std::cout << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+        std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
         _energyPoints--;
     }
     else
     {
         if (_hitPoints < 0)
-            std::cout << _name << " tried to attack but has not enough Hit Points." << std::endl;
+            std::cout << "ClapTrap " << _name << " tried to attack but has not enough Hit Points." << std::endl;
         else
-            std::cout << _name << " tried to attack but has not enough Energy Points." << std::endl;
+            std::cout << "ClapTrap " << _name << " tried to attack but has not enough Energy Points." << std::endl;
     }
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    std::cout << _name << " takes " << amount << " points of damage" << std::endl;
+    std::cout << "ClapTrap " << _name << " takes " << amount << " points of damage" << std::endl;
     _hitPoints = _hitPoints - amount; 
     if (_hitPoints < 0)
-        std::cout << _name << " just died!" << std::endl;
+        std::cout << "ClapTrap " << _name << " just died!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
     if (_energyPoints > 0 && _hitPoints > 0)
     {
-        std::cout << _name << " repairs " << amount << " hit points" << std::endl;
+        std::cout << "ClapTrap " << _name << " repairs " << amount << " hit points" << std::endl;
         _hitPoints = _hitPoints + amount; 
         _energyPoints--;
     }
     else 
     {
         if (_hitPoints < 0)
-            std::cout << _name << " tried to repair but has not enough Hit Points." << std::endl;
+            std::cout << "ClapTrap " << _name << " tried to repair but has not enough Hit Points." << std::endl;
         else
-            std::cout << _name << " tried to repair but has not enough Energy Points." << std::endl;
+            std::cout << "ClapTrap " << _name << " tried to repair but has not enough Energy Points." << std::endl;
     }
 }
 

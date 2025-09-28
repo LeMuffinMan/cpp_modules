@@ -6,10 +6,10 @@
 class ClapTrap
 {
 public:
-    ClapTrap(std::string name); // Default constructor
-    ClapTrap(const ClapTrap& other); // Copy constructor
-    ClapTrap& operator=(const ClapTrap& other); // Copy assignment
-    ~ClapTrap(); // Destructor
+    ClapTrap(std::string name); 
+    ClapTrap(const ClapTrap& other); 
+    ClapTrap& operator=(const ClapTrap& other); 
+    ~ClapTrap();
 
     void attack(const std::string& target);
     void takeDamage(unsigned int amount);
@@ -19,7 +19,6 @@ private:
     int _hitPoints;
     int _energyPoints;
     int _attackDamage;
-    // Add private members here
 };
 
 #endif
