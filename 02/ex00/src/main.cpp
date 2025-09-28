@@ -16,7 +16,6 @@ int main( void )
     // c.setRawBits(42);
     //
     c = b;
-    
     // b.setRawBits(42);
     
     std::cout << a.getRawBits() << std::endl;
