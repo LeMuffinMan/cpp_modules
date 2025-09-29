@@ -111,7 +111,7 @@ Fixed Fixed::operator*(const Fixed& other) const
 Fixed Fixed::operator/(const Fixed& other) const
 {
     if (other._fixedPointValue == 0) {
-        std::cerr << "Error: Division by zero" << std::endl;
+        std::cout << "Error: Division by zero" << std::endl;
         return Fixed();
     }
     Fixed result;
