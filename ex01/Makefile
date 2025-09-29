@@ -23,6 +23,7 @@ $(OBJS_DIR):
 
 clean:
 	rm -f $(OBJS)
+	rm -rf $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(NAME)
