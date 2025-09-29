@@ -4,7 +4,6 @@
 
 const int Fixed::_fractionalBits = 8;
 
-// Constructeurs
 Fixed::Fixed() : _fixedPointValue(0) {}
 
 Fixed::Fixed(const int value)
