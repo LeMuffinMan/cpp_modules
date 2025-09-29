@@ -49,9 +49,9 @@ int Fixed::getRawBits() const
     return this->_fixedPointValue;
 }
 
-void Fixed::setRawBits(int value)
+void Fixed::setRawBits(int const raw)
 {
-   this->_fixedPointValue = value; 
+   this->_fixedPointValue = raw; 
 }
 
 float Fixed::toFloat(void) const
