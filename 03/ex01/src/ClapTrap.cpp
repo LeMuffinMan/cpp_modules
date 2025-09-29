@@ -5,9 +5,9 @@ ClapTrap::ClapTrap(std::string name)
 {
     std::cout << "ClapTrap Default constructor called" << std::endl;
     _name = name;
-    _hitPoints = 10; // 100 ?
-    _energyPoints = 10; // 50 ?
-    _attackDamage = 0; // 20 ?
+    _hitPoints = 10; 
+    _energyPoints = 10; 
+    _attackDamage = 0; 
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
