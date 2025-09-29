@@ -7,7 +7,7 @@
 int main() {
     ClapTrap carl("Carl");
     ScavTrap seb("Seb");
-    FragTrap fred("Seb");
+    FragTrap fred("Fred");
 
     carl.takeDamage(3);
     carl.beRepaired(2);
@@ -33,7 +33,7 @@ int main() {
     fred.highFiveGuys();
     fred.takeDamage(3);
     fred.beRepaired(2);
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < 100; ++i)
     {
         fred.attack("Target2");
     }
