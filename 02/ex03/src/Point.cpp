@@ -11,7 +11,6 @@ Point::~Point() {}
 Point& Point::operator=(const Point& other) {
     if (this != &other)
     {
-        //new car _x et _y sont const
         new (this) Point(other);
     }
     return *this;
