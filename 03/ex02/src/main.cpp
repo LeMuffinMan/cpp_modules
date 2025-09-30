@@ -44,4 +44,3 @@ int main() {
     fred.beRepaired(5);
     fred.attack("Target2");
 }
-
