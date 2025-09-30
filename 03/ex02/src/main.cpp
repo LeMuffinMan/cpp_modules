@@ -15,6 +15,7 @@ int main() {
     {
         carl.attack("Target2");
     }
+    carl.beRepaired(5);
     carl.takeDamage(42); 
     carl.beRepaired(5);
     carl.attack("Target2");
@@ -26,6 +27,7 @@ int main() {
     {
         seb.attack("Target2");
     }
+    seb.beRepaired(5);
     seb.takeDamage(142); 
     seb.beRepaired(5);
     seb.attack("Target2");
@@ -37,6 +39,7 @@ int main() {
     {
         fred.attack("Target2");
     }
+    fred.beRepaired(5);
     fred.takeDamage(142); 
     fred.beRepaired(5);
     fred.attack("Target2");
