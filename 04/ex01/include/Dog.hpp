@@ -2,9 +2,9 @@
 #define DOG_HPP
 
 #include <string>
-#include "AAnimal.hpp"
+#include "Animal.hpp"
 
-class Dog : public AAnimal
+class Dog : public Animal
 {
 public:
     Dog();

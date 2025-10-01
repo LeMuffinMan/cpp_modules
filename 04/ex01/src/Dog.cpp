@@ -2,13 +2,13 @@
 #include <iostream>
 #include <string>
 
-Dog::Dog() : AAnimal()
+Dog::Dog() : Animal()
 {
     type = "Dog";
     std::cout << "Dog Default constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other) : AAnimal(other)
+Dog::Dog(const Dog& other) : Animal(other)
 {
     std::cout << "Dog Copy constructor called" << std::endl;
 }

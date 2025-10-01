@@ -1,14 +1,14 @@
 #include "Cat.hpp"
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include <iostream>
 
-Cat::Cat() : Animal()
+Cat::Cat() : AAnimal()
 {
     type = "Cat";
     std::cout << "Cat Default constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Cat::Cat(const Cat& other) : AAnimal(other)
 {
     std::cout << "Cat Copy constructor called" << std::endl;
     *this = other;
