@@ -2,7 +2,7 @@
 #include "Animal.hpp"
 #include <iostream>
 
-WrongAnimal::WrongAnimal()
+WrongAnimal::WrongAnimal() : type("WrongAnimal")
 {
     std::cout << "WrongAnimal Default constructor called" << std::endl;
 }
@@ -10,7 +10,7 @@ WrongAnimal::WrongAnimal()
 WrongAnimal::WrongAnimal(const WrongAnimal& other)
 {
     std::cout << "WrongAnimal Copy constructor called" << std::endl;
-    this->type = other.type;
+    this = other;
 }
 
 WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
@@ -30,7 +30,7 @@ WrongAnimal::~WrongAnimal()
 
 void WrongAnimal::makeSound() const 
 {
-    std::cout << "Croa" << std::endl;
+    std::cout << "Cuicui" << std::endl;
 }
 
 std::string WrongAnimal::getType() const

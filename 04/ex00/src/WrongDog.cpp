@@ -2,12 +2,13 @@
 #include "WrongAnimal.hpp"
 #include <iostream>
 
-WrongDog::WrongDog()
+WrongDog::WrongDog() : WrongAnimal()
 {
+    type = "Cerbere";
     std::cout << "WrongDog Default constructor called" << std::endl;
 }
 
-WrongDog::WrongDog(const WrongDog& other)
+WrongDog::WrongDog(const WrongDog& other) : WrongAnimal(other)
 {
     std::cout << "WrongDog Copy constructor called" << std::endl;
     this->type = other.type;
@@ -30,5 +31,5 @@ WrongDog::~WrongDog()
 
 void WrongDog::makeSound() const 
 {
-    std::cout << "Myahouw" << std::endl;
+    std::cout << "Bzbzzz" << std::endl;
 }

@@ -34,5 +34,5 @@ std::string Animal::getType() const
 
 void Animal::makeSound() const
 {
-    std::cout << "Miaouss" << std::endl; 
+    std::cout << "Meoof" << std::endl; 
 }
