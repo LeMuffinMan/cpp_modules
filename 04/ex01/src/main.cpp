@@ -1,4 +1,4 @@
-#include "AAnimal.hpp"
+#include "Animal.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include "WrongDog.hpp"
@@ -8,27 +8,45 @@
 
 int main()
 {
-    AAnimal* animals[10];
+    {
+        Animal* animals[10];
 
-    for (int i = 0; i < 10; i++) {
-        if (i < 5) {
-            animals[i] = new Dog;
-        } else {
-            animals[i] = new Cat;
+        for (int i = 0; i < 10; i++) {
+            if (i < 5) {
+                animals[i] = new Dog;
+            } else {
+                animals[i] = new Cat;
+            }
+        }
+
+        //normal tests
+        for (int i = 0; i < 10; i++) {
+            animals[i]->makeSound();
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            delete animals[i];
         }
     }
+    {
+        WrongAnimal* animals[10];
 
-    //normal tests
-    for (int i = 0; i < 10; i++) {
-        animals[i]->makeSound();
+        for (int i = 0; i < 10; i++) {
+            if (i < 5) {
+                animals[i] = new WrongDog;
+            } else {
+                animals[i] = new WrongCat;
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            animals[i]->makeSound();
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            delete animals[i];
+        }
     }
     
-    for (int i = 0; i < 10; i++) {
-        delete animals[i];
-    }
-    
-    //ajouter les wrong tests 
-
     //ajouter des tests pour prouver la deep copy
     //afficher l'adresse des brains
     //afficher les ideas et montrer que ce sont bien les memes 

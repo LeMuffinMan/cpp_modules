@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include "WrongDog.hpp"
@@ -8,7 +8,10 @@
 
 int main()
 {
-    Animal* animals[10];
+    //Won't work 
+    // AAnimal NonInstantiableAnimal;
+    // cet ajout suffit pour tester ?
+    AAnimal* animals[10];
 
     for (int i = 0; i < 10; i++) {
         if (i < 5) {

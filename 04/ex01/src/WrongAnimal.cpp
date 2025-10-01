@@ -1,8 +1,8 @@
 #include "WrongAnimal.hpp"
-#include "AAnimal.hpp"
+#include "Animal.hpp"
 #include <iostream>
 
-WrongAnimal::WrongAnimal()
+WrongAnimal::WrongAnimal() : type("WrongAnimal")
 {
     std::cout << "WrongAnimal Default constructor called" << std::endl;
 }

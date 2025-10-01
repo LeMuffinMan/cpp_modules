@@ -1,12 +1,12 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
 OBJS_DIR = .objs
-SRCS = src/Animal.cpp src/Brain.cpp src/Cat.cpp src/Dog.cpp src/main.cpp src/WrongAnimal.cpp src/WrongCat.cpp src/WrongDog.cpp
+SRCS = src/AAnimal.cpp src/Brain.cpp src/Cat.cpp src/Dog.cpp src/main.cpp src/WrongAnimal.cpp src/WrongCat.cpp src/WrongDog.cpp
 OBJS = $(patsubst src/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 VG = valgrind 
 VGFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes
-NAME = BrainCatDog
+NAME = AbstractClass
 
 all: $(NAME)
 

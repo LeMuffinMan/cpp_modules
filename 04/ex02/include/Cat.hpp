@@ -2,15 +2,15 @@
 #define CAT_HPP
 
 #include <string>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-class Cat : public Animal
+class Cat : public AAnimal
 {
 public:
-    Cat(); // Default constructor
-    Cat(const Cat& other); // Copy constructor
-    Cat& operator=(const Cat& other); // Copy assignment
-    ~Cat(); // Destructor
+    Cat();
+    Cat(const Cat& other);
+    Cat& operator=(const Cat& other);
+    ~Cat();
 
     void makeSound() const;
 private:
