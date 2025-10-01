@@ -5,14 +5,15 @@
 
 class WrongDog : public WrongAnimal
 {
-  public:
-      WrongDog(); 
-      WrongDog(const WrongDog& other); 
-      WrongDog& operator=(const WrongDog& other); 
-      ~WrongDog();
+      public:
+            WrongDog(); 
+            WrongDog(const WrongDog& other); 
+            WrongDog& operator=(const WrongDog& other); 
+            ~WrongDog();
 
-    void makeSound() const;
-  private:
+            void makeSound() const;
+      private:
+            std::string type;
 };
 
 #endif
