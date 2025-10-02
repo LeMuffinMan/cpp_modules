@@ -13,7 +13,7 @@ class WrongCat : public WrongAnimal
 
         void makeSound() const;
     private:
-        Brain* ideas;
+        Brain* _brain;
 };
 
 #endif

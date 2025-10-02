@@ -19,7 +19,6 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& other)
     if (this != &other)
     {
         this->_type = other._type;
-        this->ideas = new Brain();
     }
     return *this;
 }

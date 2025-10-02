@@ -67,7 +67,8 @@ int main()
         std::cout << "toutou brain adress: " << toutou->getBrain() << std::endl;
         std::cout << "toutou_copy brain adress: " << toutou_copy.getBrain() << std::endl;
 
-
+        delete minou;
+        delete toutou;
     }
     
     //afficher les ideas et montrer que ce sont bien les memes 
