@@ -27,3 +27,11 @@ AMateria::~AMateria()
     std::cout << "AMateria Destructor called" << std::endl;
 }
 
+void AMateria::use(ICharacter& target) {
+    (void)target;
+    std::cout << "use " << _type << "materia" << std::endl;
+}
+
+std::string const & AMateria::getType() const {
+    return _type;
+}
