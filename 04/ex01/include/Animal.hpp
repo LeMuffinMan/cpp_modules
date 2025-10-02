@@ -2,6 +2,7 @@
 #define ANIMAL_HPP
 
 #include <string>
+#include "Brain.hpp"
 
 class Animal
 {
@@ -14,7 +15,7 @@ public:
     std::string getType() const;
     virtual void makeSound() const = 0;
 protected:
-    std::string type;
+    std::string _type;
 };
 
 #endif

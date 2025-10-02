@@ -2,6 +2,7 @@
 #define WRONGANIMAL_HPP
 
 #include <iostream>
+#include "Brain.hpp"
 
 class WrongAnimal
 {
@@ -14,7 +15,8 @@ class WrongAnimal
         virtual void makeSound() const = 0;
         std::string getType() const;
     protected:
-        std::string type;
+        std::string _type;
+        Brain* ideas;
 };
 
 #endif

@@ -5,12 +5,13 @@
 WrongDog::WrongDog()
 {
     std::cout << "WrongDog Default constructor called" << std::endl;
+    this->ideas = new Brain();
 }
 
 WrongDog::WrongDog(const WrongDog& other)
 {
     std::cout << "WrongDog Copy constructor called" << std::endl;
-    this->type = other.type;
+    *this = other;
 }
 
 WrongDog& WrongDog::operator=(const WrongDog& other)
@@ -18,7 +19,8 @@ WrongDog& WrongDog::operator=(const WrongDog& other)
     std::cout << "WrongDog Copy assignment operator called" << std::endl;
     if (this != &other)
     {
-      this->type = other.type;
+        this->_type = other._type;
+        this->ideas = new Brain();
     }
     return *this;
 }

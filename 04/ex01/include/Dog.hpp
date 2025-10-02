@@ -13,8 +13,10 @@ public:
     ~Dog();
     
     void makeSound() const;
+    Brain *getBrain( void ) const;
 private:
     std::string _type;
+    Brain* _brain;
 };
 
 #endif
