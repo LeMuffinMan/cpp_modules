@@ -5,12 +5,13 @@
 WrongCat::WrongCat()
 {
     std::cout << "WrongCat Default constructor called" << std::endl;
+    this->ideas = new Brain();
 }
 
 WrongCat::WrongCat(const WrongCat& other)
 {
     std::cout << "WrongCat Copy constructor called" << std::endl;
-    this->type = other.type;
+    *this = other;
 }
 
 WrongCat& WrongCat::operator=(const WrongCat& other)
@@ -18,7 +19,8 @@ WrongCat& WrongCat::operator=(const WrongCat& other)
     std::cout << "WrongCat Copy assignment operator called" << std::endl;
     if (this != &other)
     {
-
+        this->_type = other._type;
+        this->ideas = new Brain();
     }
     return *this;
 }
