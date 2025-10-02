@@ -16,7 +16,6 @@ class WrongAnimal
         std::string getType() const;
     protected:
         std::string _type;
-        Brain* ideas;
 };
 
 #endif
