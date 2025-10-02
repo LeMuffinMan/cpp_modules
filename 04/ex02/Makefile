@@ -6,7 +6,7 @@ OBJS = $(patsubst src/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 VG = valgrind 
 VGFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes
-NAME = AbstractClass
+NAME = BrainCatDog
 
 all: $(NAME)
 

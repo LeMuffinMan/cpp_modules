@@ -8,34 +8,75 @@
 
 int main()
 {
-    //Won't work 
-    // AAnimal NonInstantiableAnimal;
-    // cet ajout suffit pour tester ?
-    AAnimal* animals[10];
 
-    for (int i = 0; i < 10; i++) {
-        if (i < 5) {
-            animals[i] = new Dog;
-        } else {
-            animals[i] = new Cat;
+    std::cout << std::endl << "========== AAnimals Tests ===========" << std::endl << std::endl;
+    {
+        AAnimal* animals[10];
+
+        for (int i = 0; i < 10; i++) {
+            if (i < 5) {
+                animals[i] = new Dog;
+            } else {
+                animals[i] = new Cat;
+            }
+        }
+
+        //normal tests
+        for (int i = 0; i < 10; i++) {
+            animals[i]->makeSound();
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            delete animals[i];
+        }
+
+    }
+
+    std::cout << std::endl << "========== Wrong Animals Tests ===========" << std::endl << std::endl;
+
+    {
+        WrongAnimal* animals[10];
+
+        for (int i = 0; i < 10; i++) {
+            if (i < 5) {
+                animals[i] = new WrongDog;
+            } else {
+                animals[i] = new WrongCat;
+            }
+        }
+
+        for (int i = 0; i < 10; i++) {
+            animals[i]->makeSound();
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            delete animals[i];
         }
     }
 
-    //normal tests
-    for (int i = 0; i < 10; i++) {
-        animals[i]->makeSound();
-    }
-    
-    for (int i = 0; i < 10; i++) {
-        delete animals[i];
-    }
-    
-    //ajouter les wrong tests 
+    std::cout << std::endl << "========== Deep copy Tests ===========" << std::endl << std::endl;
+    //deep copy test
+    {
+        Cat *minou = new Cat();
+        Dog *toutou = new Dog();
+        Cat minou_copy = *minou;
+        Dog toutou_copy = *toutou;
 
-    //ajouter des tests pour prouver la deep copy
-    //afficher l'adresse des brains
-    //afficher les ideas et montrer que ce sont bien les memes 
+        std::cout << std::endl;
+        std::cout << "minou brain adress : " << minou->getBrain() << std::endl;
+        std::cout << "minou_copy brain adress : " << minou_copy.getBrain() << std::endl;
+        std::cout << "toutou brain adress: " << toutou->getBrain() << std::endl;
+        std::cout << "toutou_copy brain adress: " << toutou_copy.getBrain() << std::endl;
+        std::cout << std::endl;
 
+        delete minou;
+        delete toutou;
+    }
+
+    {
+        // AAnimal unicorn;
+        // We cant instantiate AAnimal so we won't create any unicorn
+    }
     return 0;
 }
 

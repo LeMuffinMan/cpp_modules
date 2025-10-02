@@ -11,8 +11,9 @@ class WrongDog : public WrongAnimal
       WrongDog& operator=(const WrongDog& other); 
       ~WrongDog();
 
-    void makeSound() const;
+      void makeSound() const;
   private:
+        Brain* _brain;
 };
 
 #endif
