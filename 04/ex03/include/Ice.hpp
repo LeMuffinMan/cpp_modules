@@ -1,8 +1,13 @@
 
+#include "AMateria.hpp"
 
-class Ice
+class ICharacter;
+
+class Ice : public AMateria
 {
   public: 
-
-  private: 
+    Ice();
+    virtual ~Ice();
+    virtual Ice* clone() const;
+    virtual void use(ICharacter& target);
 };

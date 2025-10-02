@@ -1,7 +1,10 @@
+#include "ICharacter.hpp"
 
-class Cure
+class Cure : public AMateria
 {
   public: 
-
-  private: 
+    Cure();
+    virtual ~Cure() throw(); //pas clair le throw
+    virtual Cure* clone() const;
+    virtual void use(ICharacter& target);
 };
