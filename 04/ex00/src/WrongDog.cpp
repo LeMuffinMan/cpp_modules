@@ -4,14 +4,14 @@
 
 WrongDog::WrongDog() : WrongAnimal()
 {
-    type = "Cerbere";
+    _type = "Cerbere";
     std::cout << "WrongDog Default constructor called" << std::endl;
 }
 
 WrongDog::WrongDog(const WrongDog& other) : WrongAnimal(other)
 {
     std::cout << "WrongDog Copy constructor called" << std::endl;
-    this->type = other.type;
+    this->_type = other._type;
 }
 
 WrongDog& WrongDog::operator=(const WrongDog& other)
@@ -19,7 +19,7 @@ WrongDog& WrongDog::operator=(const WrongDog& other)
     std::cout << "WrongDog Copy assignment operator called" << std::endl;
     if (this != &other)
     {
-      this->type = other.type;
+      this->_type = other._type;
     }
     return *this;
 }

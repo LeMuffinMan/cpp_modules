@@ -13,7 +13,7 @@ class WrongCat : public WrongAnimal
 
         void makeSound() const;
     private:
-        std::string type;
+        std::string _type;
 };
 
 #endif

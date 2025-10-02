@@ -4,7 +4,7 @@
 
 Dog::Dog() : Animal()
 {
-    type = "Dog";
+    _type = "Dog";
     std::cout << "Dog Default constructor called" << std::endl;
 }
 
@@ -18,7 +18,7 @@ Dog& Dog::operator=(const Dog& other)
     std::cout << "Dog Copy assignment operator called" << std::endl;
     if (this != &other)
     {
-        this->type = other.type;
+        this->_type = other._type;
     }
     return *this;
 }
