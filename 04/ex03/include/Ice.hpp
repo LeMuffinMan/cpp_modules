@@ -1,0 +1,8 @@
+
+
+class Ice
+{
+  public: 
+
+  private: 
+};

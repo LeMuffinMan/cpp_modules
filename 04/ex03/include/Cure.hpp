@@ -1,0 +1,7 @@
+
+class Cure
+{
+  public: 
+
+  private: 
+};
