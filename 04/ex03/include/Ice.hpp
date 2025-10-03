@@ -1,3 +1,5 @@
+#ifndef ICE
+#define ICE
 
 #include "AMateria.hpp"
 
@@ -11,3 +13,5 @@ class Ice : public AMateria
     virtual Ice* clone() const;
     virtual void use(ICharacter& target);
 };
+
+#endif 

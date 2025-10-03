@@ -1,14 +1,15 @@
 #include "Cure.hpp"
+#include "ICharacter.hpp"
 #include <iostream>
 
-Cure::Cure() : AMateria("Cure") {}
+Cure::Cure() : AMateria("cure") {}
 
-Cure::~Cure() throw() {}
+Cure::~Cure() {}
 
 Cure *Cure::clone() const {
   return new Cure(*this);
 }
 
 void Cure::use(ICharacter &target) {
-  std::cout << "Cure " << target.getName() << "'s illness" << std::endl;
+    std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
