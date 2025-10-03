@@ -17,7 +17,7 @@ AMateria& AMateria::operator=(const AMateria& other)
     std::cout << "AMateria Copy assignment operator called" << std::endl;
     if (this != &other)
     {
-        *this = other;
+        this->_type = other._type;
     }
     return *this;
 }

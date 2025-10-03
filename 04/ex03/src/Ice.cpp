@@ -2,7 +2,7 @@
 #include "ICharacter.hpp" 
 #include <iostream>
 
-Ice::Ice() : AMateria("Ice") {}
+Ice::Ice() : AMateria("ice") {}
 
 Ice::~Ice() {}
 
@@ -11,8 +11,7 @@ Ice *Ice::clone() const {
 }
 
 void Ice::use(ICharacter &target) {
-  std::cout << "FREEZE !" << std::endl;
-  std::cout << target.getName() << "is frozen" << std::endl;
+  std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
 }
 
 
