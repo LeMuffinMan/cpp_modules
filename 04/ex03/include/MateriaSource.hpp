@@ -15,7 +15,7 @@ class MateriaSource : public IMateriaSource
     virtual AMateria* createMateria(std::string const & type);
 
   private: 
-    AMateria* _templates[4];
+    AMateria* _templates[4]; //templates ?
 };
 
 #endif

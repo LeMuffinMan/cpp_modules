@@ -2,7 +2,6 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
-#include <vector>
 
 class Character : public ICharacter 
 {
@@ -22,7 +21,7 @@ class Character : public ICharacter
   private: 
     std::string _name;
     AMateria* _inventory[4];
-    std::vector<AMateria*> _floor;
+    // std::vector<AMateria*> _floor;
 };
 
 #endif
