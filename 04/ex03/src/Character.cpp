@@ -76,4 +76,6 @@ void Character::printInventory() const {
                   << (_inventory[i] ? " [" + _inventory[i]->getType() + "]" : " empty") 
                   << std::endl;
     }
+    std::cout << "Floor :" << std::endl;
+    _floor.display();
 }

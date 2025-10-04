@@ -10,7 +10,7 @@ class Character : public ICharacter {
   private:
       std::string _name;
       AMateria* _inventory[4];
-      ChainedList _floor;
+      ChainedList _floor; //tout le monde devrait avoir le meme floor ?
       
   public:
       Character(std::string name);
