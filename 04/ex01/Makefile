@@ -1,5 +1,5 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP -g3
 OBJS_DIR = .objs
 SRCS = src/Animal.cpp src/Brain.cpp src/Cat.cpp src/Dog.cpp src/main.cpp src/WrongAnimal.cpp src/WrongCat.cpp src/WrongDog.cpp
 OBJS = $(patsubst src/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))

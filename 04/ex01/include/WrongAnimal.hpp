@@ -1,8 +1,7 @@
 #ifndef WRONGANIMAL_HPP
 #define WRONGANIMAL_HPP
 
-#include <iostream>
-#include "Brain.hpp"
+#include <string>
 
 class WrongAnimal
 {

@@ -8,7 +8,6 @@
 
 int main()
 {
-
     std::cout << std::endl << "========== Animals Tests ===========" << std::endl << std::endl;
     {
         Animal* animals[10];
@@ -71,8 +70,6 @@ int main()
         delete toutou;
     }
     
-    //afficher les ideas et montrer que ce sont bien les memes 
-
     return 0;
 }
 
