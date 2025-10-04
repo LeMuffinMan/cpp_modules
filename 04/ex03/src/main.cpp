@@ -39,14 +39,14 @@ int main() {
     // afficher inventaire et floor
     me->printInventory();
 
-    std::cout << "\n===== Deep copy =====" << std::endl;
-    Character* clone = new Character(*me);
-    clone->printInventory();
+    std::cout << "\n===== Deep copy test =====" << std::endl;
+    Character* clone = new Character(*dynamic_cast<Character*>(me));
 
-    std::cout << "\n===== Check addresses =====" << std::endl;
     for (int i = 0; i < 4; i++) {
-        std::cout << "Original slot " << i << ": " << me->_inventory[i] 
-                  << " | Clone slot " << i << ": " << clone->_inventory[i] << std::endl;
+        std::cout << "Original slot " << i << ": " 
+                << dynamic_cast<Character*>(me)->getMateria(i)
+                << " | Clone slot " << i << ": " 
+                << clone->getMateria(i) << std::endl;
     }
 
     delete clone;
@@ -57,3 +57,5 @@ int main() {
     return 0;
 }
 
+//virer les debugs contrcuteurs destructeurs
+//revoir le main test 

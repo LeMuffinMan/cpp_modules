@@ -2,8 +2,7 @@
 #define CHARACTER_HPP
 
 #include "ICharacter.hpp"
-
-class ICharacter;
+#include <vector>
 
 class Character : public ICharacter 
 {
@@ -17,9 +16,13 @@ class Character : public ICharacter
     virtual void equip(AMateria* m);
     virtual void unequip(int idx);
     virtual void use(int idx, ICharacter& target);
+
+    void printInventory() const;
+    AMateria* getMateria(int idx) const;
   private: 
     std::string _name;
     AMateria* _inventory[4];
+    std::vector<AMateria*> _floor;
 };
 
-#endif 
+#endif
