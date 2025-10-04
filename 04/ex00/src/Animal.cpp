@@ -27,7 +27,7 @@ Animal::~Animal()
     std::cout << "Animal Destructor called" << std::endl;
 }
 
-std::string Animal::getType() const
+const std::string Animal::getType() const
 {
     return _type;
 }

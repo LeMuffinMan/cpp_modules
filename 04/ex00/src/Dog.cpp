@@ -1,6 +1,5 @@
 #include "Dog.hpp"
 #include <iostream>
-#include <string>
 
 Dog::Dog() : Animal()
 {
@@ -11,6 +10,7 @@ Dog::Dog() : Animal()
 Dog::Dog(const Dog& other) : Animal(other)
 {
     std::cout << "Dog Copy constructor called" << std::endl;
+    this->_type = other._type;
 }
 
 Dog& Dog::operator=(const Dog& other)

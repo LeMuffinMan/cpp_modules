@@ -13,8 +13,6 @@ class Dog : public Animal
         ~Dog();
         
         void makeSound() const;
-    private:
-        std::string _type;
 };
 
 #endif

@@ -14,12 +14,12 @@ int main()
         const Animal* j = new Dog();
         const Animal* i = new Cat();
         std::cout << std::endl << "-- Types --" << std::endl;
+        std::cout << meta->getType() << " " << std::endl;
         std::cout << j->getType() << " " << std::endl;
         std::cout << i->getType() << " " << std::endl;
-        std::cout << meta->getType() << " " << std::endl;
         std::cout << std::endl << "-- makeSound() --" << std::endl;
-        i->makeSound();
         j->makeSound();
+        i->makeSound();
         meta->makeSound();
         std::cout << std::endl;
         delete j;
