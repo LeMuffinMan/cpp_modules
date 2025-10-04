@@ -2,17 +2,21 @@
 #include "Animal.hpp"
 #include <iostream>
 
-Cat::Cat() : Animal()
+Cat::Cat() : Animal(), _brain(NULL)
 {
     _type = "Cat";
     this->_brain = new Brain();
     std::cout << "Cat Default constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other) : Animal(other)
+Cat::Cat(const Cat& other)
 {
 	this->_type = other._type;
-	this->_brain = new Brain(*(other._brain));
+	if (other._brain) {
+	    this->_brain = new Brain(*(other._brain));
+	} else {
+        this->_brain = new Brain;
+	}
     std::cout << "Cat Copy constructor called" << std::endl;
 }
 
@@ -22,7 +26,17 @@ Cat& Cat::operator=(const Cat& other)
     if (this != &other)
     {
         this->_type = other._type; 
-        this->_brain = other._brain;
+        if (!other._brain) {
+            if (this->_brain) {
+                delete this->_brain;
+            }
+            this->_brain = NULL;
+        } else {
+            if (this->_brain) {
+                delete this->_brain;
+            }
+            this->_brain = other._brain;
+        }
     }
     return *this;
 }
