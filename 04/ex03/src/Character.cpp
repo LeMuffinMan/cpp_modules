@@ -90,15 +90,12 @@ void Character::use(int idx, ICharacter& target) {
 void Character::printInventory() const {
     std::cout << "Inventory of " << _name << ":\n";
     for (int i = 0; i < 4; i++) {
-        std::cout << " Slot " << i << ": " 
-                  << _inventory[i] 
-                  << ( _inventory[i] ? " [" + _inventory[i]->getType() + "]" : " empty" )
-                  << std::endl;
+        std::cout << "Slot " << i << ": " << _inventory[i] << ( _inventory[i] ? " [" + _inventory[i]->getType() + "]" : " empty" ) << std::endl;
     }
     std::cout << "Floor materias:\n";
     for (std::vector<AMateria*>::const_iterator it = _floor.begin();
          it != _floor.end(); ++it) {
-        std::cout << " " << *it << " [" << (*it)->getType() << "]\n";
+        std::cout << *it << " [" << (*it)->getType() << "]\n";
     }
 }
 
