@@ -16,7 +16,6 @@ class MateriaSource : public IMateriaSource
 
   private: 
     AMateria* _templates[4];
-    // int _count;
 };
 
 #endif
