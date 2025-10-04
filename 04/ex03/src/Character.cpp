@@ -58,7 +58,7 @@ void Character::equip(AMateria* m) {
 
 void Character::unequip(int idx) {
     if (idx >= 0 && idx < 4 && _inventory[idx]) {
-        _floor.addBack(_inventory[idx]);
+        _floor.add(_inventory[idx]);
         _inventory[idx] = NULL;
     }
 }
@@ -66,6 +66,8 @@ void Character::unequip(int idx) {
 void Character::use(int idx, ICharacter& target) {
     if (idx >= 0 && idx < 4 && _inventory[idx]) {
         _inventory[idx]->use(target);
+    } else {
+        std::cout << _name << " action failed : there is no materia on slot " << idx << std::endl;
     }
 }
 
@@ -76,6 +78,6 @@ void Character::printInventory() const {
                   << (_inventory[i] ? " [" + _inventory[i]->getType() + "]" : " empty") 
                   << std::endl;
     }
-    std::cout << "Floor :" << std::endl;
+    std::cout << "Floor :";
     _floor.display();
 }

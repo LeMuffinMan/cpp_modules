@@ -18,7 +18,7 @@ class ChainedList {
       ChainedList& operator=(const ChainedList& other);
       
       void display() const;
-      void addBack(AMateria* dropped);
+      void add(AMateria* dropped);
       void clear();
 };
 

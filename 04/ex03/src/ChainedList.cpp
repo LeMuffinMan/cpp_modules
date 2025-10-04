@@ -36,7 +36,7 @@ ChainedList::~ChainedList() {
     clear();
 }
 
-void ChainedList::addBack(AMateria* dropped) {
+void ChainedList::add(AMateria* dropped) {
     if (!dropped) return;
     
     Node* newNode = new Node(dropped);
@@ -67,21 +67,14 @@ void ChainedList::clear() {
 void ChainedList::display() const {
     Node* current = head;
     if (!current) {
-        std::cout << "List is empty" << std::endl;
+        std::cout << " empty" << std::endl;
         return;
     }
-    
+    std::cout << std::endl; 
     int index = 0;
     while (current) {
-        std::cout << "Node " << index << ":" << std::endl;
-        std::cout << "  Materia type: " << current->materia->getType() << std::endl;
-        std::cout << "  Materia addr: " << current->materia << std::endl;
-        std::cout << "  Node addr: " << current << std::endl;
-        std::cout << "  Next addr: " << current->next << std::endl;
-        std::cout << "-------------------" << std::endl;
-        
+        std::cout << "Node " << index << ": " << current->materia << " [" << current->materia->getType() << "]" << std::endl;
         current = current->next;
         index++;
     }
-    std::cout << "Total nodes: " << index << std::endl;
 }
