@@ -17,9 +17,9 @@ int main()
 
     //Since interfaces does not have any member, we could use it to have class with multiple heritages :
     //All characters have their own name, but they could be a wizard, or a warrior, or a healer ... each one with specific methodes and members
-    //All Characters will be named, but may be a warrior would not be allowed to do magic but weapons, so we could create from IMateriaSource weapons abstract class
-    //The Interface guarantee they share a same "contract" : they must be named since they are Characters
-    //From this contract we can still heritate from other class and specify which type of character we want (wizard / warrior)
+    //May be a warrior would not be allowed to do magic but use weapons instead, so we could create from IMateriaSource, using the learnMateria methode, a Weapon abstract class
+    //The Interface guarantees each class built from it, share a same "contract" : they must be named since they are Characters
+    //From this contract, each object could still heritate from other class and specify which type of character we want (wizard / warrior)
     ICharacter* player1 = new Character("player1");
 
     AMateria* tmp;
@@ -51,13 +51,16 @@ int main()
         AMateria* extra = src->createMateria("ice");
         player1->equip(extra);
     }
+    
+    //the slot 1 should still have the cure Materia, and no leaks should appear
+    dynamic_cast<Character*>(player1)->printInventory();
 
     //use a valid and invalid inventory slot
     player1->use(3, *player2);   
     player1->use(10, *player2);
 
-    player2->use(1, *player2);   
-    player2->use(10, *player2);
+    player2->use(1, *player1);   
+    player2->use(10, *player1);
 
     //Each Character floor should have the dropped Materia
     player1->unequip(2);
