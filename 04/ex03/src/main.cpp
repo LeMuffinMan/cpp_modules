@@ -5,12 +5,14 @@
 #include "MateriaSource.hpp"
 #include <iostream>
 
-int main() {
+int main()
+{
+    std::cout << "===== Regular tests =====" << std::endl;
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
-    Character* me = new Character("me");
+    ICharacter* me = new Character("me");
     AMateria* tmp;
 
     tmp = src->createMateria("ice");
@@ -19,35 +21,40 @@ int main() {
     tmp = src->createMateria("cure");
     me->equip(tmp);
 
-    Character* bob = new Character("bob");
+    ICharacter* bob = new Character("bob");
 
-    // utiliser les materias
     me->use(0, *bob);
     me->use(1, *bob);
-    //This tries to use an empty slot materia
-    me->use(2, *bob);
 
-    std::cout << "\n===== Overflow inventory =====" << std::endl;
+    std::cout << "\n===== Inventory tests =====" << std::endl;
+
     for (int i = 0; i < 5; i++) {
-        tmp = src->createMateria("ice");
-        me->equip(tmp); // le 5ème tombe au sol
+        AMateria* extra = src->createMateria("ice");
+        me->equip(extra);
     }
 
-    // test unequip et floor
-    me->unequip(0); // doit tomber au sol
+    me->use(3, *bob);   
+    me->use(10, *bob);
 
-    // afficher inventaire et floor
-    me->printInventory();
+    Character* meReal = dynamic_cast<Character*>(me);
+    meReal->unequip(0);
+
+    meReal->printInventory();
 
     std::cout << "\n===== Deep copy test =====" << std::endl;
-    Character* clone = new Character(*dynamic_cast<Character*>(me));
+    Character* clone = new Character(*meReal);
 
     for (int i = 0; i < 4; i++) {
-        std::cout << "Original slot " << i << ": " 
-                << dynamic_cast<Character*>(me)->getMateria(i)
-                << " | Clone slot " << i << ": " 
-                << clone->getMateria(i) << std::endl;
+        std::cout << "Original slot " << i << ": "
+                  << meReal->getMateria(i)
+                  << " | Clone slot " << i << ": "
+                  << clone->getMateria(i) << std::endl;
     }
+
+    std::cout << "\nOriginal inventory:" << std::endl;
+    meReal->printInventory();
+    std::cout << "\nCloned inventory:" << std::endl;
+    clone->printInventory();
 
     delete clone;
     delete bob;
@@ -56,6 +63,7 @@ int main() {
 
     return 0;
 }
+
 
 //virer les debugs contrcuteurs destructeurs
 //revoir le main test 

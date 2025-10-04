@@ -46,11 +46,11 @@ void MateriaSource::learnMateria(AMateria* m) {
     
     for (int i = 0; i < 4; i++) {
         if (!_templates[i]) {
-            _templates[i] = m->clone();
+            _templates[i] = m;
             return;
         }
     }
-    // delete m;
+    delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
