@@ -1,7 +1,7 @@
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP -g3
 OBJS_DIR = .objs
-SRCS = src/AMateria.cpp src/Cure.cpp src/Ice.cpp src/Character.cpp src/main.cpp src/MateriaSource.cpp
+SRCS = src/AMateria.cpp src/ChainedList.cpp src/Character.cpp src/Cure.cpp src/Ice.cpp src/main.cpp src/MateriaSource.cpp
 OBJS = $(patsubst src/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 VG = valgrind 
