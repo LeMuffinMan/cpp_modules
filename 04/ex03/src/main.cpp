@@ -64,6 +64,7 @@ int main()
 
     //Each Character floor should have the dropped Materia
     player1->unequip(2);
+    player1->unequip(3);
     player2->unequip(0);
 
     //This should not create any error, and nothing should be added to each Character's floor 
