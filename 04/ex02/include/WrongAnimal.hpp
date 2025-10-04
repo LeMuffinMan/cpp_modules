@@ -1,8 +1,7 @@
 #ifndef WRONGANIMAL_HPP
 #define WRONGANIMAL_HPP
 
-#include <iostream>
-#include "Brain.hpp"
+#include <string>
 
 class WrongAnimal
 {
@@ -12,7 +11,7 @@ class WrongAnimal
         WrongAnimal& operator=(const WrongAnimal& other);
         virtual ~WrongAnimal();
         
-        virtual void makeSound() const = 0;
+        void makeSound() const;
         std::string getType() const;
     protected:
         std::string _type;
