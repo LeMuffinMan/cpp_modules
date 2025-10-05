@@ -20,6 +20,7 @@ int main()
     //The Interface guarantees each class built from it, share a same "contract" : they must be named since they are Characters
     //From this contract, each object could still heritate from other class and specify which type of character we want (wizard / warrior)
     ICharacter* player1 = new Character("player1");
+
     //If we wrote a Wizard class and a Warrior class, we could use multi heritages to create two Characters, with specifics methods and members
     ICharacter* player2 = new Character("player2");
     AMateria* tmp;
@@ -34,6 +35,10 @@ int main()
     tmp = src->createMateria("ice");
     player1->equip(tmp);
     tmp = src->createMateria("cure");
+    player1->equip(tmp);
+    tmp = src->createMateria("Unknown");
+    player1->equip(tmp);
+    tmp = src->createMateria("");
     player1->equip(tmp);
 
     std::cout << std::endl << "============= player 1's turn =============" << std::endl;
@@ -69,7 +74,7 @@ int main()
 
     std::cout << std::endl;
     std::cout << "============= unequip tests =============" << std::endl;
-    //Each Character floor should have the dropped Materia
+
     player1->unequip(2);
     player1->unequip(3);
     player2->unequip(0);
@@ -82,7 +87,6 @@ int main()
     std::cout << std::endl;
     std::cout << "============= unequip invalid index =============" << std::endl;
 
-    //This should not create any error, and nothing should be added to each Character's floor 
     player1->unequip(10);
     player2->unequip(4);
 
@@ -97,3 +101,4 @@ int main()
 
     return 0;
 }
+
