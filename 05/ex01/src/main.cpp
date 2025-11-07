@@ -2,87 +2,109 @@
 #include <iostream>
 #include <stdexcept>
 
-int main(void)
-{
-    std::cout << "Regular tests : " << std::endl;
-    {
-        Bureaucrat secretary("Smith", 1);
-        std::cout << secretary;
+int main() {
+    std::cout << "=== Form construction with valid grades ===" << std::endl;
+    try {
+        Form form1("Free money", 75, 100);
+        Form form2("Tax exemption", 1, 1);
+        Form form3("Low priority", 150, 150);
+        
+        std::cout << form1 << std::endl;
+        std::cout << form2 << std::endl;
+        std::cout << form3 << std::endl;
     }
-    {
-        Bureaucrat secretary("Anderson", 150);
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+
+    std::cout << "=== Form with invalid grades ===" << std::endl;
+    std::cout << "0 grade : ";
+    try {
+        Form form4("Invalid high", 0, 100);
+    }
+    catch (const std::exception& e) {
+        std::cout <<  e.what() << std::endl;
+    }
+
+    std::cout << "151 grade : ";
+    try {
+        Form form5("Invalid low", 75, 151);
+    }
+    catch (const std::exception& e) {
+        std::cout <<  e.what() << std::endl;
+    }
+
+    std::cout << std::endl << "=== Bureaucrat creation ===" << std::endl;
+    try {
+        Bureaucrat deputy("Billy", 76);
+        Bureaucrat secretary("Jeff", 101);
+        Bureaucrat director("Carl", 1);
+        Bureaucrat intern("Tim", 150);
+        
+        std::cout << deputy << std::endl;
         std::cout << secretary << std::endl;
+        std::cout << director << std::endl;
+        std::cout << intern << std::endl;
     }
-    {
-        Bureaucrat secretary("Morpheus", 75);
-        std::cout << secretary << std::endl;
-    }
-    std::cout << "Error tests : ";
-    {
-        try {
-            Bureaucrat secretary("Anderson", 151);
-        }
-        catch (const std::exception& e) {
-            std::cout << "Error : " << e.what() << std::endl;
-        }  
-    }
-    {
-        try {
-            Bureaucrat secretary("Anderson", 0);
-        }
-        catch (const std::exception& e) {
-            std::cout << "Error : " << e.what() << std::endl;
-        }  
-    }
-    {
-        Bureaucrat secretary("Neo", 1);
-        std::cout << secretary;
-        secretary.decrementGrade();
-        std::cout << secretary;
-        secretary.incrementGrade();
-        std::cout << secretary;
-        try {
-            secretary.incrementGrade();
-        }
-        catch (const std::exception& e) {
-            std::cout << "Error : " << e.what() << std::endl;
-        }
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
     }
 
+    std::cout << std::endl << "=== Form signing ===" << std::endl;
+    try {
+        Form form("Free money", 75, 100);
+        Bureaucrat deputy("Billy", 76);
+        Bureaucrat secretary("Jeff", 101);
+        Bureaucrat director("Carl", 1);
 
+        std::cout << "Before signing: " << form.getName() << " isSigned() = " << form.isSigned() << std::endl;
 
+        std::cout << deputy << " Attempts to sign: " << form.getName() << std::endl; 
+        deputy.signForm(form);
 
-    //
-    // Bureaucrat secretary("Jean", 1);
-    // Bureaucrat minister("Bob", 150);
-    //
-    // std::cout << "Trying to increment a low grade bureaucrat" << std::endl;
-    // try {
-    //     secretary.incrementGrade();
-    // }
-    // catch (std::exception & e) 
-    // {
-    //     std::cout << "Error incrementing grade :" << std::endl << secretary;
-    // }
-    // std::cout << "Trying to decrement a highest grade bureaucrat" << std::endl;
-    // try {
-    //     minister.decrementGrade();
-    // }
-    // catch (std::exception & e)
-    // {
-    //     std::cout << "Error decrementing grade :" << std::endl << secretary;
-    // }
-    //
-    // std::cout << "Trying to instantiate a bureaucrat with 151 grade" << std::endl;
-    // Bureaucrat farmer("Bob", 151);
-    // std::cout << "Trying to instantiate a bureaucrat with 0 grade" << std::endl;
-    // Bureaucrat president("Joe", 0);
-    // std::cout << "Trying to instantiate a bureaucrat with -1 grade" << std::endl;
-    // Bureaucrat negative("Jim", -1);
-    //
-    // std::cout << "Regular operations tests :" << std::endl;
-    // secretary.decrementGrade();
-    // minister.incrementGrade();
+        std::cout << secretary << " Attempts to sign: " << form.getName() << std::endl;
+        secretary.signForm(form);
 
+        std::cout << director << " Attempts to sign: " << form.getName() << std::endl;
+        director.signForm(form);
+
+        std::cout << "After signing " << form.getName() << " isSigned() = " << form.isSigned() << std::endl;
+    }
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+
+    std::cout << std::endl << "=== Form execution ===" << std::endl;
+    try {
+        Form form("Free money", 75, 100);
+        Bureaucrat deputy("Billy", 76);
+        Bureaucrat secretary("Jeff", 101);
+        Bureaucrat director("Carl", 1);
+
+        director.signForm(form);
+
+        std::cout << deputy << " attempts to execute: " << form.getName() << std::endl;
+        deputy.executeForm(form);
+
+        std::cout << secretary << " attempts to execute: " << form.getName() << std::endl;
+        secretary.executeForm(form);
+
+        std::cout << director << " attempts to execute: " << form.getName() << std::endl;
+        director.executeForm(form);
+    }
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+
+    std::cout << std::endl << "=== Execution without signature ===" << std::endl;
+    try {
+        Form form("Important document", 50, 50);
+        Bureaucrat bureaucrat("John", 1);
+        bureaucrat.executeForm(form);
+    }
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
     return 0;
 }
+

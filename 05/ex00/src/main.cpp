@@ -37,52 +37,18 @@ int main(void)
     {
         Bureaucrat secretary("Neo", 1);
         std::cout << secretary;
-        secretary.decrementGrade();
+        secretary.decrementGrade(); // should be grade 2
         std::cout << secretary;
-        secretary.incrementGrade();
+        secretary.incrementGrade(); // should be grade 1
         std::cout << secretary;
-        try {
+        try { 
             secretary.incrementGrade();
         }
         catch (const std::exception& e) {
             std::cout << "Error : " << e.what() << std::endl;
         }
+        std::cout << secretary; // should be still 1 since the error was thrown
+
     }
-
-
-
-
-    //
-    // Bureaucrat secretary("Jean", 1);
-    // Bureaucrat minister("Bob", 150);
-    //
-    // std::cout << "Trying to increment a low grade bureaucrat" << std::endl;
-    // try {
-    //     secretary.incrementGrade();
-    // }
-    // catch (std::exception & e) 
-    // {
-    //     std::cout << "Error incrementing grade :" << std::endl << secretary;
-    // }
-    // std::cout << "Trying to decrement a highest grade bureaucrat" << std::endl;
-    // try {
-    //     minister.decrementGrade();
-    // }
-    // catch (std::exception & e)
-    // {
-    //     std::cout << "Error decrementing grade :" << std::endl << secretary;
-    // }
-    //
-    // std::cout << "Trying to instantiate a bureaucrat with 151 grade" << std::endl;
-    // Bureaucrat farmer("Bob", 151);
-    // std::cout << "Trying to instantiate a bureaucrat with 0 grade" << std::endl;
-    // Bureaucrat president("Joe", 0);
-    // std::cout << "Trying to instantiate a bureaucrat with -1 grade" << std::endl;
-    // Bureaucrat negative("Jim", -1);
-    //
-    // std::cout << "Regular operations tests :" << std::endl;
-    // secretary.decrementGrade();
-    // minister.incrementGrade();
-
     return 0;
 }

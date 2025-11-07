@@ -21,12 +21,10 @@ Form::Form(const Form& other)
     this->_grade_to_execute = other._grade_to_execute;
     this->_grade_to_sign = other._grade_to_sign;
     this->_signed = other._signed;
-    std::cout << "Form Copy constructor called" << std::endl;
 }
 
 Form& Form::operator=(const Form& other)
 {
-    std::cout << "Form Copy assignment operator called" << std::endl;
     if (this != &other)
     {
         this->_grade_to_execute = other._grade_to_execute;
@@ -38,7 +36,6 @@ Form& Form::operator=(const Form& other)
 
 Form::~Form()
 {
-    std::cout << "Form Destructor called" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Form& form)
@@ -67,10 +64,24 @@ int Form::getGradeToExecute() const
     return _grade_to_execute;
 }
 
+const char* Form::FormNotSignedException::what() const throw() {
+    return "Form is not signed!";
+}
+
 void Form::beSigned(Bureaucrat bureaucrat)
 {
     if (bureaucrat.getGrade() > this->getGradeToSign())
         throw Bureaucrat::GradeTooLowException();
     else
         _signed = true;
+}
+
+void Form::beExecute(Bureaucrat bureaucrat) const
+{
+    if (_signed == false)
+        throw Form::FormNotSignedException();
+    else if (bureaucrat.getGrade() > this->getGradeToExecute())
+        throw Bureaucrat::GradeTooLowException();
+    else
+        std::cout << bureaucrat << " executed " << _name << std::endl;
 }

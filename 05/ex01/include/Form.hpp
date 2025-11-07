@@ -23,13 +23,18 @@ class Form
         bool isSigned() const; 
         int getGradeToSign() const;
         int getGradeToExecute() const;
-        void beSigned(Bureaucrat bureaucrat); // void beSigned(const Bureaucrat& bureaucrat);
+        void beSigned(Bureaucrat bureaucrat);
+        void beExecute(Bureaucrat bureaucrat) const;
         class GradeTooHighException : public std::exception {
             const char* what() const throw();
         };
 
         class GradeTooLowException : public std::exception {
             const char* what() const throw();
+        };
+
+        class FormNotSignedException: public std::exception {
+            const char * what() const throw(); 
         };
 };
 
