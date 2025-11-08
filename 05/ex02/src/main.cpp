@@ -8,11 +8,20 @@ void testBureaucratCreation() {
     try {
         Bureaucrat high("High", 1);
         std::cout << high << std::endl;
-        
         Bureaucrat low("Low", 150);
         std::cout << low << std::endl;
-        
-        Bureaucrat invalid("Invalid", 0); // to comment 
+    } catch (std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    try {
+        std::cout << "About to instantiate \"Invalid\" bureaucrat with grade 0" << std::endl; 
+        Bureaucrat invalid("Invalid", 0); 
+    } catch (std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    try {
+        std::cout << "About to instantiate \"Invalid\" bureaucrat with grade 151" << std::endl; 
+        Bureaucrat invalid("Invalid", 151); 
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
@@ -20,14 +29,24 @@ void testBureaucratCreation() {
 }
 
 void testGradeModification() {
-    //ajouter un test de decrementation 
     Bureaucrat bob("Bob", 2);
-    std::cout << "Before inc/dec : " << bob << std::endl;
+    std::cout << "Before inc : " << bob << std::endl;
     try {
         bob.incrementGrade();
         std::cout << "After inc: " << bob << std::endl;
-        
-        bob.incrementGrade(); //to comment 
+        bob.incrementGrade();
+        std::cout << "After inc: " << bob << std::endl;
+    } catch (std::exception& e) {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
+    std::cout << std::endl;
+    Bureaucrat mireille("Mireille", 149);
+    std::cout << "Before dec : " << mireille << std::endl;
+    try {
+        mireille.decrementGrade();
+        std::cout << "After dec: " << mireille << std::endl;
+        mireille.decrementGrade();
+        std::cout << "After dec: " << mireille << std::endl;
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }

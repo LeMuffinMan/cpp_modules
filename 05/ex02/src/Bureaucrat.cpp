@@ -52,16 +52,16 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::incrementGrade()
 {
-    if (this->_grade == 1)
-        throw Bureaucrat::GradeTooLowException();
+    if (this->_grade == 1) // ICI c'etait inverse !!! checker les exos precedents !!!
+        throw Bureaucrat::GradeTooHighException();
     else
         this->_grade--;
 }
 
 void Bureaucrat::decrementGrade()
 {
-    if (this->_grade == 150)
-        throw Bureaucrat::GradeTooHighException();
+    if (this->_grade == 150) // ICI c'etait inverse !!! checker les exos precedents !!!
+        throw Bureaucrat::GradeTooLowException();
     else
         this->_grade++;
 }
