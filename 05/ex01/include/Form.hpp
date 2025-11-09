@@ -19,12 +19,12 @@ class Form
         Form& operator=(const Form& other);
         ~Form();
 
-        std::string getName() const; //renvoyer reference ?
+        const std::string& getName() const;
         bool isSigned() const; 
         int getGradeToSign() const;
         int getGradeToExecute() const;
         void beSigned(Bureaucrat bureaucrat);
-        void beExecute(Bureaucrat bureaucrat) const;
+        void execute(Bureaucrat bureaucrat) const;
         class GradeTooHighException : public std::exception {
             const char* what() const throw();
         };

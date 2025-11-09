@@ -30,9 +30,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
     return *this;
 }
 
-Bureaucrat::~Bureaucrat()
-{
-}
+Bureaucrat::~Bureaucrat() {}
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
 {
@@ -80,8 +78,8 @@ void Bureaucrat::signForm(Form& form) const
 void Bureaucrat::executeForm(Form& form) const
 {
     try {
-        form.beExecute(*this);
-        // std::cout << *this << " executed " << form.getName() << std::endl;
+        form.execute(*this);
+        std::cout << *this << " executed " << form.getName() << std::endl; //double message d'erreur !!!
     } catch (const std::exception& e) {
         std::cout << *this << " couldn't executed " << form.getName()
                 << " because " << e.what() << std::endl;
