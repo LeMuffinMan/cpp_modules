@@ -13,9 +13,9 @@ class AForm
         bool _signed;
         int _grade_to_sign;
         int _grade_to_execute;
-        const std::string _target;
 
-    //protected: a virer ?
+    protected:
+        const std::string _target;
 
     public:
         AForm(const AForm& other);
@@ -46,6 +46,11 @@ class AForm
         class FormNotSignedException : public std::exception {
             public:
                 const char* what() const throw(); 
+        };
+
+        class FormOpenFileError: public std::exception {
+            public: 
+                const char * what() const throw(); 
         };
 };
 

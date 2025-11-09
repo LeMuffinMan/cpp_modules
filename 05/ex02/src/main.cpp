@@ -34,8 +34,8 @@ void testGradeModification() {
     try {
         bob.incrementGrade();
         std::cout << "After inc: " << bob << std::endl;
+        std::cout << "About to increment to 0: " << bob << std::endl;
         bob.incrementGrade();
-        std::cout << "After inc: " << bob << std::endl;
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
@@ -45,8 +45,8 @@ void testGradeModification() {
     try {
         mireille.decrementGrade();
         std::cout << "After dec: " << mireille << std::endl;
+        std::cout << "About to decrement to 151: " << mireille << std::endl;
         mireille.decrementGrade();
-        std::cout << "After dec: " << mireille << std::endl;
     } catch (std::exception& e) {
         std::cout << "Exception: " << e.what() << std::endl;
     }
@@ -56,23 +56,29 @@ void testGradeModification() {
 void testShrubberyCreationForm() {
     Bureaucrat gardener("Gardener", 130);
     Bureaucrat unqualified_worker("Unqualified worker", 140);
-    ShrubberyCreationForm shrubbery("home");
+    ShrubberyCreationForm shrubbery("backyard");
     
     std::cout << shrubbery << std::endl;
     std::cout << gardener << std::endl;
-    
-    // Try to execute without signing
+
+    // execution without signing : should throw an error 
     gardener.executeForm(shrubbery);
-    
-    // Sign the form
+
     gardener.signForm(shrubbery);
-    
-    // Execute with proper grade
+
+    std::cout << "shrubbery " << shrubbery.getName() << " : " << "signed = " << shrubbery.isSigned() << std::endl;
+
     gardener.executeForm(shrubbery);
-    
-    // Try with lower grade bureaucrat
+
+    // execution without grade : should throw an error 
     unqualified_worker.executeForm(shrubbery);
-    
+
+    ShrubberyCreationForm unamed_shrubbery("/root/");
+
+    gardener.signForm(unamed_shrubbery);
+
+    gardener.executeForm(unamed_shrubbery);
+
     std::cout << std::endl;
 }
 
@@ -84,18 +90,16 @@ void testRobotomyRequestForm() {
     std::cout << robotomy << std::endl;
     std::cout << surgeon << std::endl;
     
-    // Try to execute without signing
+    // should throw an error 
     surgeon.executeForm(robotomy);
     
-    // Sign the form
     surgeon.signForm(robotomy);
     
-    // Execute multiple times to see different outcomes
     for (int i = 0; i < 3; i++) {
         surgeon.executeForm(robotomy);
     }
     
-    // Try with lower grade bureaucrat
+    //should throw an error 
     intern.executeForm(robotomy);
     
     std::cout << std::endl;
@@ -110,19 +114,17 @@ void testPresidentialPardonForm() {
     std::cout << pardon << std::endl;
     std::cout << president << std::endl;
     
-    // Try to execute without signing
+    // should throw an error 
     president.executeForm(pardon);
     
-    // secretary tries to sign (should fail)
+    // should throw an error 
     secretary.signForm(pardon);
     
-    // Minister signs successfully
     minister.signForm(pardon);
     
-    // secretary tries to execute (should fail - grade too low)
+    // should throw an error 
     secretary.executeForm(pardon);
     
-    // President executes successfully
     president.executeForm(pardon);
     
     std::cout << std::endl;
@@ -147,6 +149,7 @@ void testFormExceptions() {
 }
 
 int main() {
+    std::srand(std::time(0));
     std::cout << "=== Bureaucrat creation ===" << std::endl;
     testBureaucratCreation();
     std::cout << "=== Grade modification ===" << std::endl;

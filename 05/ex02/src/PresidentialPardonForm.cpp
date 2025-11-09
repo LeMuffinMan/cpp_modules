@@ -28,6 +28,12 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
     if (executor.getGrade() > getGradeToExecute())
         throw GradeTooLowException();
 
-    std::cout << _target << " has been pardoned by President !" << std::endl;
+    std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }
 
+std::ostream& operator<<(std::ostream& os, const PresidentialPardonForm& form) {
+    os << "Presidential Pardon Form \"" << form.getTarget() << "\" : signed = " << form.isSigned()
+       << ", grade to sign = " << form.getGradeToSign()
+       << ", grade to execute = " << form.getGradeToExecute();
+    return os;
+}

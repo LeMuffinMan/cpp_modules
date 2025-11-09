@@ -33,7 +33,7 @@ AForm::~AForm()
 
 std::ostream& operator<<(std::ostream& out, const AForm& form)
 {
-    out << form.getName() << ", form : signed = " << form.isSigned() << std::endl << "Grade to sign = " << form.getGradeToSign() << std::endl << "Grade to execute = " << form.getGradeToExecute() << std::endl;
+    out << form.getName() << " form : signed = " << form.isSigned() << std::endl << "Grade to sign = " << form.getGradeToSign() << std::endl << "Grade to execute = " << form.getGradeToExecute() << std::endl;
     return out;
 }
 
@@ -75,4 +75,8 @@ const char* AForm::GradeTooLowException::what() const throw() {
 
 const char* AForm::FormNotSignedException::what() const throw() {
     return "Form not signed";
+}
+
+const char* AForm::FormOpenFileError::what() const throw() {
+    return "Could not create file";
 }
