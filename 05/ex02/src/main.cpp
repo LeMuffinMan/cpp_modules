@@ -130,24 +130,6 @@ void testPresidentialPardonForm() {
     std::cout << std::endl;
 }
 
-void testFormExceptions() {
-    try {
-        // This should throw GradeTooHighException
-        // ShrubberyCreationForm invalidHigh("test", 0, 0);
-    } catch (std::exception& e) {
-        std::cout << "High grade exception: " << e.what() << std::endl;
-    }
-    
-    try {
-        // This should throw GradeTooLowException
-        // ShrubberyCreationForm invalidLow("test", 151, 151);
-    } catch (std::exception& e) {
-        std::cout << "Low grade exception: " << e.what() << std::endl;
-    }
-    
-    std::cout << std::endl;
-}
-
 int main() {
     std::srand(std::time(0));
     std::cout << "=== Bureaucrat creation ===" << std::endl;
@@ -160,7 +142,5 @@ int main() {
     testRobotomyRequestForm();
     std::cout << "=== Presidential pardon form ===" << std::endl;
     testPresidentialPardonForm();
-    std::cout << "=== Form exceptions ===" << std::endl;
-    testFormExceptions();
     return 0;
 }
