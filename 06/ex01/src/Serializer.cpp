@@ -1,24 +1,15 @@
 #include "Serializer.hpp"
 #include <iostream>
 
-Serializer::Serializer()
-{
+Serializer::Serializer() {}
+Serializer::Serializer(const Serializer &other) { (void)other; }
+Serializer &Serializer::operator=(const Serializer &other) { (void)other; return *this; }
+Serializer::~Serializer() {}
+
+unsigned long Serializer::serialize(Data* ptr) {
+    return reinterpret_cast<unsigned long>(ptr);
 }
 
-Serializer::Serializer(const Serializer& other)
-{
+Data* Serializer::deserialize(unsigned long raw) {
+    return reinterpret_cast<Data*>(raw);
 }
-
-Serializer& Serializer::operator=(const Serializer& other)
-{
-    if (this != &other)
-    {
-
-    }
-    return *this;
-}
-
-Serializer::~Serializer()
-{
-}
-
