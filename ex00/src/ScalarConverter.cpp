@@ -261,12 +261,12 @@ static void printInt(const std::string& literal, Type type)
             }
         case T_POS_INF:
             {
-                std::cout << "Non displayable";
+                std::cout << "-2147483648";
                 break;
             }
         case T_NEG_INF:
             {
-                std::cout << "Non displayable";
+                std::cout << "-2147483648";
                 break;
             }
         case T_INVALID:

@@ -6,6 +6,8 @@ int main (int argc, char **argv)
 {
   //uncommented, this line prevent compilation cause constructors / destructors or in private 
   //ScalarConverter converter;
+  //
+  std::cout << i;
   if (argc != 2 || argv[1][0] == '\0')
   {
     std::cout << "Usage : " << argv[0] << " <value-to-convert>" << std::endl;
@@ -14,3 +16,4 @@ int main (int argc, char **argv)
   ScalarConverter::convert(argv[1]);
   return 0;
 }
+
