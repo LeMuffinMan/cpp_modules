@@ -1,12 +1,12 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
 OBJS_DIR = .objs
-SRCS = src/main.cpp
+SRCS = src/main.cpp 
 OBJS = $(patsubst src/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 VG = valgrind 
 VGFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes
-NAME = swap_min_max
+NAME = array
 
 all: $(NAME)
 
@@ -28,5 +28,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
 	
 .PHONY: all clean fclean re 
