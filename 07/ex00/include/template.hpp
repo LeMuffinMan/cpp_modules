@@ -1,6 +1,9 @@
 #ifndef WHATEVER_HPP
 #define WHATEVER_HPP
 
+//pas utiliser les ref pour prouver qu'on renvoie b et pas a si egaux ?
+
+
 template <typename T>
 void swap(T &a, T &b) {
     T temp = a;
