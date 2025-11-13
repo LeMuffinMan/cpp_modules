@@ -4,16 +4,18 @@
 class Span
 {
     public:
-        Span();
+        Span(unsigned int N);
         Span(const Span& other);
         Span& operator=(const Span& other);
         ~Span();
 
         void addNumber();
-        void shortesSpan();
-        void longestSpan();
+        unsigned int shortestSpan();
+        unsigned int longestSpan();
         void addMultipleNumbers();
     private:
+        unsigned int _maxSize;
+        std::vector<int> _numbers;
 };
 
 #endif

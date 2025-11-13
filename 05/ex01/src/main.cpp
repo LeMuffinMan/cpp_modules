@@ -18,7 +18,7 @@ int main() {
     }
 
     std::cout << "=== Form with invalid grades ===" << std::endl;
-    std::cout << "0 grade : ";
+    std::cout << "0 grade to sign : ";
     try {
         Form form4("Invalid high", 0, 100);
     }
@@ -26,7 +26,7 @@ int main() {
         std::cout <<  e.what() << std::endl;
     }
 
-    std::cout << "151 grade : ";
+    std::cout << "151 grade to execute : ";
     try {
         Form form5("Invalid low", 75, 151);
     }
@@ -51,28 +51,37 @@ int main() {
     }
 
     std::cout << std::endl << "=== Form signing ===" << std::endl;
+    Form form("Free money", 75, 100);
+    Bureaucrat deputy("Billy", 76);
+    Bureaucrat secretary("Jeff", 101);
+    Bureaucrat director("Carl", 1);
+
+    std::cout << "Before signing: " << form.getName() << " isSigned() = " << form.isSigned() << std::endl;
+
     try {
-        Form form("Free money", 75, 100);
-        Bureaucrat deputy("Billy", 76);
-        Bureaucrat secretary("Jeff", 101);
-        Bureaucrat director("Carl", 1);
-
-        std::cout << "Before signing: " << form.getName() << " isSigned() = " << form.isSigned() << std::endl;
-
         std::cout << deputy << " Attempts to sign: " << form.getName() << std::endl; 
         deputy.signForm(form);
-
-        std::cout << secretary << " Attempts to sign: " << form.getName() << std::endl;
-        secretary.signForm(form);
-
-        std::cout << director << " Attempts to sign: " << form.getName() << std::endl;
-        director.signForm(form);
-
-        std::cout << "After signing " << form.getName() << " isSigned() = " << form.isSigned() << std::endl;
     }
     catch (const std::exception& e) {
         std::cout << "Error: " << e.what() << std::endl;
     }
+
+    try {
+        std::cout << secretary << " Attempts to sign: " << form.getName() << std::endl;
+        secretary.signForm(form);
+    }
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+
+    try {
+        std::cout << director << " Attempts to sign: " << form.getName() << std::endl;
+        director.signForm(form);
+    }
+    catch (const std::exception& e) {
+        std::cout << "Error: " << e.what() << std::endl;
+    }
+    std::cout << "After signing " << form.getName() << " isSigned() = " << form.isSigned() << std::endl;
 
     std::cout << std::endl << "=== Form execution ===" << std::endl;
     try {

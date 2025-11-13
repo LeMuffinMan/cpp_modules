@@ -4,21 +4,23 @@
 
 int main(void)
 {
-    std::cout << "Regular tests : " << std::endl;
+    std::cout << "==== Regular tests ====" << std::endl;
     {
         Bureaucrat secretary("Smith", 1);
         std::cout << secretary;
     }
     {
         Bureaucrat secretary("Anderson", 150);
-        std::cout << secretary << std::endl;
+        std::cout << secretary;
     }
     {
         Bureaucrat secretary("Morpheus", 75);
-        std::cout << secretary << std::endl;
+        std::cout << secretary;
     }
-    std::cout << "Error tests : ";
+    std::cout << std::endl;
+    std::cout << "==== Error tests ====" << std::endl;
     {
+        std::cout << "About to try to instantiate a 151 grade bureaucrat" << std::endl;
         try {
             Bureaucrat secretary("Anderson", 151);
         }
@@ -27,6 +29,7 @@ int main(void)
         }  
     }
     {
+        std::cout << "About to try to instantiate a 0 grade bureaucrat" << std::endl;
         try {
             Bureaucrat secretary("Anderson", 0);
         }
