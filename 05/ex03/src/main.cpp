@@ -10,7 +10,7 @@ int main() {
     Bureaucrat boss("Boss", 1);
     AForm* form;
 
-    std::cout << "\n=== Testing Intern Form Creation ===\n" << std::endl;
+    std::cout << "=== Testing Intern Form Creation ===" << std::endl;
 
     form = whocares.makeForm("shrubbery creation", "frontyard");
     if (form) {
