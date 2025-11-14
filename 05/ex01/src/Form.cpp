@@ -4,7 +4,6 @@
 
 Form::Form(std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute) 
 {
-    //VIER LE TRY CATCH ICI !!!!!
     _signed = false;
     if (grade_to_sign > 150 || grade_to_execute > 150)
         throw Bureaucrat::GradeTooLowException();
@@ -77,7 +76,6 @@ void Form::beSigned(Bureaucrat bureaucrat)
 
 void Form::execute(Bureaucrat bureaucrat) const
 {
-    //VIRER LE TRY THROW ICI !!!!!
     if (_signed == false)
         throw Form::FormNotSignedException();
     else if (bureaucrat.getGrade() > this->getGradeToExecute())

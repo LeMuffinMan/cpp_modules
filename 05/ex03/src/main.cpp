@@ -10,7 +10,6 @@ int main() {
     Bureaucrat boss("Boss", 1);
     AForm* form;
 
-    // Test creating different forms
     std::cout << "\n=== Testing Intern Form Creation ===\n" << std::endl;
 
     form = whocares.makeForm("shrubbery creation", "frontyard");
@@ -24,16 +23,26 @@ int main() {
 
     form = whocares.makeForm("robotomy request", "Bender");
     if (form) {
-        boss.signForm(*form);
+        try {
+            boss.signForm(*form);
+        } catch (const std::exception& e) {
+            std::cout << form->getName() << " couldn't sign " << form->getName() 
+                    << " because " << e.what() << std::endl;
+        }
         boss.executeForm(*form);
         delete form;
     }
 
     std::cout << std::endl;
 
-    form = whocares.makeForm("presidential pardon", "Nicolas");
+    form = whocares.makeForm("presidential pardon", "Pierre");
     if (form) {
-        boss.signForm(*form);
+        try {
+            boss.signForm(*form);
+        } catch (const std::exception& e) {
+            std::cout << form->getName() << " couldn't sign " << form->getName() 
+                    << " because " << e.what() << std::endl;
+        }
         boss.executeForm(*form);
         delete form;
     }

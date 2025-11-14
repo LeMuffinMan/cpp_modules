@@ -17,9 +17,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
         throw Bureaucrat::GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
-{
-}
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade) {}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
@@ -30,9 +28,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
     return *this;
 }
 
-Bureaucrat::~Bureaucrat()
-{
-}
+Bureaucrat::~Bureaucrat() {}
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
 {
@@ -68,13 +64,8 @@ void Bureaucrat::decrementGrade()
 
 void Bureaucrat::signForm(AForm& form) const
 {
-    try {
         form.beSigned(*this);
         std::cout << this->_name << " signed " << form.getName() << std::endl;
-    } catch (const std::exception& e) {
-        std::cout << this->_name << " couldn't sign " << form.getName() 
-                  << " because " << e.what() << std::endl;
-    }
 }
 
 void Bureaucrat::executeForm(AForm& form) const
