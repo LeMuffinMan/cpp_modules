@@ -44,6 +44,7 @@ void identify(Base& p)
         std::cout << "dynamic_cast as A& success" << std::endl;
         return;
     } catch (...) {
+        std::cout << "attempted dynamic_cast as A& failed" << std::endl;
     }
 
     try {
@@ -51,6 +52,7 @@ void identify(Base& p)
         std::cout << "dynamic_cast as B& success" << std::endl;
         return;
     } catch (...) {
+        std::cout << "attempted dynamic_cast as B& failed" << std::endl;
     }
 
     try {
@@ -58,6 +60,7 @@ void identify(Base& p)
         std::cout << "dynamic_cast as C& success" << std::endl;
         return;
     } catch (...) {
+        std::cout << "attempted dynamic_cast as C& failed" << std::endl;
     }
     std::cout << "dynamic_cast failed using A& B& C& casts" << std::endl;
 }
