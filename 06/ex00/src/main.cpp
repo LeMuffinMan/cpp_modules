@@ -4,11 +4,12 @@
 
 int main (int argc, char **argv)
 {
-  //uncommented, this line prevent compilation cause constructors / destructors or in private 
+  //uncommented, this line prevent compilation cause constructors / destructors are in private 
   //ScalarConverter converter;
 
-  std::cout << std::numeric_limits<int>::infinity() << std::endl;
-  //chez moi infinity en int donne INT_MIN ??
+  // std::cout << std::numeric_limits<int>::infinity() << std::endl;
+  // i used this line to determine how to handle +inf and -inf in int
+  // Depending of compiler, it results either INT_MIN or 0
 
   if (argc != 2 || argv[1][0] == '\0')
   {
