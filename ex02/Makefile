@@ -32,7 +32,7 @@ re: fclean all
 run: all 
 	./$(NAME)
 
-vg: 
+vg: all 
 	$(VG) $(VGFLAGS) ./$(NAME) 
 
 .PHONY: all clean fclean re run vg
