@@ -261,12 +261,12 @@ static void printInt(const std::string& literal, Type type)
             }
         case T_POS_INF:
             {
-                std::cout << "-2147483648";
+                std::cout << "0";
                 break;
             }
         case T_NEG_INF:
             {
-                std::cout << "-2147483648";
+                std::cout << "0";
                 break;
             }
         case T_INVALID:
@@ -385,7 +385,6 @@ static void printDouble(const std::string& literal, Type type)
             {
                 for (size_t i = 0; i < literal.length() - 1; i++)
                     std::cout << literal[i];
-                // std::cout << "f";
                 break;
             }
         case T_DOUBLE:
@@ -401,12 +400,12 @@ static void printDouble(const std::string& literal, Type type)
             }
         case T_POS_INF:
             {
-                std::cout << "inf"; // tenter quand meme ?
+                std::cout << "inf";
                 break;
             }
         case T_NEG_INF:
             {
-                std::cout << "-inf"; // tenter quand meme ?
+                std::cout << "-inf";
                 break;
             }
         case T_INVALID:
