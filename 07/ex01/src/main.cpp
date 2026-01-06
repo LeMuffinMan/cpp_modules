@@ -18,6 +18,7 @@ void printCharFromInt(const int& x) {
 }
 
 int main() {
+    //ajouter un test pour le const !
     int numbers[] = {65, 66, 67, 68, 69}; // oblige de declarer un array comme ca ?
     std::string words[] = {"hello", "world"};
 
