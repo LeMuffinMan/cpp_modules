@@ -2,6 +2,8 @@
 #include "Array.hpp"
 #include "arrayTemplate.hpp"
 
+// try to compile int * a = new int(); then display *a
+
 int main() {
     try {
         Array<int> array1(5);

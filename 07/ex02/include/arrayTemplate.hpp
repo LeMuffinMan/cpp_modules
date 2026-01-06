@@ -1,18 +1,18 @@
 #ifndef ARRAYTEMPLATE_HPP
 #define ARRAYTEMPLATE_HPP
 
-#include <cstddef>
-
 template <typename T>
 Array<T>::Array() : _data(0), _size(0) {}
 
 template <typename T>
 Array<T>::Array(unsigned int n) : _data(0), _size(n) {
     if (n > 0) {
-        _data = new T[n](); 
+        _data = new T[n]();
     }
 }
 
+// Construction by copy and assignment operator. In both cases, modifying either the
+// original array or its copy after copying musn’t affect the other array
 template <typename T>
 Array<T>::Array(const Array<T>& other) : _data(0), _size(other._size) {
     if (_size > 0) {
@@ -31,7 +31,7 @@ Array<T>::~Array() {
 template <typename T>
 Array<T>& Array<T>::operator=(const Array<T>& other) {
     if (this != &other) {
-        delete[] _data;        
+        delete[] _data;
         _size = other._size;
 
         if (_size > 0) {
@@ -68,5 +68,3 @@ size_t Array<T>::size() const {
 }
 
 #endif
-
-
