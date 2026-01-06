@@ -19,10 +19,11 @@ int main() {
     float f1 = 3.14f, f2 = 2.71f;
     std::cout << "Before swap :" << " f1 = " << f1 << " f2 = " << f2 << " Type : float" << std::endl;
     swap(f1, f2);
+    std::cout << "After swap :" << " f1 = " << f1 << " f2 = " << f2 << " Type : float" << std::endl;
     std::cout << "min(f1, f2) = " << ::min(f1, f2) << std::endl;
     std::cout << "max(f1, f2) = " << ::max(f1, f2) << std::endl;
 
-    double d1 = 42.24, d2 = 24.42; 
+    double d1 = 42.24, d2 = 24.42;
     std::cout << "Before swap :" << " d1 = " << d1 << " d2 = " << d2 << " Type : double" << std::endl;
     swap(d1, d2);
     std::cout << "After swap :" << " d1 = " << d1 << " d2 = " << d2 << " Type : double" << std::endl;
@@ -38,4 +39,3 @@ int main() {
 
     return 0;
 }
-

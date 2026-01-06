@@ -1,9 +1,7 @@
-#ifndef WHATEVER_HPP
-#define WHATEVER_HPP
+#ifndef TEMPLATE_HPP
+#define TEMPLATE_HPP
 
-//pas utiliser les ref pour prouver qu'on renvoie b et pas a si egaux ?
-
-
+// T <=> For any type
 template <typename T>
 void swap(T &a, T &b) {
     T temp = a;
@@ -11,6 +9,7 @@ void swap(T &a, T &b) {
     b = temp;
 }
 
+// Returns any type const &?
 template <typename T>
 T const &min(T const &a, T const &b) {
     if (a < b)
