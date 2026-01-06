@@ -15,6 +15,4 @@ void iter(const T* array, const int length, void (*func)(const T&)) {
     }
 }
 
-// template<typename T>
-
-#endif 
+#endif

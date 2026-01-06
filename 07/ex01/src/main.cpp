@@ -1,16 +1,16 @@
 #include <iostream>
-#include "iter.hpp" 
+#include "iter.hpp"
 
-void printInt(const int& x) { 
-  std::cout << x << " "; 
+void printInt(const int& x) {
+  std::cout << x << " ";
 }
 
-void printString(const std::string& x) { 
-  std::cout << x << " "; 
+void printString(const std::string& x) {
+  std::cout << x << " ";
 }
 
 void doubleValue(int& x) {
-  x *= 2; 
+  x *= 2;
 }
 
 void printCharFromInt(const int& x) {
@@ -18,7 +18,7 @@ void printCharFromInt(const int& x) {
 }
 
 int main() {
-    int numbers[] = {65, 66, 67, 68, 69}; 
+    int numbers[] = {65, 66, 67, 68, 69}; // oblige de declarer un array comme ca ?
     std::string words[] = {"hello", "world"};
 
     iter(numbers, 5, printInt);
@@ -34,7 +34,7 @@ int main() {
 
     std::cout << std::endl;
 
-    int fortytwo[] = {26, 25}; 
+    int fortytwo[] = {26, 25};
     iter(fortytwo, 2, printInt);
     std::cout << std::endl;
     iter(fortytwo, 2, doubleValue);
