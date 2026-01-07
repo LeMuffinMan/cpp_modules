@@ -1,2 +1,0 @@
-
-class B : public Base {};
