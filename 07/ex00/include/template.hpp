@@ -1,7 +1,6 @@
 #ifndef TEMPLATE_HPP
 #define TEMPLATE_HPP
 
-// T <=> For any type
 template <typename T>
 void swap(T &a, T &b) {
     T temp = a;
@@ -9,9 +8,8 @@ void swap(T &a, T &b) {
     b = temp;
 }
 
-// Returns any type const &?
 template <typename T>
-T const &min(T const &a, T const &b) {
+T const min(T const &a, T const &b) {
     if (a < b)
         return a;
     else
@@ -19,7 +17,7 @@ T const &min(T const &a, T const &b) {
 }
 
 template <typename T>
-T const &max(T const &a, T const &b) {
+T const max(T const &a, T const &b) {
     if (a > b)
         return a;
     else
