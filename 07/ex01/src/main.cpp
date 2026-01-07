@@ -17,9 +17,13 @@ void printCharFromInt(const int& x) {
     std::cout << static_cast<char>(x);
 }
 
+template<typename T>
+void printAny(const T& x) {
+    std::cout << x << " ";
+}
+
 int main() {
-    //ajouter un test pour le const !
-    int numbers[] = {65, 66, 67, 68, 69}; // oblige de declarer un array comme ca ?
+    int numbers[] = {65, 66, 67, 68, 69};
     std::string words[] = {"hello", "world"};
 
     iter(numbers, 5, printInt);
@@ -42,6 +46,11 @@ int main() {
     iter(fortytwo, 2, printInt);
     std::cout << std::endl;
     iter(fortytwo, 2, printCharFromInt);
+    std::cout << std::endl;
+
+    std::cout << std::endl;
+    float floats[] = {1.1f, 2.2f, 3.3f};
+    iter(floats, 3, printAny<float>);
     std::cout << std::endl;
 
     return 0;
