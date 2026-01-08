@@ -19,6 +19,7 @@ class Span
         unsigned int longestSpan();
         void addMultipleNumbers();
         void printSpan();
+        unsigned int getSize();
 };
 
 class SpanFullException : public std::exception {

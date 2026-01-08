@@ -34,6 +34,7 @@ unsigned int Span::shortestSpan() {
     if (_numbers.size() < 2) {
         throw NotEnoughNumbersException();
     }
+    // std::cout << "span size = " << _numbers.size() << std::endl;
     std::vector<int> sorted = _numbers;
     std::sort(sorted.begin(), sorted.end());
 
@@ -58,11 +59,15 @@ unsigned int Span::longestSpan() {
 }
 
 void Span::printSpan() {
+    std::cout << "Span maxSize = " << _maxSize << std::endl;
+    std::cout << "Span size = " << _numbers.size() << std::endl;
     if (_numbers.size() > 0) {
         for (size_t i = 0; i < _numbers.size(); i++) {
             std::cout << "Span[" << i << "] = " << _numbers[i] << std::endl;
         }
-    } else {
-        std::cout << "Span is empty" << std::endl;
     }
+}
+
+unsigned int Span::getSize() {
+    return _numbers.size();
 }
