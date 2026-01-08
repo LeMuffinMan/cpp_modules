@@ -1,16 +1,16 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
 OBJS_DIR = .objs
-SRCS = $(wildcard .)
+SRCS = src/main.cpp src/Span.cpp
 OBJS = $(patsubst src/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
-VG = valgrind 
+VG = valgrind
 VGFLAGS = --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes
 NAME = span
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
+$(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 $(OBJS_DIR)/%.o: src/%.cpp Makefile | $(OBJS_DIR)
@@ -29,10 +29,4 @@ fclean: clean
 
 re: fclean all
 
-run: all 
-	./$(NAME)
-
-vg: 
-	$(VG) $(VGFLAGS) ./$(NAME) 
-
-.PHONY: all clean fclean re run vg
+.PHONY: all clean fclean re
