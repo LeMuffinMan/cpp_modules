@@ -26,13 +26,13 @@ void Span::addNumber(int n) {
         _numbers.push_back(n);
         std::cout << "Added " << n << " to Span" << std::endl;
     } else {
-        throw std::exception();
+        throw SpanFullException();
     }
 }
 
 unsigned int Span::shortestSpan() {
     if (_numbers.size() < 2) {
-        throw std::exception();
+        throw NotEnoughNumbersException();
     }
     std::vector<int> sorted = _numbers;
     std::sort(sorted.begin(), sorted.end());
@@ -48,11 +48,21 @@ unsigned int Span::shortestSpan() {
 
 unsigned int Span::longestSpan() {
     if (_numbers.size() < 2) {
-        throw std::exception();
+        throw NotEnoughNumbersException();
     }
 
     int min = *std::min_element(_numbers.begin(), _numbers.end());
     int max = *std::min_element(_numbers.begin(), _numbers.end());
 
     return max - min;
+}
+
+void Span::printSpan() {
+    if (_numbers.size() > 0) {
+        for (size_t i = 0; i < _numbers.size(); i++) {
+            std::cout << "Span[" << i << "] = " << _numbers[i] << std::endl;
+        }
+    } else {
+        std::cout << "Span is empty" << std::endl;
+    }
 }

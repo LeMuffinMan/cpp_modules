@@ -5,66 +5,130 @@ int main()
 {
     Span sp = Span(5);
     std::cout << std::endl;
+    std::cout << "Span with 0 number: " << std::endl;
+    sp.printSpan();
     try {
-        std::cout << "Span with 1 number: " << std::endl;
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (const std::exception&) {
-        std::cout << "Exception caught" << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
     std::cout << std::endl;
+
     try {
         sp.addNumber(6);
-        std::cout << "Span with 2 numbers: " << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    std::cout << "Span with 1 numbers: " << std::endl;
+    sp.printSpan();
+    try {
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (const std::exception&) {
-        std::cout << "Exception caught" << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
     std::cout << std::endl;
+
     try {
         sp.addNumber(3);
-        std::cout << "Span with 3 numbers: " << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    std::cout << "Span with 2 numbers: " << std::endl;
+    sp.printSpan();
+    try {
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (const std::exception&) {
-        std::cout << "Exception caught" << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
     std::cout << std::endl;
+
     try {
         sp.addNumber(17);
-        std::cout << "Span with 4 numbers: " << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    std::cout << "Span with 3 numbers: " << std::endl;
+    sp.printSpan();
+    try {
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (const std::exception&) {
-        std::cout << "Exception caught" << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
     std::cout << std::endl;
+
     try {
         sp.addNumber(9);
-        std::cout << "Span with 4 numbers: " << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    std::cout << "Span with 4 numbers: " << std::endl;
+    sp.printSpan();
+    try {
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (const std::exception&) {
-        std::cout << "Exception caught" << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
     std::cout << std::endl;
     try {
         sp.addNumber(11);
-        std::cout << "Span with 5 numbers: " << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    std::cout << "Span with 5 numbers: " << std::endl;
+    sp.printSpan();
+    try {
         std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
         std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (const std::exception&) {
-        std::cout << "Exception caught" << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
     std::cout << std::endl;
     try {
         std::cout << "Attempt to add a 6th number in a span sized 5: " << std::endl;
         sp.addNumber(196);
-        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
-    } catch (const std::exception&) {
-        std::cout << "Exception caught" << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
     }
+    sp.printSpan();
+    try {
+        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    try {
+        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+    } catch (const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
+    //tester avec 10000 et plus
     return 0;
 }

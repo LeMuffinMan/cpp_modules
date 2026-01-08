@@ -18,6 +18,21 @@ class Span
         unsigned int shortestSpan();
         unsigned int longestSpan();
         void addMultipleNumbers();
+        void printSpan();
+};
+
+class SpanFullException : public std::exception {
+public:
+    virtual const char* what() const throw() {
+        return "Span is full: cannot add more numbers";
+    }
+};
+
+class NotEnoughNumbersException : public std::exception {
+public:
+    virtual const char* what() const throw() {
+        return "Not enough numbers to calculate span";
+    }
 };
 
 #endif
