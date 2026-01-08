@@ -33,7 +33,6 @@ unsigned int Span::shortestSpan() {
     if (_numbers.size() < 2) {
         throw NotEnoughNumbersException();
     }
-    // std::cout << "span size = " << _numbers.size() << std::endl;
     std::vector<int> sorted = _numbers;
     std::sort(sorted.begin(), sorted.end());
 
