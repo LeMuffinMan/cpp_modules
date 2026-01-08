@@ -24,7 +24,6 @@ Span::~Span() {}
 void Span::addNumber(int n) {
     if (_numbers.size() < _maxSize) {
         _numbers.push_back(n);
-        std::cout << "Added " << n << " to Span" << std::endl;
     } else {
         throw SpanFullException();
     }
@@ -53,12 +52,13 @@ unsigned int Span::longestSpan() {
     }
 
     int min = *std::min_element(_numbers.begin(), _numbers.end());
-    int max = *std::min_element(_numbers.begin(), _numbers.end());
+    int max = *std::max_element(_numbers.begin(), _numbers.end());
 
     return max - min;
 }
 
 void Span::printSpan() {
+    std::cout << "--= Span infos =--" << std::endl;
     std::cout << "Span maxSize = " << _maxSize << std::endl;
     std::cout << "Span size = " << _numbers.size() << std::endl;
     if (_numbers.size() > 0) {
@@ -66,6 +66,7 @@ void Span::printSpan() {
             std::cout << "Span[" << i << "] = " << _numbers[i] << std::endl;
         }
     }
+    std::cout << std::endl;
 }
 
 unsigned int Span::getSize() {
