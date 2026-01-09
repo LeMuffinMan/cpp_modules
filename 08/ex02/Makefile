@@ -1,7 +1,7 @@
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iinclude -MMD -MP
 OBJS_DIR = .objs
-SRCS = src/main.cpp
+SRCS = src/main.cpp src/tests.cpp
 OBJS = $(patsubst src/%.cpp,$(OBJS_DIR)/%.o,$(SRCS))
 DEPS = $(OBJS:.o=.d)
 VG = valgrind
