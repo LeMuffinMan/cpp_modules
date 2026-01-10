@@ -27,29 +27,33 @@ void subjectTests() {
   std::stack<int> s(mstack);
 }
 
-void subjectTestsLst() {
-  std::cout << std::endl;
-  std::cout << "=== std::list ===" << std::endl;
-  MutantStack<int> mstack;
+void subjectTestsWithList() {
+  std::cout << "=== with std::list ===" << std::endl;
+
   std::list<int> lst;
+  lst.push_back(5);
+  lst.push_back(17);
 
-  for (int i = 0; i < 10; ++i) {
-    mstack.push(i);
-    lst.push_back(i);
-  }
+  std::cout << lst.back() << std::endl;
+  lst.pop_back();
 
-  std::cout << "MutantStack from begin to end: ";
-  for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end();
-       ++it) {
-    std::cout << *it << " ";
-  }
-  std::cout << std::endl;
+  std::cout << lst.size() << std::endl;
 
-  std::cout << "std::list from begin to end: ";
-  for (std::list<int>::iterator it = lst.begin(); it != lst.end(); ++it) {
-    std::cout << *it << " ";
+  lst.push_back(3);
+  lst.push_back(5);
+  lst.push_back(737);
+  lst.push_back(0);
+
+  std::list<int>::iterator it = lst.begin();
+  std::list<int>::iterator ite = lst.end();
+
+  ++it;
+  --it;
+
+  while (it != ite) {
+    std::cout << *it << std::endl;
+    ++it;
   }
-  std::cout << std::endl;
 }
 
 void iteratorsTests() {
@@ -57,41 +61,76 @@ void iteratorsTests() {
   std::cout << std::endl;
   std::cout << "=== iterators tests ===" << std::endl;
   {
-    MutantStack<std::string> mstack;
-    mstack.push("Hello");
-    mstack.push("World");
-    mstack.push("from");
-    mstack.push("MutantStack");
+      std::cout << "pushing in mstack : [Hello], [World], [from], [MutantStack]" << std::endl;
+      MutantStack<std::string> mstack;
+      mstack.push("Hello");
+      mstack.push("World");
+      mstack.push("from");
+      mstack.push("MutantStack");
 
-    std::cout << "MutantStack from end to begin: ";
-    for (MutantStack<std::string>::reverse_iterator rit = mstack.rbegin();
-         rit != mstack.rend(); ++rit) {
-      std::cout << *rit << " ";
+      std::cout << "pushing_back in lst : [Hello], [World], [from], [lst]" << std::endl;
+      std::list<std::string> lst;
+      lst.push_back("Hello");
+      lst.push_back("World");
+      lst.push_back("from");
+      lst.push_back("lst");
+
+      std::cout << "MutantStack reverse iteration: ";
+      for (MutantStack<std::string>::reverse_iterator rit = mstack.rbegin();
+           rit != mstack.rend(); ++rit) {
+        std::cout << *rit << " ";
+      }
+      std::cout << std::endl;
+
+      std::cout << "std::list reverse iteration: ";
+      for (std::list<std::string>::reverse_iterator rit = lst.rbegin();
+           rit != lst.rend(); ++rit) {
+        std::cout << *rit << " ";
+      }
+      std::cout << std::endl;
+
+      std::cout << "\nMutantStack forward iteration: ";
+      for (MutantStack<std::string>::iterator it = mstack.begin();
+           it != mstack.end(); ++it) {
+        std::cout << *it << " ";
+      }
+      std::cout << std::endl;
+
+      std::cout << "std::list forward iteration: ";
+      for (std::list<std::string>::iterator it = lst.begin();
+           it != lst.end(); ++it) {
+        std::cout << *it << " ";
+      }
+      std::cout << std::endl;
     }
-    std::cout << std::endl;
+    {
+      MutantStack<int> mstack;
+      mstack.push(1);
+      mstack.push(2);
+      mstack.push(3);
 
-    std::cout << "std::list from end to begin: ";
-    for (MutantStack<std::string>::iterator it = mstack.begin();
-         it != mstack.end(); ++it) {
-      std::cout << *it << " ";
+      std::list<int> lst;
+      lst.push_back(1);
+      lst.push_back(2);
+      lst.push_back(3);
+
+      const MutantStack<int>& const_mstack = mstack;
+      const std::list<int>& const_lst = lst;
+
+      std::cout << "Const MutantStack iteration: ";
+      for (MutantStack<int>::const_iterator it = const_mstack.begin();
+           it != const_mstack.end(); ++it) {
+        std::cout << *it << " ";
+      }
+      std::cout << std::endl;
+
+      std::cout << "Const std::list iteration: ";
+      for (std::list<int>::const_iterator it = const_lst.begin();
+           it != const_lst.end(); ++it) {
+        std::cout << *it << " ";
+      }
+      std::cout << std::endl;
     }
-    std::cout << std::endl;
-  }
-  {
-    MutantStack<double> mstack;
-    mstack.push(3.14);
-    mstack.push(2.71);
-    mstack.push(1.41);
-
-    const MutantStack<double> &const_mstack = mstack;
-
-    std::cout << "Const iteration: ";
-    for (MutantStack<double>::const_iterator it = const_mstack.begin();
-         it != const_mstack.end(); ++it) {
-      std::cout << *it << " ";
-    }
-    std::cout << std::endl;
-  }
 }
 
 void largeStackTest() {

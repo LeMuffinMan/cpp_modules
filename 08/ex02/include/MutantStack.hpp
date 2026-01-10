@@ -5,11 +5,6 @@
 
 template <typename T> class MutantStack : public std::stack<T> {
 public:
-  // container_type :
-  //     C'est un typedef défini dans std::stack
-  //     Il représente le type du conteneur sous-jacent
-  //     Par défaut : std::deque<T>, mais l'utilisateur peut en spécifier un
-  //     autre
   typedef typename std::stack<T>::container_type::iterator iterator;
   typedef typename std::stack<T>::container_type::const_iterator const_iterator;
   typedef
@@ -34,5 +29,7 @@ public:
   const_reverse_iterator rbegin() const;
   const_reverse_iterator rend() const;
 };
+
+#include "MutantStack.tpp"
 
 #endif
