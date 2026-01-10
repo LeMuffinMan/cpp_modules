@@ -153,19 +153,38 @@ void iteratorsTests() {
 
 void largeStackTest() {
   std::cout << std::endl;
-  std::cout << "=== large stack ===" << std::endl;
-  MutantStack<int> largeStack;
-  for (int i = 0; i < 1000; ++i) {
-    largeStack.push(i);
-  }
+  std::cout << "=== stack 10 000 ===" << std::endl;
+  {
+    MutantStack<int> largeStack;
+    for (int i = 0; i < 10000; ++i) {
+      largeStack.push(i);
+    }
 
-  std::cout << "Size: " << largeStack.size() << std::endl;
-  std::cout << "Top: " << largeStack.top() << std::endl;
+    std::cout << "Size: " << largeStack.size() << std::endl;
+    std::cout << "Top: " << largeStack.top() << std::endl;
 
-  int sum = 0;
-  for (MutantStack<int>::iterator it = largeStack.begin();
-       it != largeStack.end(); ++it) {
-    sum += *it;
+    int sum = 0;
+    for (MutantStack<int>::iterator it = largeStack.begin();
+         it != largeStack.end(); ++it) {
+      sum += *it;
+    }
+    std::cout << "Sum of all elements: " << sum << std::endl;
   }
-  std::cout << "Sum of all elements: " << sum << std::endl;
+  std::cout << "=== stack 1 000 000 ===" << std::endl;
+  {
+    MutantStack<int> largeStack;
+    for (int i = 0; i < 1000000; ++i) {
+      largeStack.push(i);
+    }
+
+    std::cout << "Size: " << largeStack.size() << std::endl;
+    std::cout << "Top: " << largeStack.top() << std::endl;
+
+    long int sum = 0;
+    for (MutantStack<int>::iterator it = largeStack.begin();
+         it != largeStack.end(); ++it) {
+      sum += *it;
+    }
+    std::cout << "Sum of all elements: " << sum << std::endl;
+  }
 }
