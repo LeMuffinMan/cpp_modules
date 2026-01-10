@@ -1,0 +1,73 @@
+#include "Span.hpp"
+#include <exception>
+#include <iostream>
+#include <algorithm>
+#include <climits>
+
+Span::Span(unsigned int N) : _maxSize(N) {
+    std::cout << "Built Span class with _maxSize = " << _maxSize << std::endl;
+}
+
+Span::Span(const Span& other)
+    : _maxSize(other._maxSize), _numbers(other._numbers) {}
+
+Span& Span::operator=(const Span& other) {
+    if (this != &other) {
+        _maxSize = other._maxSize;
+        _numbers = other._numbers;
+    }
+    return *this;
+}
+
+Span::~Span() {}
+
+void Span::addNumber(int n) {
+    if (_numbers.size() < _maxSize) {
+        _numbers.push_back(n);
+    } else {
+        throw SpanFullException();
+    }
+}
+
+unsigned int Span::shortestSpan() {
+    if (_numbers.size() < 2) {
+        throw NotEnoughNumbersException();
+    }
+    std::vector<int> sorted = _numbers;
+    std::sort(sorted.begin(), sorted.end());
+
+    unsigned int minSpan = UINT_MAX;
+    for (size_t i = 1; i < sorted.size(); i++) {
+        unsigned int diff = sorted[i] - sorted[i - 1];
+        if (diff < minSpan)
+            minSpan = diff;
+    }
+    return minSpan;
+}
+
+unsigned int Span::longestSpan() {
+    if (_numbers.size() < 2) {
+        throw NotEnoughNumbersException();
+    }
+
+    int min = *std::min_element(_numbers.begin(), _numbers.end());
+    int max = *std::max_element(_numbers.begin(), _numbers.end());
+
+    return max - min;
+}
+
+void Span::printSpan() {
+    std::cout << "--= Span infos =--" << std::endl;
+    std::cout << "Span maxSize = " << _maxSize << std::endl;
+    std::cout << "Span size = " << _numbers.size() << std::endl;
+    if (_numbers.size() > 0) {
+        for (size_t i = 0; i < _numbers.size(); i++) {
+            std::cout << "Span[" << i << "] = " << _numbers[i] << std::endl;
+        }
+    }
+    std::cout << std::endl;
+}
+
+unsigned int Span::getSize() {
+    return _numbers.size();
+}
