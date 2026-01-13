@@ -20,7 +20,7 @@ int BitcoinExchange::BitcoinExchange(std::string filename) {
 
         if (std::getline(iss, date, ',')) {
             if (std::getline(iss, value)) {
-                _database[date] = std::atof(); // template ou on peut tout mettre en float ou double ?
+                _database[date] = std::atod(value); // template ou on peut tout mettre en float ou double ?
             }
         }
     }
