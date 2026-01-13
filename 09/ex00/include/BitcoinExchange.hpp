@@ -8,8 +8,6 @@ class BitcoinExchange {
 
 private:
   std::map<std::string, double> _dataBase;
-
-public:
   BitcoinExchange();
   ~BitcoinExchange();
   BitcoinExchange(const BitcoinExchange& bc);
@@ -19,6 +17,7 @@ public:
   loadFile(std::string filename);
   printDatabase();
 
+public:
   //try catch pour les erreurs
 };
 
