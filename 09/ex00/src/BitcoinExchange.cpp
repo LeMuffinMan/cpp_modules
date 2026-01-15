@@ -48,8 +48,6 @@ double BitcoinExchange::getRate(std::string input_date) const {
   double rate = -1;
   for (std::map<std::string, double>::const_iterator it = _dataBase.begin();
        it != _dataBase.end(); ++it) {
-    // std::cout << "input_date = " << input_date << " | it->first = " <<
-    // it->first << std::endl;
     if (input_date > it->first) {
       rate = it->second;
     } else {
@@ -104,7 +102,6 @@ bool BitcoinExchange::isValidDate(std::string date) const {
     std::istringstream mss(monthStr);
     std::istringstream dss(dayStr);
 
-    //definir des exceptions et ne throw que DateException
     if (!(yss >> year) || !(mss >> month) || !(dss >> day)) {
         throw std::runtime_error("Error: invalid trimmedDate => " + trimmedDate);
     }
@@ -156,7 +153,6 @@ void BitcoinExchange::printOutput(char *filename) const {
     std::string date;
     std::string strvalue;
 
-    // std::cout << "Seeking match for input_line : " << line << std::endl;
     if (std::getline(ss, date, '|')) {
       if (!isValidDate(date)) {
         std::cout << "Error: date is not valid" << std::endl;
@@ -170,7 +166,6 @@ void BitcoinExchange::printOutput(char *filename) const {
             strvalue.clear();
             return;
           }
-          // std::cout << "strvalue = [" << strvalue << "]" <<  std::endl;
           if (strvalue.find_first_not_of("0123456789-.") != std::string::npos) {
             std::cout << "Error: value is not valid" << std::endl;
             continue;
