@@ -9,12 +9,17 @@ int main(int argc, char **argv) {
   }
   BitcoinExchange btc;
   try {
-      btc.loadDataBase();
+    btc.loadDataBase();
   } catch (const std::exception &e) {
-    std::cout << "Error: " << e.what() << std::endl;
+    std::cout << e.what() << std::endl;
     return 1;
   }
   (void)argv;
   btc.printDataBase();
+  try {
+    btc.loadInput(argv[1]);
+  } catch (const std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
   return 0;
 }

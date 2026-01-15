@@ -8,8 +8,6 @@ class BitcoinExchange {
 
 private:
   std::map<std::string, double> _dataBase;
-  // BitcoinExchange(std::string filename);
-  // loadInput(std::string filename);
 
 public:
   BitcoinExchange();
@@ -18,6 +16,7 @@ public:
   BitcoinExchange &operator=(const BitcoinExchange &bc);
 
   void loadDataBase();
+  void loadInput(char* filename);
   void printDataBase() const;
 };
 

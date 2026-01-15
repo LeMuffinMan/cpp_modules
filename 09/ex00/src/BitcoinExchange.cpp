@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 BitcoinExchange::~BitcoinExchange() {}
@@ -34,13 +35,19 @@ void BitcoinExchange::loadDataBase() {
 
     if (std::getline(ss, date, ',')) {
       if (std::getline(ss, rate)) {
-          std::cout << "adding in db : " << date << " | " << rate << std::endl;
         _dataBase[date] = std::atof(rate.c_str());
       }
     }
   }
   file.close();
   return;
+}
+
+void BitcoinExchange::loadInput(char* filename) {
+   std::ifstream file(filename);
+   if (!file.is_open()) {
+       throw std::runtime_error("Error: could not open input file.");
+   }
 }
 
 void BitcoinExchange::printDataBase() const {
