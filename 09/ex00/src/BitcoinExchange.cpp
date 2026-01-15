@@ -68,7 +68,7 @@ bool BitcoinExchange::isValidDate(std::string date) const {
     if (start != std::string::npos) {
         trimmedDate = trimmedDate.substr(start);
     } else {
-        throw std::runtime_error("Error: bad input (only spaces) => " + date);
+        return false;
     }
 
     size_t end = trimmedDate.find_last_not_of(" \t\n\r\f\v");
@@ -78,17 +78,17 @@ bool BitcoinExchange::isValidDate(std::string date) const {
 
     if (trimmedDate.length() != 10) {
         std::cout << trimmedDate.length() << std::endl;
-        throw std::runtime_error("Error: invalid trimmedDate format (length > 10) => " + trimmedDate);
+        return false;
     }
 
     if (trimmedDate[4] != '-' || trimmedDate[7] != '-') {
-        throw std::runtime_error("Error: invalid trimmedDate format (invalid separator) => " + trimmedDate);
+        return false;
     }
 
     for (int i = 0; i < 10; i++) {
-        if (i == 4 || i == 7) continue;
+        if ((i == 4 || i == 7) && trimmedDate[i] == '-') continue;
         if (!isdigit(trimmedDate[i])) {
-            throw std::runtime_error("Error: invalid trimmedDate format (not only digits) => " + trimmedDate);
+            return false;
         }
     }
 
@@ -103,15 +103,15 @@ bool BitcoinExchange::isValidDate(std::string date) const {
     std::istringstream dss(dayStr);
 
     if (!(yss >> year) || !(mss >> month) || !(dss >> day)) {
-        throw std::runtime_error("Error: invalid trimmedDate => " + trimmedDate);
+        return false;
     }
 
     if (year < 2000) {
-        throw std::runtime_error("Error: year out of range => " + trimmedDate);
+        return false;
     }
 
     if (month < 1 || month > 12) {
-        throw std::runtime_error("Error: invalid month => " + trimmedDate);
+        return false;
     }
     static const int normalDays[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
@@ -134,7 +134,7 @@ bool BitcoinExchange::isValidDate(std::string date) const {
     }
 
     if (day > maxDays) {
-        throw std::runtime_error("Error: bad input => " + trimmedDate);
+        return false;
     }
 
     return true;
@@ -155,7 +155,7 @@ void BitcoinExchange::printOutput(char *filename) const {
 
     if (std::getline(ss, date, '|')) {
       if (!isValidDate(date)) {
-        std::cout << "Error: date is not valid" << std::endl;
+        std::cout << "Error: invalid input => " << date << std::endl;
       }
       try {
         if (std::getline(ss, strvalue)) {
@@ -166,8 +166,9 @@ void BitcoinExchange::printOutput(char *filename) const {
             strvalue.clear();
             return;
           }
-          if (strvalue.find_first_not_of("0123456789-.") != std::string::npos) {
-            std::cout << "Error: value is not valid" << std::endl;
+          size_t pos = strvalue.find_first_not_of("0123456789-.");
+          if (pos != std::string::npos) {
+            std::cout << "Error: value include an invalid character => " << strvalue[pos] << std::endl;
             continue;
           } else if (strvalue[0] == '-') {
             std::cout << "Error: not a positive number." << std::endl;
