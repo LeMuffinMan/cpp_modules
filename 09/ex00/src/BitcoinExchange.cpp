@@ -62,79 +62,80 @@ double BitcoinExchange::getRate(std::string input_date) const {
 }
 
 bool BitcoinExchange::isValidDate(std::string date) const {
-    std::string trimmedDate = date;
+  std::string trimmedDate = date;
 
-    size_t start = trimmedDate.find_first_not_of(" \t\n\r\f\v");
-    if (start != std::string::npos) {
-        trimmedDate = trimmedDate.substr(start);
-    } else {
-        return false;
+  size_t start = trimmedDate.find_first_not_of(" \t\n\r\f\v");
+  if (start != std::string::npos) {
+    trimmedDate = trimmedDate.substr(start);
+  } else {
+    return false;
+  }
+
+  size_t end = trimmedDate.find_last_not_of(" \t\n\r\f\v");
+  if (end != std::string::npos) {
+    trimmedDate = trimmedDate.substr(0, end + 1);
+  }
+
+  if (trimmedDate.length() != 10) {
+    std::cout << trimmedDate.length() << std::endl;
+    return false;
+  }
+
+  if (trimmedDate[4] != '-' || trimmedDate[7] != '-') {
+    return false;
+  }
+
+  for (int i = 0; i < 10; i++) {
+    if ((i == 4 || i == 7) && trimmedDate[i] == '-')
+      continue;
+    if (!isdigit(trimmedDate[i])) {
+      return false;
     }
+  }
 
-    size_t end = trimmedDate.find_last_not_of(" \t\n\r\f\v");
-    if (end != std::string::npos) {
-        trimmedDate = trimmedDate.substr(0, end + 1);
-    }
+  std::string yearStr = trimmedDate.substr(0, 4);
+  std::string monthStr = trimmedDate.substr(5, 2);
+  std::string dayStr = trimmedDate.substr(8, 2);
 
-    if (trimmedDate.length() != 10) {
-        std::cout << trimmedDate.length() << std::endl;
-        return false;
-    }
+  int year;
+  int month;
+  int day;
 
-    if (trimmedDate[4] != '-' || trimmedDate[7] != '-') {
-        return false;
-    }
+  std::istringstream yss(yearStr);
+  std::istringstream mss(monthStr);
+  std::istringstream dss(dayStr);
 
-    for (int i = 0; i < 10; i++) {
-        if ((i == 4 || i == 7) && trimmedDate[i] == '-') continue;
-        if (!isdigit(trimmedDate[i])) {
-            return false;
-        }
-    }
+  if (!(yss >> year) || !(mss >> month) || !(dss >> day) || year < 2009 ||
+      month < 1 || month > 12) {
+    return false;
+  }
+  return this->handleLeapYear(year, month, day);
+}
 
-    std::string yearStr = trimmedDate.substr(0, 4);
-    std::string monthStr = trimmedDate.substr(5, 2);
-    std::string dayStr = trimmedDate.substr(8, 2);
-
-    int year, month, day;
-
-    std::istringstream yss(yearStr);
-    std::istringstream mss(monthStr);
-    std::istringstream dss(dayStr);
-
-    if (!(yss >> year) || !(mss >> month) || !(dss >> day)) {
-        return false;
-    }
-
-    if (year < 2000) {
-        return false;
-    }
-
-    if (month < 1 || month > 12) {
-        return false;
-    }
-    static const int normalDays[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+bool BitcoinExchange::handleLeapYear(int year, int month, int day) const {
+    static const int normalDays[] = {31, 28, 31, 30, 31, 30,
+                                     31, 31, 30, 31, 30, 31};
 
     bool isLeapYear = false;
     if (year % 400 == 0) {
-        isLeapYear = true;
+      isLeapYear = true;
     } else if (year % 100 == 0) {
-        isLeapYear = false;
+      isLeapYear = false;
     } else if (year % 4 == 0) {
-        isLeapYear = true;
+      isLeapYear = true;
     }
 
     int maxDays;
     if (month == 2 && isLeapYear) {
-        maxDays = 29;
+      maxDays = 29;
     } else if (month >= 1 && month <= 12) {
-        maxDays = normalDays[month - 1];
+      maxDays = normalDays[month - 1];
     } else {
-        maxDays = 0;
+      maxDays = 0;
     }
 
     if (day > maxDays) {
-        return false;
+      return false;
     }
 
     return true;
@@ -168,7 +169,8 @@ void BitcoinExchange::printOutput(char *filename) const {
           }
           size_t pos = strvalue.find_first_not_of("0123456789-.");
           if (pos != std::string::npos) {
-            std::cout << "Error: value include an invalid character => " << strvalue[pos] << std::endl;
+            std::cout << "Error: value include an invalid character => "
+                      << strvalue[pos] << std::endl;
             continue;
           } else if (strvalue[0] == '-') {
             std::cout << "Error: not a positive number." << std::endl;
