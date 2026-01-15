@@ -9,7 +9,7 @@ class BitcoinExchange {
 private:
   std::map<std::string, double> _dataBase;
   double getRate(std::string date) const;
-  // double isValidDate(std::string date) const;
+  bool isValidDate(std::string date) const;
 
 public:
   BitcoinExchange();
@@ -19,7 +19,7 @@ public:
 
   void loadDataBase();
   void printOutput(char* filename) const;
-  void printDataBase() const;
+  // void printDataBase() const;
 };
 
 #endif
