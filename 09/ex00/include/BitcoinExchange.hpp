@@ -8,6 +8,9 @@ class BitcoinExchange {
 
 private:
   std::map<std::string, double> _dataBase;
+  double getRate(std::string date) const;
+  double isValidDate(std::string date) const;
+  int isLowerDate(std::string input_date, std::string db_date) const;
 
 public:
   BitcoinExchange();
@@ -16,7 +19,7 @@ public:
   BitcoinExchange &operator=(const BitcoinExchange &bc);
 
   void loadDataBase();
-  void loadInput(char* filename);
+  void printOutput(char* filename) const;
   void printDataBase() const;
 };
 

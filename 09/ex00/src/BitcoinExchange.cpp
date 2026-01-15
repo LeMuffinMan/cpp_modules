@@ -43,11 +43,59 @@ void BitcoinExchange::loadDataBase() {
   return;
 }
 
-void BitcoinExchange::loadInput(char* filename) {
-   std::ifstream file(filename);
-   if (!file.is_open()) {
-       throw std::runtime_error("Error: could not open input file.");
-   }
+double BitcoinExchange::getRate(std::string date) const {
+    try {
+        this->isValidDate(date);
+    } catch (std::exception &e) {
+        throw;
+    }
+
+    double rate = -1;
+    for (std::map<std::string, double>::const_iterator it = _dataBase.begin(); it != _dataBase.end(); ++it) {
+        if (isLowerDate(date, it->second)) {
+            rate = it->second;
+        } else {
+            break;
+        }
+    }
+    if (rate < 0) {
+        throw std::runtime_error("Error: No rate found for this date.");
+    } else {
+        return rate;
+    }
+}
+
+void BitcoinExchange::printOutput(char *filename) const {
+  std::ifstream file(filename);
+  if (!file.is_open()) {
+    throw std::runtime_error("Error: could not open input file.");
+  }
+
+  std::string line;
+  std::getline(file, line);
+  while (std::getline(file, line)) {
+    std::stringstream ss(line);
+    std::string date;
+    std::string strvalue;
+
+    if (std::getline(ss, date, ',')) {
+      try {
+        isValidDate(date);
+        if (std::getline(ss, strvalue)) {
+            try {
+                double value = std::atof(strvalue);
+                double rate = getRate(date);
+                std::cout << date << " => " << value << " = " << value * rate << std::endl;
+            } catch (std::exception &e) {
+                std::cout << e.what() << std::endl;
+                return;
+            }
+        }
+      } catch (std::exception &e) {
+        std::cout << e.what() << std::endl;
+      }
+    }
+  }
 }
 
 void BitcoinExchange::printDataBase() const {
