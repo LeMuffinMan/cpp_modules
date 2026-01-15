@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     return 1;
   }
   (void)argv;
-  btc.printDataBase();
+  // btc.printDataBase();
   try {
     btc.printOutput(argv[1]);
   } catch (const std::exception &e) {

@@ -9,8 +9,7 @@ class BitcoinExchange {
 private:
   std::map<std::string, double> _dataBase;
   double getRate(std::string date) const;
-  double isValidDate(std::string date) const;
-  int isLowerDate(std::string input_date, std::string db_date) const;
+  // double isValidDate(std::string date) const;
 
 public:
   BitcoinExchange();

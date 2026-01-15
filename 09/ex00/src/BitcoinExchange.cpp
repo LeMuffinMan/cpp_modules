@@ -1,5 +1,6 @@
 
 #include "BitcoinExchange.hpp"
+#include <climits>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
@@ -43,16 +44,17 @@ void BitcoinExchange::loadDataBase() {
   return;
 }
 
-double BitcoinExchange::getRate(std::string date) const {
-    try {
-        this->isValidDate(date);
-    } catch (std::exception &e) {
-        throw;
-    }
+double BitcoinExchange::getRate(std::string input_date) const {
+    // try {
+    //     this->isValidDate(input_date);
+    // } catch (std::exception &e) {
+    //     throw;
+    // }
 
     double rate = -1;
     for (std::map<std::string, double>::const_iterator it = _dataBase.begin(); it != _dataBase.end(); ++it) {
-        if (isLowerDate(date, it->second)) {
+        // std::cout << "input_date = " << input_date << " | it->first = " << it->first << std::endl;
+        if (input_date > it->first) {
             rate = it->second;
         } else {
             break;
@@ -78,12 +80,21 @@ void BitcoinExchange::printOutput(char *filename) const {
     std::string date;
     std::string strvalue;
 
-    if (std::getline(ss, date, ',')) {
+    // std::cout << "Seeking match for input_line : " << line << std::endl;
+    if (std::getline(ss, date, '|')) {
       try {
-        isValidDate(date);
+        // isValidDate(date);
         if (std::getline(ss, strvalue)) {
             try {
-                double value = std::atof(strvalue);
+                double value = std::atof(strvalue.c_str());
+                if (value < 0) {
+                    std::cout << "Error: not a positive number." << std::endl;
+                    continue;
+                }
+                else if (value > INT_MAX) {
+                    std::cout << "Error: too large number" << std::endl;
+                    continue;
+                }
                 double rate = getRate(date);
                 std::cout << date << " => " << value << " = " << value * rate << std::endl;
             } catch (std::exception &e) {
