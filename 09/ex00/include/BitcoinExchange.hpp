@@ -19,7 +19,7 @@ public:
   BitcoinExchange &operator=(const BitcoinExchange &bc);
 
   void loadDataBase();
-  void printOutput(char* filename) const;
+  void processInput(char* filename) const;
 };
 
 #endif

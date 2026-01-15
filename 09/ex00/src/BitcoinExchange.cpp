@@ -141,7 +141,7 @@ bool BitcoinExchange::handleLeapYear(int year, int month, int day) const {
     return true;
 }
 
-void BitcoinExchange::printOutput(char *filename) const {
+void BitcoinExchange::processInput(char *filename) const {
   std::ifstream file(filename);
   if (!file.is_open()) {
     throw std::runtime_error("Error: could not open input file.");
