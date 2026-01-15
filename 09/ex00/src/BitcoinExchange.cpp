@@ -45,12 +45,6 @@ void BitcoinExchange::loadDataBase() {
 }
 
 double BitcoinExchange::getRate(std::string input_date) const {
-  // try {
-  //     this->isValidDate(input_date);
-  // } catch (std::exception &e) {
-  //     throw;
-  // }
-
   double rate = -1;
   for (std::map<std::string, double>::const_iterator it = _dataBase.begin();
        it != _dataBase.end(); ++it) {
@@ -205,17 +199,3 @@ void BitcoinExchange::printOutput(char *filename) const {
     }
   }
 }
-
-// void BitcoinExchange::printDataBase() const {
-//   std::cout << "===-- DataBase --===" << std::endl;
-//   std::cout << "Size = " << _dataBase.size() << std::endl;
-
-//   for (std::map<std::string, double>::const_iterator it =
-//   _dataBase.begin();
-//        it != _dataBase.end(); ++it) {
-//     std::cout << "Date: " << it->first << " | Rate: " << it->second
-//               << std::endl;
-//   }
-//   std::cout << "==============================================" <<
-//   std::endl;
-// }

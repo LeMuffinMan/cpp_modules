@@ -19,7 +19,6 @@ public:
 
   void loadDataBase();
   void printOutput(char* filename) const;
-  // void printDataBase() const;
 };
 
 #endif
