@@ -1,45 +1,56 @@
 
-void BitcoinExchange::~BitcoinExchange() {}
-void BitcoinExchange::BitcoinExchange() {}
+#include "BitcoinExchange.hpp"
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
 
-//retour de fonction pour gerer erreur de parsing ? ou try catch
-int BitcoinExchange::BitcoinExchange() {
-
-    std::ifstream db = file("data.csv");
-    if (!file.is_open() {
-        std::cout << "Failed to open data.csv" << std::endl;
-        return 1;
-    }
-
-    std::string line;
-    while(std::getline(file, line)) {
-        std::istringstream iss(line);
-        std::string date;
-        std::string value;
-
-        if (std::getline(iss, date, ',')) {
-            if (std::getline(iss, value)) {
-                _database[date] = std::atod(value); // template ou on peut tout mettre en float ou double ?
-            }
-        }
-    }
-
-    //  - date : edges cases ?
-    //  - value : unsigned int ou float
-    file.close();
-    return 0;
+BitcoinExchange::~BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+    : _dataBase(other._dataBase) {}
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
+  if (this == &other)
+    return *this;
+  _dataBase = other._dataBase;
+  return *this;
 }
 
-void loadInput(std::string filename) {
+void BitcoinExchange::loadDataBase() {
 
+  std::ifstream file("data.csv");
+  if (!file.is_open()) {
+    throw std::runtime_error("Error: could not open database file.");
+    return;
+  }
+
+  std::string line;
+  std::getline(file, line);
+  while (std::getline(file, line)) {
+    std::stringstream ss(line);
+    std::string date;
+    std::string rate;
+
+    if (std::getline(ss, date, ',')) {
+      if (std::getline(ss, rate)) {
+          std::cout << "adding in db : " << date << " | " << rate << std::endl;
+        _dataBase[date] = std::atof(rate.c_str());
+      }
+    }
+  }
+  file.close();
+  return;
 }
 
-void BitcoinExchange::printDatabase() {
-    std::cout << "===-- DataBase --===" << std::endl;
-    std::cout << "Size = " << _dataBase.size() << std::endl;
+void BitcoinExchange::printDataBase() const {
+  std::cout << "===-- DataBase --===" << std::endl;
+  std::cout << "Size = " << _dataBase.size() << std::endl;
 
-    for (dataBase::const_iterator it = _dataBase.begin(); it != dataBase.end(); ++it) {
-        std::cout << "Date: " << it->first << " | " << it->second << std::endl;
-    }
-    std::cout << "==============================================" << std::endl;
+  for (std::map<std::string, double>::const_iterator it = _dataBase.begin();
+       it != _dataBase.end(); ++it) {
+    std::cout << "Date: " << it->first << " | Rate: " << it->second
+              << std::endl;
+  }
+  std::cout << "==============================================" << std::endl;
 }

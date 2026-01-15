@@ -7,18 +7,18 @@
 class BitcoinExchange {
 
 private:
-  BitcoinExchange();
-  ~BitcoinExchange();
-  BitcoinExchange(const BitcoinExchange& bc);
-  BitcoinExchange& operator=(const BitcoinExchange& bc);
-
   std::map<std::string, double> _dataBase;
-  BitcoinExchange(std::string filename);
-  loadInput(std::string filename);
-  printDatabase();
+  // BitcoinExchange(std::string filename);
+  // loadInput(std::string filename);
 
 public:
-  //try catch pour les erreurs
+  BitcoinExchange();
+  ~BitcoinExchange();
+  BitcoinExchange(const BitcoinExchange &bc);
+  BitcoinExchange &operator=(const BitcoinExchange &bc);
+
+  void loadDataBase();
+  void printDataBase() const;
 };
 
 #endif
