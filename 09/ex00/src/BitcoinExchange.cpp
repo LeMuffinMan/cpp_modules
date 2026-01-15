@@ -2,13 +2,12 @@
 void BitcoinExchange::~BitcoinExchange() {}
 void BitcoinExchange::BitcoinExchange() {}
 
-//retour de fonction pour gerer erreur de parsing ?
-int BitcoinExchange::BitcoinExchange(std::string filename) {
+//retour de fonction pour gerer erreur de parsing ? ou try catch
+int BitcoinExchange::BitcoinExchange() {
 
-    //string null ?
-    std::ifstream file(filename);
-    if (!file.is_open()) {
-        std::cout << "Failed to open file" << std::endl;
+    std::ifstream db = file("data.csv");
+    if (!file.is_open() {
+        std::cout << "Failed to open data.csv" << std::endl;
         return 1;
     }
 
@@ -29,6 +28,10 @@ int BitcoinExchange::BitcoinExchange(std::string filename) {
     //  - value : unsigned int ou float
     file.close();
     return 0;
+}
+
+void loadInput(std::string filename) {
+
 }
 
 void BitcoinExchange::printDatabase() {

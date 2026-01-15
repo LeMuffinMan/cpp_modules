@@ -7,14 +7,14 @@
 class BitcoinExchange {
 
 private:
-  std::map<std::string, double> _dataBase;
   BitcoinExchange();
   ~BitcoinExchange();
   BitcoinExchange(const BitcoinExchange& bc);
   BitcoinExchange& operator=(const BitcoinExchange& bc);
 
+  std::map<std::string, double> _dataBase;
   BitcoinExchange(std::string filename);
-  loadFile(std::string filename);
+  loadInput(std::string filename);
   printDatabase();
 
 public:
