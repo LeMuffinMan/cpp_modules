@@ -7,7 +7,6 @@ int main (int argc, char **argv) {
         return 1;
     }
     RPN rpn;
-    rpn.parse(argv[1]);
-    rpn.operate();
+    rpn.operate(argv[1]);
     return 0;
 }

@@ -15,8 +15,7 @@ public:
   RPN(const RPN &other);
   RPN &operator=(const RPN &other);
 
-  void parse(std::string input);
-  void operate();
+  void operate(std::string input);
 };
 
 #endif

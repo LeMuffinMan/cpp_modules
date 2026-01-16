@@ -19,73 +19,68 @@ RPN &RPN::operator=(const RPN &other) {
   return *this;
 }
 
-void RPN::parse(std::string input) {
+void RPN::operate(std::string input) {
   std::stringstream ss(input);
   std::string token;
 
   while (ss >> token) {
     if (token.size() == 1 &&
         (token == "+" || token == "-" || token == "*" || token == "/")) {
-      _operators.push(token[0]);
-      continue;
-    }
-    size_t pos = token.find_first_not_of("0123456789");
-    if (pos != std::string::npos) {
-      std::cout << "Unexpected character: " << token[pos] << std::endl;
+      if (_operands.size() < 2) {
+        std::cout << "Error" << std::endl;
+        return;
+      }
+
+      int b = _operands.top();
+      _operands.pop();
+      int a = _operands.top();
+      _operands.pop();
+      char op = token[0];
+
+      int result = 0;
+      switch (op) {
+      case '+':
+        result = a + b;
+        break;
+      case '-':
+        result = a - b;
+        break;
+      case '*':
+        result = a * b;
+        break;
+      case '/':
+        if (b == 0) {
+          std::cout << "Error" << std::endl;
+          return;
+        }
+        result = a / b;
+        break;
+      default:
+        std::cout << "Error" << std::endl;
+        return;
+      }
+
+      _operands.push(result);
     } else {
+      size_t pos = token.find_first_not_of("0123456789");
+      if (pos != std::string::npos) {
+        std::cout << "Error" << std::endl;
+        return;
+      }
+
       long value = strtol(token.c_str(), NULL, 10);
       if (value > 2147483647 || value < -2147483648) {
-        std::cout << "Out of int limits" << std::endl;
+        std::cout << "Error" << std::endl;
+        return;
       }
-      _operands.push(value);
+
+      _operands.push(static_cast<int>(value));
     }
   }
-  // on veut controler que les deux stacks sont coherentes ici ?
-}
 
-void RPN::operate() {
-  while (!_operators.empty()) {
-    if (_operands.size() < 2) {
-      throw std::runtime_error("Error: not enough operands");
-    }
-
-    int n1 = _operands.top();
-    _operands.pop();
-
-    int n2 = _operands.top();
-    _operands.pop();
-
-    if (_operators.empty()) {
-      throw std::runtime_error("Error: no operator available");
-    }
-    char op = _operators.top();
-    _operators.pop();
-    int res;
-    switch (op) {
-        case '+':
-        res = n1 + n2;
-        break;
-        case '-':
-        res = n1 - n2;
-        break;
-        case '*':
-        res = n1 * n2;
-        break;
-        case '/':
-        res = n1 / n2; // 0 !!!
-        break;
-        default:
-        std::cout << "Unexpected char in operators: " << op << std::endl;
-        break;
-    }
-    if (_operators.empty() && _operands.empty()) {
-      std::cout << res << std::endl;
-    } else if (_operators.empty()) {
-      std::cout << "Missing operator" << std::endl;
-    } else if (_operands.empty()) {
-      std::cout << "Missing operands" << std::endl;
-    } else {
-      _operands.push(res);
-    }
+  if (_operands.size() != 1) {
+    std::cout << "Error" << std::endl;
+  } else {
+    std::cout << _operands.top() << std::endl;
   }
 }
