@@ -15,8 +15,8 @@ private:
 public:
   BitcoinExchange();
   ~BitcoinExchange();
-  BitcoinExchange(const BitcoinExchange &bc);
-  BitcoinExchange &operator=(const BitcoinExchange &bc);
+  BitcoinExchange(const BitcoinExchange &other);
+  BitcoinExchange &operator=(const BitcoinExchange &other);
 
   void loadDataBase();
   void processInput(char* filename) const;
