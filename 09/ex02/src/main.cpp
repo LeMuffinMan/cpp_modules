@@ -30,3 +30,7 @@ int main(int argc, char **argv) {
   pmergeme.printContainer();
   return 0;
 }
+
+//Gestion des donnees ? quand start le chrono ? remplir les container hors du parse ?
+//quoi utiliser pour le chrono ?
+//revoir les try throw catch

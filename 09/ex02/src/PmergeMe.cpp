@@ -37,7 +37,7 @@ void PmergeMe::parse(int argc, char **argv) {
 
         for (int i = 0; i < _vec.size(); ++i) {
             if (num == _vec[i]) {
-                throw std::runtime_error("Error: Duplicated number: " + num)
+                throw std::runtime_error("Error: Duplicated number: " + num);
             }
         }
 
@@ -52,12 +52,18 @@ void PmergeMe::parse(int argc, char **argv) {
 
 void PmergeMe::run() {
     double vec_start_time = now;
-    fordJohnsonSort(_vec);
+    this->fordJohnsonSort(_vec);
     this->_vectorTime = now - vec_start_time;
 
     double deq_start_time = now;
-    fordJohnsonSort(_deq);
+    this->fordJohnsonSort(_deq);
     this->_dequeTime = now - deq_start_time;
+
+    //ici comparer les deux conteneurs et throw ?
+}
+
+void PmergeMe::fordJohnsonSort(Container &container) {
+
 }
 
 void PmergeMe::printContainer() {
@@ -73,6 +79,6 @@ void PmergeMe::printContainer() {
 }
 
 void PmergeMe::printPerf() {
-        std::cout << "Time to process a range of " << this->_vec.size() << " elements with std::vec : " << vecTime << std::endl;
-        std::cout << "Time to process a range of " << this->_deq.size() << " elements with std::deq : " << deqTime << std::endl;
+        std::cout << "Time to process a range of " << this->_vec.size() << " elements with std::vec : " << this->_vecTime << std::endl;
+        std::cout << "Time to process a range of " << this->_deq.size() << " elements with std::deq : " << this->_deqTime << std::endl;
 }
