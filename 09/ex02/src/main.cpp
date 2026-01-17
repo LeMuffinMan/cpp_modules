@@ -21,5 +21,10 @@ int main(int argc, char **argv) {
     std::cout << e.what() << std::endl;
     return 1;
   }
+  pmergeme.makePeers();
+  pmergeme.sortPeers();
+  pmergeme.buildMainChain();
+  pmergeme.binaryInsertion();
+  pmergeme.printResult();
   return 0;
 }

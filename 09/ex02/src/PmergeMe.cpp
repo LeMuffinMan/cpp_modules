@@ -28,6 +28,7 @@ void PmergeMe::parse(int argc, char **argv) {
             }
         }
 
+        //overflow du long ?
         long num = strtol(arg.c_str(), NULL, 10);
         if (num <= 0 || num > 2147483647) {
             throw std::runtime_error("Error: Argument '" + arg + "' is out of range");
