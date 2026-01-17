@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
 #include <cstdlib>
 #include <stdexcept>
+// #include <stdexcept>
 
 PmergeMe::PmergeMe() {}
 
@@ -19,8 +20,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 }
 
 void PmergeMe::parse(int argc, char **argv) {
-    // The management of errors related to duplicates is left to your
-    // discretion
     for (int i = 1; i < argc; i++) {
         std::string arg = argv[i];
 
@@ -34,6 +33,12 @@ void PmergeMe::parse(int argc, char **argv) {
         long num = strtol(arg.c_str(), NULL, 10);
         if (num <= 0 || num > 2147483647) {
             throw std::runtime_error("Error: Argument '" + arg + "' is out of range");
+        }
+
+        for (int i = 0; i < _vec.size(); ++i) {
+            if (num == _vec[i]) {
+                throw std::runtime_error("Error: Duplicated number: " + num);
+            }
         }
 
         _vec.push_back(static_cast<int>(num));
