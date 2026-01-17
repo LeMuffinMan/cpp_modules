@@ -37,7 +37,7 @@ void PmergeMe::parse(int argc, char **argv) {
 
         for (int i = 0; i < _vec.size(); ++i) {
             if (num == _vec[i]) {
-                throw std::runtime_error("Error: Duplicated number: " + num);
+                throw std::runtime_error("Error: Duplicated number: " + num)
             }
         }
 
