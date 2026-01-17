@@ -2,8 +2,8 @@
 #define PMERGEME_HPP
 
 #include <deque>
-#include <vector>
 #include <string>
+#include <vector>
 
 class PmergeMe {
 private:
@@ -13,6 +13,21 @@ private:
   double _vectorTime;
   double _dequeTime;
 
+  template <typename Container> void makePairs(Container &container);
+
+  template <typename Container> void sortPairs(Container &container);
+
+  template <typename Container> void buildMainChain(Container &container);
+
+  template <typename Container> void insertPending(Container &container);
+
+  template <typename Container>
+  size_t binarySearch(const Container &container, int value, size_t end);
+
+  template <typename Container> void fordJohnsonSort(Container &container);
+
+  void printPerf();
+  void printContainer();
 public:
   PmergeMe();
   PmergeMe(const PmergeMe &other);
@@ -20,28 +35,7 @@ public:
   ~PmergeMe();
 
   void parse(int argc, char **argv);
-  void run();
-};
-
-template <typename Container>
-class Solver {
-private:
-    Container _data;
-    Container _mainChain;
-
-    void makePairs();
-    void sortPairs();
-    void recursiveSort(size_t start, size_t end);
-    void insertPending();
-    size_t binarySearch(int value, size_t end);
-
-public:
-    Solver() {}
-    Solver(const Container& input) : data(input) {}
-
-    void sort();
-    const Container& getResult() const { return mainChain; }
-    double getExecutionTime() const;
+  void run(double time_to_parse);
 };
 
 #endif

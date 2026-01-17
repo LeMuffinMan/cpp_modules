@@ -46,30 +46,18 @@ void PmergeMe::parse(int argc, char **argv) {
 }
 
 void PmergeMe::run() {
-    //run avec vec
-    Solver solve(this->_vec);
+    double vec_start_time = now;
+    fordJohnsonSort(_vec);
+    this->_vectorTime = now - vec_start_time;
 
-    solve.sort();
-    std::vector<int> res = solve.getResult();
-    double vecTime = solve.getExecutionTime();
+    double deq_start_time = now;
+    fordJohnsonSort(_deq);
+    this->_dequeTime = now - deq_start_time;
+}
 
-    //run avec deq
-    Solver solve(this->_deq);
-
-    solve.sort();
-    std::deque<int> res = solve.getResult();
-    double deqTime = solve.getExecutionTime();
-
-    //time :
-    // start au parsing ?
-    // start -> sort = time to set
-    // sort -> sorted vec = time to sort vec
-    // sort -> sorted deque = time to sort deque
-    // vecTime = time to set + time to sort vec
-    // DeqTime = time to set + time to sort deq - time to sort deque
-    //
-    std::cout << "Before: ";
+void PmergeMe::printContainer() {
     for (int i = 0; i < this->_vec.size(); ++i) {
+        //ici throw si les containers ne sont pas identiques
         std::cout << vec[i];
         if (i < this->_vec.size() - 1) {
             std::cout << " ";
@@ -77,16 +65,9 @@ void PmergeMe::run() {
             std::cout << std::endl;
         }
     }
+}
 
-    std::cout << "After: ";
-    for (int i = 0; i < res.size(); ++i) {
-        std::cout << res[i];
-        if (i < res.size() - 1) {
-            std::cout << " ";
-        } else {
-            std::cout << std::endl;
-        }
-    }
-    std::cout << "Time to process a range of " << this->_vec.size() << " elements with std::vec : " << vecTime << std::endl;
-    std::cout << "Time to process a range of " << this->_vec.size() << " elements with std::deq : " << deqTime << std::endl;
+void PmergeMe::printPerf() {
+        std::cout << "Time to process a range of " << this->_vec.size() << " elements with std::vec : " << vecTime << std::endl;
+        std::cout << "Time to process a range of " << this->_deq.size() << " elements with std::deq : " << deqTime << std::endl;
 }

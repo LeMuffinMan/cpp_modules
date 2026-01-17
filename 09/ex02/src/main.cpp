@@ -15,12 +15,18 @@ int main(int argc, char **argv) {
     return 1;
   }
   PmergeMe pmergeme;
+  //start time
   try {
     pmergeme.parse(argc, argv);
   } catch (const std::exception &e) {
     std::cout << e.what() << std::endl;
     return 1;
   }
-  pmergeme.run();
+  double time_to_parse = now - start_time;
+  std::cout << "Before: ";
+  pmergeme.printContainer();
+  pmergeme.run(time_to_parse);
+  std::cout << "After: ";
+  pmergeme.printContainer();
   return 0;
 }
