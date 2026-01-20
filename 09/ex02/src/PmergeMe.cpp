@@ -58,21 +58,35 @@ void PmergeMe::run() {
     // this->_vectorTime = now - vec_start_time;
 
     // double deq_start_time = now;
-    this->fordJohnsonSort(_deq);
+    // this->fordJohnsonSort(_deq);
     // this->_dequeTime = now - deq_start_time;
 
     //ici comparer les deux conteneurs et throw ?
 }
 
 template <typename Container>
-void PmergeMe::sortPairs(Container &container) {
+void PmergeMe::swapPairs(Container &container) {
     for (size_t i = 0; i < container.size(); i += 2) {
         if (i + 1 == container.size())
             break;
         if (container[i] > container[i + 1]) {
-            int tmp = container[i];
-            container[i] = container[i + 1];
-            container[i + 1] = tmp;
+            std::swap(container[i + 1], container[i]);
+        }
+    }
+}
+
+template <typename Container>
+void PmergeMe::sortPairs(Container &container) {
+    size_t pairCount = container.size() / 2;
+    for (size_t i = 0; i < pairCount - 1; ++i) {
+        for (size_t j = i + 1; j < pairCount; ++j) {
+            size_t idx_i = i * 2;
+            size_t idx_j = j * 2;
+
+            if (container[idx_i + 1] > container[idx_j + 1]) {
+                std::swap(container[idx_i], container[idx_j]);
+                std::swap(container[idx_i + 1], container[idx_j + 1]);
+            }
         }
     }
 }
@@ -81,7 +95,11 @@ template <typename Container>
 void PmergeMe::fordJohnsonSort(Container &container) {
     //lancer chrono ici ?
 
+    swapPairs(container);
+    std::cout << "Container after swaping pairs: ";
+    this->printContainer();
     sortPairs(container);
+    std::cout << "Container after sorting pairs: ";
     this->printContainer();
 
 }

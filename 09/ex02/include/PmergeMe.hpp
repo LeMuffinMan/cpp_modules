@@ -13,6 +13,8 @@ private:
   double _deqTime;
 
   template <typename Container>
+  void swapPairs(Container &container);
+  template <typename Container>
   void sortPairs(Container &container);
   template <typename Container> void buildMainChain(Container &container);
   template <typename Container> void insertPending(Container &container);
