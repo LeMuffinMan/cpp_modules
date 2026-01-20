@@ -1,7 +1,8 @@
 #include "PmergeMe.hpp"
 #include <cstdlib>
 #include <stdexcept>
-// #include <stdexcept>
+#include <sstream>
+#include <iostream>
 
 PmergeMe::PmergeMe() {}
 
@@ -35,10 +36,11 @@ void PmergeMe::parse(int argc, char **argv) {
             throw std::runtime_error("Error: Argument '" + arg + "' is out of range");
         }
 
-        for (int i = 0; i < _vec.size(); ++i) {
+        for (size_t i = 0; i < _vec.size(); ++i) {
             if (num == _vec[i]) {
-                throw std::runtime_error("Error: Duplicated number: " + num);
-            }
+                std::ostringstream oss;
+                oss << "Error: Duplicated number: " << num;
+                throw std::runtime_error(oss.str());            }
         }
 
         _vec.push_back(static_cast<int>(num));
@@ -51,25 +53,43 @@ void PmergeMe::parse(int argc, char **argv) {
 }
 
 void PmergeMe::run() {
-    double vec_start_time = now;
+    // double vec_start_time = now;
     this->fordJohnsonSort(_vec);
-    this->_vectorTime = now - vec_start_time;
+    // this->_vectorTime = now - vec_start_time;
 
-    double deq_start_time = now;
+    // double deq_start_time = now;
     this->fordJohnsonSort(_deq);
-    this->_dequeTime = now - deq_start_time;
+    // this->_dequeTime = now - deq_start_time;
 
     //ici comparer les deux conteneurs et throw ?
 }
 
+template <typename Container>
+void PmergeMe::sortPairs(Container &container) {
+    for (size_t i = 0; i < container.size(); i += 2) {
+        if (i + 1 == container.size())
+            break;
+        if (container[i] > container[i + 1]) {
+            int tmp = container[i];
+            container[i] = container[i + 1];
+            container[i + 1] = tmp;
+        }
+    }
+}
+
+template <typename Container>
 void PmergeMe::fordJohnsonSort(Container &container) {
+    //lancer chrono ici ?
+
+    sortPairs(container);
+    this->printContainer();
 
 }
 
 void PmergeMe::printContainer() {
-    for (int i = 0; i < this->_vec.size(); ++i) {
+    for (size_t i = 0; i < this->_vec.size(); ++i) {
         //ici throw si les containers ne sont pas identiques
-        std::cout << vec[i];
+        std::cout << _vec[i];
         if (i < this->_vec.size() - 1) {
             std::cout << " ";
         } else {

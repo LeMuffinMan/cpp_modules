@@ -19,13 +19,13 @@ int main(int argc, char **argv) {
   try {
     pmergeme.parse(argc, argv);
   } catch (const std::exception &e) {
-    std::cout << e.what() << std::endl;
+    std::cerr << e.what() << std::endl;
     return 1;
   }
-  double time_to_parse = now - start_time;
+  // double time_to_parse = now - start_time;
   std::cout << "Before: ";
   pmergeme.printContainer();
-  pmergeme.run(time_to_parse);
+  pmergeme.run();
   std::cout << "After: ";
   pmergeme.printContainer();
   return 0;
