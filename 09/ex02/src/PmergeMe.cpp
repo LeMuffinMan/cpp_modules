@@ -92,6 +92,32 @@ void PmergeMe::sortPairs(Container &container) {
 }
 
 template <typename Container>
+void PmergeMe::buildMainChain(Container &container, Container &mainChain, Container &pend) {
+
+    mainChain.push_back(container[0]);
+    for (size_t i = 0; i < container.size() / 2; ++i) {
+        size_t idx = i * 2;
+        mainChain.push_back(container[idx + 1]);
+        if (i > 0)
+            pend.push_back(container[idx]);
+    }
+
+    if (container.size() % 2 == 1)
+        pend.push_back(container[container.size() - 1]);
+
+    std::cout << "mainChain: ";
+    for (size_t i = 0; i < mainChain.size(); ++i) {
+        std::cout << mainChain[i] << ' ';
+    }
+
+    std::cout << std::endl << "pend: ";
+    for (size_t i = 0; i < pend.size(); ++i) {
+        std::cout << pend[i] << ' ';
+    }
+    std::cout << std::endl;
+}
+
+template <typename Container>
 void PmergeMe::fordJohnsonSort(Container &container) {
     //lancer chrono ici ?
 
@@ -101,6 +127,9 @@ void PmergeMe::fordJohnsonSort(Container &container) {
     sortPairs(container);
     std::cout << "Container after sorting pairs: ";
     this->printContainer();
+    Container pend;
+    Container mainChain;
+    this->buildMainChain(container, mainChain, pend);
 
 }
 

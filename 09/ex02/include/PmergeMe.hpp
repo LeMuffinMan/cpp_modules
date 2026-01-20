@@ -12,17 +12,19 @@ private:
   double _vecTime;
   double _deqTime;
 
+  template <typename Container> void swapPairs(Container &container);
+  template <typename Container> void sortPairs(Container &container);
   template <typename Container>
-  void swapPairs(Container &container);
-  template <typename Container>
-  void sortPairs(Container &container);
-  template <typename Container> void buildMainChain(Container &container);
+  void buildMainChain(Container &container, Container &mainChain,
+                                Container &pend);
   template <typename Container> void insertPending(Container &container);
   template <typename Container>
-  std::size_t binarySearch(const Container &container, int value, std::size_t end);
+  std::size_t binarySearch(const Container &container, int value,
+                           std::size_t end);
   template <typename Container> void fordJohnsonSort(Container &container);
 
   void printPerf();
+
 public:
   PmergeMe();
   PmergeMe(const PmergeMe &other);
