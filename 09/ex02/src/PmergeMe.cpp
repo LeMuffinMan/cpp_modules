@@ -118,6 +118,55 @@ void PmergeMe::buildMainChain(Container &container, Container &mainChain, Contai
 }
 
 template <typename Container>
+void PmergeMe::generateJacobsthal(size_t n, Container &jacobsthal) {
+
+    if (n == 0) return;
+
+    jacobsthal.push_back(0);
+    if (n == 1) return;
+
+    jacobsthal.push_back(1);
+
+    while (true) {
+        size_t size = jacobsthal.size();
+        size_t next = jacobsthal[size - 1] + 2 * jacobsthal[size - 2];
+
+        if (next >= n)
+            break;
+
+        jacobsthal.push_back(next);
+    }
+}
+
+template <typename Container>
+void PmergeMe::createInsertionOrder(size_t pendSize, Container &order) {
+    Container jacobsthal;
+    generateJacobsthal(pendSize, jacobsthal);
+    for (size_t i = 1; i < jacobsthal.size(); ++i) {
+        size_t current = jacobsthal[i];
+        size_t previous = jacobsthal[i - 1];
+
+        for (size_t j = current; j > previous; --j) {
+            if (j < pendSize)
+                order.push_back(j);
+        }
+    }
+
+    size_t lastJacob = 0;
+    if (jacobsthal.empty()) {
+        lastJacob = jacobsthal.back();
+    }
+    for (size_t i = lastJacob + 1; i < pendSize; ++i) {
+        order.push_back(i);
+    }
+    std::cout << "Order: ";
+    for (size_t i = 0; i < order.size(); ++i) {
+        std::cout << order[i] << ' ';
+    }
+    std::cout << std::endl;
+}
+
+template <typename Container>
 void PmergeMe::fordJohnsonSort(Container &container) {
     //lancer chrono ici ?
 
@@ -130,6 +179,8 @@ void PmergeMe::fordJohnsonSort(Container &container) {
     Container pend;
     Container mainChain;
     this->buildMainChain(container, mainChain, pend);
+    Container order;
+    this->createInsertionOrder(pend.size(), order);
 
 }
 

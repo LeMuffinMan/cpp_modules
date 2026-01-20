@@ -12,18 +12,22 @@ private:
   double _vecTime;
   double _deqTime;
 
+  template <typename Container> void fordJohnsonSort(Container &container);
   template <typename Container> void swapPairs(Container &container);
   template <typename Container> void sortPairs(Container &container);
   template <typename Container>
   void buildMainChain(Container &container, Container &mainChain,
-                                Container &pend);
-  template <typename Container> void insertPending(Container &container);
+                      Container &pend);
+  template <typename Container>
+  void generateJacobsthal(std::size_t n, Container &jacobsthal);
+  template <typename Container>
+  void createInsertionOrder(std::size_t pendSize, Container &order);
   template <typename Container>
   std::size_t binarySearch(const Container &container, int value,
                            std::size_t end);
-  template <typename Container> void fordJohnsonSort(Container &container);
 
   void printPerf();
+  template <typename Container> void insertPending(Container &container);
 
 public:
   PmergeMe();
