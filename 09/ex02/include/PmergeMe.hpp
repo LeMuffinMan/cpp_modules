@@ -25,6 +25,10 @@ private:
   template <typename Container>
   std::size_t binarySearch(const Container &container, int value,
                            std::size_t end);
+  template <typename Container>
+  typename Container::iterator binarySearch(Container &container, int value, std::size_t limit);
+  template <typename Container>
+  void insertPend(Container &mainChain, Container &pend, Container &order);
 
   void printPerf();
   template <typename Container> void insertPending(Container &container);
