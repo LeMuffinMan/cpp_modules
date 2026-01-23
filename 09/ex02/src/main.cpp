@@ -37,16 +37,13 @@ int main(int argc, char **argv) {
   return 0;
 }
 
-//Makefile :
-// tests du sujets
-// error handling
-// 3000 elements at least
-
 // data management part ?
+// verifier si les perfs sont coherentes
+// - clear les sous conteneurs ?
+// - unite de temps ?
+// - start du time ? data management ?
+
+// fair une branche avec le debug step by step pour expliquer
+// clean master pour n'avoir que le debug demande
 
 // Comment gerer les cas 1 element ? on considere deja trie ?
-
-// unite de temps ? us ou ms ?
-
-// Gestion des donnees ? quand start le chrono ? remplir les container hors du
-// parse ?
