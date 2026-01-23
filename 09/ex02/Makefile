@@ -27,10 +27,47 @@ fclean: clean
 
 re: fclean all
 
-run:  all
-	./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
-	./$(NAME) "7 7 * 7 -"
-	./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
-	./$(NAME) "(1 + 1)"
+test:  all
+	./$(NAME) "7" "7" "*" "7" || true
+	./$(NAME) "1" "2" "*" "2" "/" "2" "*" "2" "4" "-" "+" || true
+	./$(NAME) "(1" "+" "1)" || true
+	./$(NAME) "1" || true
+	./$(NAME) "1" "2" "3"
+	./$(NAME) "-1" "2" "3" || true
+	./$(NAME) "1" "2" "-3" || true
+	./$(NAME) "1" "2" "2" || true
+	./$(NAME) "1" "1" "2" || true
+	./$(NAME) "42" || true
+	./$(NAME) "9" "8" "7" "6" "5" "4" "3" "2" "1" "0" || true
+	./$(NAME) "7" "7" "7" "7" "7" || true
+	./$(NAME) "1" "2" "1" "2" "1" "2" || true
+	./$(NAME) "100000000000000000000000000000" "2" "3" "4" || true
 
-.PHONY: all clean fclean re run
+run: all
+	./$(NAME) 3 5 9 7 4
+	@echo
+	./$(NAME) "1" "3" "2"
+	@echo
+	./$(NAME) "5" "4" "3" "2" "1"
+	@echo
+	./$(NAME) "1" "2" "3" "4" "5"
+	@echo
+	./$(NAME) "100" "50" "25" "75" "125" "175" "150" "200"
+	@echo
+	./$(NAME) `shuf -i 1000000-1001000 -n 100 | tr "\n" " "`
+	@echo
+	./$(NAME) `shuf -i 1-1000 -n 500 | tr "\n" " "`
+	@echo
+	./$(NAME) `seq 100 -1 1 | tr "\n" " "`
+	@echo
+	./$(NAME) `shuf -i 1-5000 -n 2000 | tr "\n" " "`
+	@echo
+	./$(NAME) `shuf -i 1-5000 -n 3000 | tr "\n" " "`
+	@echo
+	./$(NAME) `shuf -i 1-5000 -n 4000 | tr "\n" " "`
+	@echo
+	./$(NAME) `shuf -i 1-6000 -n 4000 | tr "\n" " "`
+	@echo
+
+
+.PHONY: all clean fclean re test run

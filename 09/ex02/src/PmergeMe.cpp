@@ -20,7 +20,7 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 
 int PmergeMe::isAlreadySorted() {
     if (isSorted(this->_vec) || isSorted(this->_deq)) {
-        std::cout << "Sequence already sorted: ";
+        std::cerr << "Error: Sequence already sorted: ";
         this->printContainer();
         return 1;
     }

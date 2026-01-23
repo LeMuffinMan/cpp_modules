@@ -37,6 +37,11 @@ int main(int argc, char **argv) {
   return 0;
 }
 
+//Makefile :
+// tests du sujets
+// error handling
+// 3000 elements at least
+
 // data management part ?
 
 // Comment gerer les cas 1 element ? on considere deja trie ?
