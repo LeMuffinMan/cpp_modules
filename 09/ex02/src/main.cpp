@@ -15,22 +15,33 @@ int main(int argc, char **argv) {
     return 1;
   }
   PmergeMe pmergeme;
-  //start time
   try {
     pmergeme.parse(argc, argv);
   } catch (const std::exception &e) {
     std::cerr << e.what() << std::endl;
     return 1;
   }
-  // double time_to_parse = now - start_time;
+  if (pmergeme.isAlreadySorted())
+      return 0;
+
   std::cout << "Before: ";
   pmergeme.printContainer();
-  pmergeme.run();
+  try {
+    pmergeme.run();
+  } catch (const std::exception &e) {
+      std::cerr << e.what() << std::endl;
+  }
   std::cout << "After: ";
   pmergeme.printContainer();
+  pmergeme.printPerf();
   return 0;
 }
 
-//Gestion des donnees ? quand start le chrono ? remplir les container hors du parse ?
-//quoi utiliser pour le chrono ?
-//revoir les try throw catch
+// data management part ?
+
+// Comment gerer les cas 1 element ? on considere deja trie ?
+
+// unite de temps ? us ou ms ?
+
+// Gestion des donnees ? quand start le chrono ? remplir les container hors du
+// parse ?

@@ -20,18 +20,20 @@ private:
                       Container &pend);
   template <typename Container>
   void generateJacobsthal(std::size_t n, Container &jacobsthal);
-  template <typename Container>
+    template <typename Container>
   void createInsertionOrder(std::size_t pendSize, Container &order);
   template <typename Container>
   std::size_t binarySearch(const Container &container, int value,
                            std::size_t end);
   template <typename Container>
-  typename Container::iterator binarySearch(Container &container, int value, std::size_t limit);
+  typename Container::iterator binarySearch(Container &container, int value,
+                                            std::size_t limit);
   template <typename Container>
   void insertPend(Container &mainChain, Container &pend, Container &order);
 
-  void printPerf();
   template <typename Container> void insertPending(Container &container);
+  template <typename Container> int isSorted(Container &container);
+  int areContainersIdentical();
 
 public:
   PmergeMe();
@@ -39,6 +41,8 @@ public:
   PmergeMe &operator=(const PmergeMe &other);
   ~PmergeMe();
 
+  int isAlreadySorted();
+  void printPerf();
   void printContainer();
   void parse(int argc, char **argv);
   void run();
