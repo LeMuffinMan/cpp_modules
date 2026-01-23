@@ -2,7 +2,6 @@
 #define PMERGEME_HPP
 
 #include <deque>
-// #include <string>
 #include <vector>
 
 class PmergeMe {
@@ -12,15 +11,20 @@ private:
   double _vecTime;
   double _deqTime;
 
-  template <typename Container> void fordJohnsonSort(Container &container);
-  template <typename Container> void swapPairs(Container &container);
-  template <typename Container> void sortPairs(Container &container);
+  int areContainersIdentical();
+
+  template <typename Container>
+  void fordJohnsonSort(Container &container);
+  template <typename Container>
+  void swapPairs(Container &container);
+  template <typename Container>
+  void sortPairs(Container &container);
   template <typename Container>
   void buildMainChain(Container &container, Container &mainChain,
                       Container &pend);
   template <typename Container>
   void generateJacobsthal(std::size_t n, Container &jacobsthal);
-    template <typename Container>
+  template <typename Container>
   void createInsertionOrder(std::size_t pendSize, Container &order);
   template <typename Container>
   std::size_t binarySearch(const Container &container, int value,
@@ -30,10 +34,10 @@ private:
                                             std::size_t limit);
   template <typename Container>
   void insertPend(Container &mainChain, Container &pend, Container &order);
-
-  template <typename Container> void insertPending(Container &container);
-  template <typename Container> int isSorted(Container &container);
-  int areContainersIdentical();
+  template <typename Container>
+  void insertPending(Container &container);
+  template <typename Container>
+  int isSorted(Container &container);
 
 public:
   PmergeMe();
