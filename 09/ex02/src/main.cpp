@@ -21,8 +21,6 @@ int main(int argc, char **argv) {
     std::cerr << e.what() << std::endl;
     return 1;
   }
-  if (pmergeme.isAlreadySorted())
-      return 0;
 
   std::cout << "Before: ";
   pmergeme.printContainer();

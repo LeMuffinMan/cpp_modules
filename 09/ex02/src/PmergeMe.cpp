@@ -18,15 +18,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
   return *this;
 }
 
-int PmergeMe::isAlreadySorted() {
-    if (isSorted(this->_vec) || isSorted(this->_deq)) {
-        std::cerr << "Error: Sequence already sorted: ";
-        this->printContainer();
-        return 1;
-    }
-    return 0;
-}
-
 template <typename Container> int PmergeMe::isSorted(Container &container) {
   if (container.size() <= 1) {
     return 1;
@@ -77,10 +68,6 @@ void PmergeMe::parse(int argc, char **argv) {
 
     _vec.push_back(static_cast<int>(num));
     _deq.push_back(static_cast<int>(num));
-  }
-
-  if (_vec.size() < 2) {
-    throw std::runtime_error("Error: Need at least 2 numbers to sort");
   }
 }
 
@@ -336,7 +323,7 @@ void PmergeMe::createInsertionOrder(size_t pendSize, Container &order) {
 
 template <typename Container>
 void PmergeMe::fordJohnsonSort(Container &container) {
-  if (container.size() <= 1)
+  if (container.size() <= 1 || this->isSorted(container))
     return;
 
   swapPairs(container);

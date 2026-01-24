@@ -45,7 +45,6 @@ public:
   PmergeMe &operator=(const PmergeMe &other);
   ~PmergeMe();
 
-  int isAlreadySorted();
   void printPerf();
   void printContainer();
   void parse(int argc, char **argv);
