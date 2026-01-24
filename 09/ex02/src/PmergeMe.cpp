@@ -128,19 +128,7 @@ template <typename Container> void PmergeMe::sortPairs(Container &container) {
     largerElements.push_back(container[i * 2 + 1]);
   }
 
-  // std::cout << "Larger elements before recursion: ";
-  // for (size_t i = 0; i < largerElements.size(); ++i) {
-  //   std::cout << largerElements[i] << ' ';
-  // }
-  // std::cout << std::endl;
-
   fordJohnsonSort(largerElements);
-
-  // std::cout << "Larger elements after recursion: ";
-  // for (size_t i = 0; i < largerElements.size(); ++i) {
-  //   std::cout << largerElements[i] << ' ';
-  // }
-  // std::cout << std::endl;
 
   Container temp;
   for (size_t i = 0; i < largerElements.size(); ++i) {
@@ -176,17 +164,6 @@ void PmergeMe::buildMainChain(Container &container, Container &mainChain,
 
   if (container.size() % 2 == 1)
     pend.push_back(container[container.size() - 1]);
-
-  // std::cout << "mainChain: ";
-  // for (size_t i = 0; i < mainChain.size(); ++i) {
-  //   std::cout << mainChain[i] << ' ';
-  // }
-
-  // std::cout << std::endl << "pend: ";
-  // for (size_t i = 0; i < pend.size(); ++i) {
-  //   std::cout << pend[i] << ' ';
-  // }
-  // std::cout << std::endl;
 }
 
 template <typename Container>
@@ -226,14 +203,6 @@ void PmergeMe::insertPend(Container &mainChain, Container &pend,
         binarySearch(mainChain, value, searchLimit);
 
     mainChain.insert(pos, value);
-
-    // std::cout << "Insert pend[" << idx << "]=" << value
-    //           << " (limit=" << searchLimit << ") → ";
-    // for (typename Container::iterator it = mainChain.begin();
-    //      it != mainChain.end(); ++it) {
-    //   std::cout << *it << " ";
-    // }
-    // std::cout << std::endl;
   }
 }
 
@@ -280,12 +249,6 @@ void PmergeMe::createInsertionOrder(size_t pendSize, Container &order) {
     jacobsthal.push_back(static_cast<int>(next));
   }
 
-  // std::cout << "Jacobsthal: ";
-  // for (size_t i = 0; i < jacobsthal.size(); ++i) {
-  //   std::cout << jacobsthal[i] << ' ';
-  // }
-  // std::cout << std::endl;
-
   size_t pos = 0;
   for (size_t i = 1; i < jacobsthal.size(); ++i) {
     size_t jacob = static_cast<size_t>(jacobsthal[i]);
@@ -313,12 +276,6 @@ void PmergeMe::createInsertionOrder(size_t pendSize, Container &order) {
   if (!hasZero && pendSize > 0) {
     order.push_back(0);
   }
-
-  // std::cout << "Order: ";
-  // for (size_t i = 0; i < order.size(); ++i) {
-  //     std::cout << order[i] << ' ';
-  // }
-  // std::cout << std::endl;
 }
 
 template <typename Container>
@@ -327,18 +284,7 @@ void PmergeMe::fordJohnsonSort(Container &container) {
     return;
 
   swapPairs(container);
-  // std::cout << "After swapping pairs: ";
-  // for (size_t i = 0; i < container.size(); ++i) {
-  //   std::cout << container[i] << ' ';
-  // }
-  // std::cout << std::endl;
-
   sortPairs(container);
-  // std::cout << "After sorting pairs: ";
-  // for (size_t i = 0; i < container.size(); ++i) {
-  //   std::cout << container[i] << ' ';
-  // }
-  // std::cout << std::endl;
 
   Container mainChain;
   Container pend;
