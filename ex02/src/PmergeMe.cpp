@@ -18,23 +18,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
   return *this;
 }
 
-template <typename Container> int PmergeMe::isSorted(Container &container) {
-  if (container.size() <= 1) {
-    return 1;
-  }
-  typename Container::iterator it;
-  typename Container::iterator next;
-  it = container.begin();
-  next = it;
-  ++next;
-  for (; next != container.end(); ++it, ++next) {
-    if (*next < *it) {
-      return 0;
-    }
-  }
-  return 1;
-}
-
 void PmergeMe::parse(int argc, char **argv) {
   for (int i = 1; i < argc; i++) {
     std::string arg = argv[i];
@@ -69,6 +52,23 @@ void PmergeMe::parse(int argc, char **argv) {
     _vec.push_back(static_cast<int>(num));
     _deq.push_back(static_cast<int>(num));
   }
+}
+
+template <typename Container> int PmergeMe::isSorted(Container &container) {
+  if (container.size() <= 1) {
+    return 1;
+  }
+  typename Container::iterator it;
+  typename Container::iterator next;
+  it = container.begin();
+  next = it;
+  ++next;
+  for (; next != container.end(); ++it, ++next) {
+    if (*next < *it) {
+      return 0;
+    }
+  }
+  return 1;
 }
 
 int PmergeMe::areContainersIdentical() {

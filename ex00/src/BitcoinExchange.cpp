@@ -54,11 +54,7 @@ double BitcoinExchange::getRate(std::string input_date) const {
       break;
     }
   }
-  if (rate < 0) {
-    throw std::runtime_error("Error: No rate found for this date.");
-  } else {
-    return rate;
-  }
+  return rate;
 }
 
 bool BitcoinExchange::isValidDate(std::string date) const {
@@ -68,6 +64,7 @@ bool BitcoinExchange::isValidDate(std::string date) const {
   if (start != std::string::npos) {
     trimmedDate = trimmedDate.substr(start);
   } else {
+    std::cout << "Error: invalid date format" << std::endl;
     return false;
   }
 
@@ -76,12 +73,8 @@ bool BitcoinExchange::isValidDate(std::string date) const {
     trimmedDate = trimmedDate.substr(0, end + 1);
   }
 
-  if (trimmedDate.length() != 10) {
-    std::cout << trimmedDate.length() << std::endl;
-    return false;
-  }
-
-  if (trimmedDate[4] != '-' || trimmedDate[7] != '-') {
+  if (trimmedDate.length() != 10 || trimmedDate[4] != '-' || trimmedDate[7] != '-') {
+    std::cout << "Error: invalid date format" << std::endl;
     return false;
   }
 
@@ -89,6 +82,7 @@ bool BitcoinExchange::isValidDate(std::string date) const {
     if ((i == 4 || i == 7) && trimmedDate[i] == '-')
       continue;
     if (!isdigit(trimmedDate[i])) {
+      std::cout << "Error: date must contain only digits and -" << std::endl;
       return false;
     }
   }
@@ -107,38 +101,40 @@ bool BitcoinExchange::isValidDate(std::string date) const {
 
   if (!(yss >> year) || !(mss >> month) || !(dss >> day) || year < 2009 ||
       month < 1 || month > 12) {
+    std::cout << "Error: no lower nearest date" << std::endl;
     return false;
   }
   return this->handleLeapYear(year, month, day);
 }
 
 bool BitcoinExchange::handleLeapYear(int year, int month, int day) const {
-    static const int normalDays[] = {31, 28, 31, 30, 31, 30,
-                                     31, 31, 30, 31, 30, 31};
+  static const int normalDays[] = {31, 28, 31, 30, 31, 30,
+                                   31, 31, 30, 31, 30, 31};
 
-    bool isLeapYear = false;
-    if (year % 400 == 0) {
-      isLeapYear = true;
-    } else if (year % 100 == 0) {
-      isLeapYear = false;
-    } else if (year % 4 == 0) {
-      isLeapYear = true;
-    }
+  bool isLeapYear = false;
+  if (year % 400 == 0) {
+    isLeapYear = true;
+  } else if (year % 100 == 0) {
+    isLeapYear = false;
+  } else if (year % 4 == 0) {
+    isLeapYear = true;
+  }
 
-    int maxDays;
-    if (month == 2 && isLeapYear) {
-      maxDays = 29;
-    } else if (month >= 1 && month <= 12) {
-      maxDays = normalDays[month - 1];
-    } else {
-      maxDays = 0;
-    }
+  int maxDays;
+  if (month == 2 && isLeapYear) {
+    maxDays = 29;
+  } else if (month >= 1 && month <= 12) {
+    maxDays = normalDays[month - 1];
+  } else {
+    maxDays = 0;
+  }
 
-    if (day > maxDays) {
-      return false;
-    }
+  if (day > maxDays) {
+    std::cout << "Error: date does not exist" << std::endl;
+    return false;
+  }
 
-    return true;
+  return true;
 }
 
 void BitcoinExchange::processInput(char *filename) const {
@@ -156,7 +152,6 @@ void BitcoinExchange::processInput(char *filename) const {
 
     if (std::getline(ss, date, '|')) {
       if (!isValidDate(date)) {
-        std::cout << "Error: invalid input => " << date << std::endl;
         continue;
       }
       try {
@@ -184,11 +179,17 @@ void BitcoinExchange::processInput(char *filename) const {
               continue;
             }
             double rate = getRate(date);
-            std::cout << date << "=> " << value << " = " << value * rate
-                      << std::endl;
+            if (rate < 0) {
+              std::cout
+                  << "Error: No rate found for this date, there is no nearest "
+                     "lower date in database"
+                  << std::endl;
+            } else {
+              std::cout << date << "=> " << value << " = " << value * rate
+                        << std::endl;
+            }
           } catch (std::exception &e) {
             std::cout << e.what() << std::endl;
-            return;
           }
         }
       } catch (std::exception &e) {
