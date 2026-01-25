@@ -157,6 +157,7 @@ void BitcoinExchange::processInput(char *filename) const {
     if (std::getline(ss, date, '|')) {
       if (!isValidDate(date)) {
         std::cout << "Error: invalid input => " << date << std::endl;
+        continue;
       }
       try {
         if (std::getline(ss, strvalue)) {
@@ -184,7 +185,7 @@ void BitcoinExchange::processInput(char *filename) const {
               continue;
             }
             double rate = getRate(date);
-            std::cout << date << " => " << value << " = " << value * rate
+            std::cout << date << "=> " << value << " = " << value * rate
                       << std::endl;
           } catch (std::exception &e) {
             std::cout << e.what() << std::endl;
