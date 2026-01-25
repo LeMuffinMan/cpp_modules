@@ -69,7 +69,7 @@ void RPN::operate(std::string input) {
       }
 
       long value = strtol(token.c_str(), NULL, 10);
-      if (value > 2147483647 || value < -2147483648) {
+      if (value > 10 || value < 0) {
         std::cout << "Error" << std::endl;
         return;
       }
