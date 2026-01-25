@@ -7,7 +7,6 @@
 class RPN {
 private:
   std::stack<int> _operands;
-  std::stack<char> _operators;
 
 public:
   RPN();

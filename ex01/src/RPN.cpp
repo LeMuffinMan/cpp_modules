@@ -9,12 +9,11 @@ RPN::RPN() {}
 RPN::~RPN() {}
 
 RPN::RPN(const RPN &other)
-    : _operands(other._operands), _operators(other._operators) {}
+    : _operands(other._operands) {}
 
 RPN &RPN::operator=(const RPN &other) {
   if (this == &other)
     return *this;
-  _operators = other._operators;
   _operands = other._operands;
   return *this;
 }
@@ -69,7 +68,7 @@ void RPN::operate(std::string input) {
       }
 
       long value = strtol(token.c_str(), NULL, 10);
-      if (value > 10 || value < 0) {
+      if (value >= 10) {
         std::cout << "Error" << std::endl;
         return;
       }
