@@ -179,8 +179,7 @@ void BitcoinExchange::processInput(char *filename) const {
           }
           try {
             double value = std::atof(strvalue.c_str());
-            if (value < 0) {
-            } else if (value > INT_MAX) {
+            if (value > INT_MAX) {
               std::cout << "Error: too large number" << std::endl;
               continue;
             }
