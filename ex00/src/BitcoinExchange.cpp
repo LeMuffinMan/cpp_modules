@@ -73,7 +73,8 @@ bool BitcoinExchange::isValidDate(std::string date) const {
     trimmedDate = trimmedDate.substr(0, end + 1);
   }
 
-  if (trimmedDate.length() != 10 || trimmedDate[4] != '-' || trimmedDate[7] != '-') {
+  if (trimmedDate.length() != 10 || trimmedDate[4] != '-' ||
+      trimmedDate[7] != '-') {
     std::cout << "Error: invalid date format" << std::endl;
     return false;
   }
@@ -119,6 +120,7 @@ bool BitcoinExchange::handleLeapYear(int year, int month, int day) const {
   } else if (year % 4 == 0) {
     isLeapYear = true;
   }
+
 
   int maxDays;
   if (month == 2 && isLeapYear) {
@@ -191,6 +193,8 @@ void BitcoinExchange::processInput(char *filename) const {
           } catch (std::exception &e) {
             std::cout << e.what() << std::endl;
           }
+        } else {
+            std::cout << "Error: No value provided for date " << date << std::endl;
         }
       } catch (std::exception &e) {
         std::cout << e.what() << std::endl;
